@@ -1,17 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ITeam, IUser } from "@producthero/types";
-import { teamSchema } from "@producthero/validations";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { SubmitHandler, useForm } from "react-hook-form";
-
-import { createTeam } from "../../actions/team";
-import { getUsers } from "../../actions/user";
-import AutocompleteField from "../../components/form/fields/AutocompleteField";
-import TextField from "../../components/form/fields/TextField";
-import Form from "../../components/form/Form";
-import FormLayout from "../../components/layouts/FormLayout";
-import TitleContainer from "../../components/layouts/TitleContainer";
-import { ITeamsInput } from "../../types/team.type";
+import { useForm } from "react-hook-form";
 
 const initialValues = {
   member: null,
@@ -37,24 +25,10 @@ const CreateTeam = () => {
     defaultValues: initialValues
   });
 
-  const { isLoading: isUserLoading, data: users } = useQuery(["users"], () =>
-    getUsers()
-  );
-
-  const { mutate: onSubmit, error, isLoading } = useMutation<
-    ITeam,
-    unknown,
-    ITeamsInput
-  >(createTeam, {
-    onSuccess: () => {
-      form.reset();
-    }
-  });
-
   const { handleSubmit } = form;
 
   const onSubmitHandler: SubmitHandler<ITeamsInput> = (values) => {
-    onSubmit(values);
+    console.log(values);
   };
 
   return (

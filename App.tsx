@@ -1,13 +1,14 @@
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material";
 import { theme } from "./src/utils/theme";
+import CreateTeam from "./src/containers/team/CreateTeam";
 
 const App = () => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <EmotionThemeProvider theme={theme}>
-          <h1>Cool</h1>
+          <CreateTeam />
         </EmotionThemeProvider>
       </ThemeProvider>
     </StyledEngineProvider>

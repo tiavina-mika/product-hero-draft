@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@hookform/resolvers": "3.0.0",
+    "@mui/material": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-hook-form": "7.43.9",
+    "typescript": "latest",
+    "zod": "3.21.4"
+  },
+  "description": "https://github.com/mui/material-ui/blob/v5.13.2/docs/data/material/components/text-fields/BasicTextFields.tsx",
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "main": "index.tsx",
+  "scripts": {
+    "start": "react-scripts start"
+  }
+}

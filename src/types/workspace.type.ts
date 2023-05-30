@@ -1,6 +1,7 @@
-export interface IWorkspace extends Parse.Attributes {
+export interface IWorkspace {
+  objectId: string;
   name: string;
   url: string;
   timezone: string;
-  space: 'shared' | 'private';
+  space: "shared" | "private";
 }

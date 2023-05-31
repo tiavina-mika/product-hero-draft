@@ -11,6 +11,7 @@ import {
   useMemo,
   useState
 } from "react";
+import { css } from "@emotion/css";
 
 import { IEntityOption } from "../../../types/team.type";
 
@@ -58,6 +59,13 @@ const classes = {
   button: {
     backgroundColor: "transparent",
     border: "none"
+  },
+  options: {
+    borderBottomRightRadius: 16,
+    borderBottomLeftRadius: 6,
+    overflow: "hidden",
+    backgroundColor: "red",
+    padding: "0px !important"
   }
 };
 type Props = {
@@ -189,6 +197,25 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
               }
             />
           )}
+          renderOption={(params, option) => (
+            <MultiSelectAuctompleteInputOption
+              {...params}
+              selectedOption={option}
+              isInputOption
+            />
+          )}
+          PaperComponent={({ children }) => {
+            return <div css={classes.options}>{children}</div>;
+          }}
+          ListboxComponent={(props) => {
+            console.log("porps", props);
+            return <Box {...props} sx={{ padding: 0 }} />;
+          }}
+          componentsProps={{
+            popper: {
+              placement: "bottom"
+            }
+          }}
         />
       </Box>
     </Stack>

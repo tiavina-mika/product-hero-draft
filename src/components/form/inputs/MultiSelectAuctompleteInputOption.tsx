@@ -2,7 +2,13 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
-import { Avatar, Stack, Typography } from "@mui/material";
+import { cx } from "@emotion/css";
+import {
+  AutocompleteRenderInputParams,
+  Avatar,
+  Stack,
+  Typography
+} from "@mui/material";
 import { FC } from "react";
 
 import { IEntityOption } from "../../../types/team.type";
@@ -17,10 +23,15 @@ const classes = {
     background: "#FFFFFF",
     border: "1px solid #dddddd",
     // border: '1px solid #F3F3F3',
-    borderRadius: 6,
     minHeight: "calc(66px - 24px)",
     paddingTop: 12,
     paddingBottom: 12
+  },
+  rootResult: {
+    borderRadius: 6
+  },
+  rootOption: {
+    borderRadius: 0
   },
   name: (theme: Theme) => ({
     fontWeight: 400,
@@ -64,18 +75,30 @@ const classes = {
 type Props = {
   selectedOption: IEntityOption;
   onDelete?: (id: string) => void;
-};
+  className?: string;
+  isInputOption?: boolean;
+} & Partial<AutocompleteRenderInputParams>;
 
 const MultiSelectAuctompleteInputOption: FC<Props> = ({
   selectedOption,
-  onDelete
+  onDelete,
+  className,
+  isInputOption = false,
+  ...selectParams
 }) => {
   const handleDelete = (id: string) => {
-    onDelete(id);
+    onDelete?.(id);
   };
 
   return (
-    <div className="flexRow center" css={classes.root}>
+    <div
+      {...selectParams}
+      className={cx("flexRow center", className)}
+      css={[
+        classes.root,
+        isInputOption ? classes.rootOption : classes.rootResult
+      ]}
+    >
       <div css={classes.left}>
         {(selectedOption.value as any).image ? (
           <Avatar

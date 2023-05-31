@@ -17,7 +17,7 @@ const classes = {
       padding: 0
     },
     "& .MuiInputAdornment-root": {
-      padding: "14px 0",
+      padding: "16.5px 0",
       width: 65,
       height: "100%",
       display: "flex",
@@ -82,9 +82,15 @@ const classes = {
 type Props = {
   left?: ReactNode | string;
   right?: ReactNode;
+  iconContainerClassName?: string;
 } & TextFieldProps;
 
-const TextFieldInput = ({ left, right, ...otherProps }: Props) => {
+const TextFieldInput = ({
+  left,
+  right,
+  iconContainerClassName,
+  ...otherProps
+}: Props) => {
   return (
     <TextField
       {...otherProps}
@@ -103,7 +109,7 @@ const TextFieldInput = ({ left, right, ...otherProps }: Props) => {
           </InputAdornment>
         ) : null,
         endAdornment: right ? (
-          <InputAdornment position="end">
+          <InputAdornment position="end" className={iconContainerClassName}>
             <div className="flex1 flexCenter">{right}</div>
           </InputAdornment>
         ) : null

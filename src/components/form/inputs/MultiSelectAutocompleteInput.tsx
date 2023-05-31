@@ -38,10 +38,10 @@ import TextFieldInput from "./TextFieldInput";
 
 const classes = {
   autocomplete: {
-    "& .MuiAutocomplete-input": {
-      paddingTop: "13.5px !important",
-      paddingBottom: "13.5px !important"
-    },
+    // "& .MuiAutocomplete-input": {
+    //   paddingTop: "13.5px !important",
+    //   paddingBottom: "13.5px !important"
+    // },
     "& .MuiAutocomplete-inputRoot": {
       paddingRight: "0px !important",
       paddingTop: 0,
@@ -51,6 +51,12 @@ const classes = {
       padding: "0px !important",
       border: "1px solid #303030",
       borderRadius: 6
+    }
+  },
+  bluredAutocomplete: {
+    "& .MuiAutocomplete-input": {
+      paddingTop: "13.5px !important",
+      paddingBottom: "13.5px !important"
     }
   },
   button: {
@@ -92,7 +98,7 @@ const classes = {
     padding: "5px 14px"
   },
   right: {
-    padding: "5px 20px",
+    padding: "5px 20px !important",
     cursor: "pointer"
   },
   center: {
@@ -103,6 +109,10 @@ const classes = {
     width: 1,
     background: "#dddddd",
     alignSelf: "stretch"
+  },
+  iconContainer: {
+    paddingBottom: 16.5,
+    paddingTop: 16.5
   }
 };
 type Props = {
@@ -232,17 +242,17 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
         <Autocomplete
           loading={loading}
           sx={{ flex: 1 }}
-          css={classes.autocomplete}
+          css={[
+            classes.autocomplete,
+            focused ? classes.bluredAutocomplete : null
+          ]}
           value={value}
           onChange={handleChange}
           options={dynamicOptions}
           getOptionLabel={(option: IEntityOption) => {
             return option.label || "";
           }}
-          isOptionEqualToValue={(
-            option: IEntityOption,
-            value: IEntityOption
-          ) => {
+          isOptionEqualToValue={(_: IEntityOption, value: IEntityOption) => {
             return originalOptions.find(
               (option: IEntityOption) =>
                 option.value.objectId === value.value.objectId

@@ -128,16 +128,28 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
       value: {
         firstName: "Tiks",
         lastName: "Kun",
-        role: { name: "Produit - Product designer" }
+        role: { name: "Produit - Product Designer" }
+      }
+    },
+    {
+      label: "Tiavina Michael",
+      value: {
+        firstName: "Tiavina",
+        lastName: "Michael",
+        role: { name: "Produit - Product Owner" }
       }
     }
   ];
 
   return (
     <Stack spacing={1.6}>
-      <Stack css={classes.listContainer} justifyContent="center">
+      <Stack spacing={2} justifyContent="center">
         {fakes.map((value, index) => (
-          <div key={value.label + index} className="flexRow center">
+          <div
+            key={value.label + index}
+            className="flexRow center"
+            css={classes.listContainer}
+          >
             <div css={classes.leftAndRight}>
               {(value.value as any).image ? (
                 <Avatar

@@ -81,13 +81,16 @@ const classes = {
     lineHeight: 1,
     color: "#A0A0A0"
   },
-  avatar: {
+  avatar: (theme: Theme) => ({
     width: 24,
     height: 24,
     borderRadius: "50%",
+    fontWeight: 400,
     fontSize: 14,
-    lineHeight: 1
-  },
+    lineHeight: 1,
+    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.primary.main
+  }),
   left: {
     padding: "5px 14px"
   },

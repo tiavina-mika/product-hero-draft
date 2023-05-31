@@ -1,25 +1,24 @@
-import { Theme } from '@emotion/react';
-import { SxProps, Typography } from '@mui/material';
+import React from "react";
+import { Theme } from "@emotion/react";
+import { SxProps, Typography } from "@mui/material";
 
 type Props = {
   text: string;
-  alignment?: 'left' | 'center' | 'right';
+  alignment?: "left" | "center" | "right";
   sx?: SxProps<Theme>;
 };
 
 const classes = {
-  root:
-    ({ alignment }: any) =>
-    (theme: Theme) => ({
-      [theme.breakpoints.up('md')]: {
-        textAlign: 'center',
-      },
-      fontSize: 14,
-      lineHeight: 1.8,
-      letterSpacing: '0.01em',
-      color: theme.palette.grey[800],
-      textAlign: alignment,
-    }),
+  root: ({ alignment }: any) => (theme: Theme) => ({
+    [theme.breakpoints.up("md")]: {
+      textAlign: "center"
+    },
+    fontSize: 14,
+    lineHeight: 1.8,
+    letterSpacing: "0.01em",
+    color: theme.palette.grey[800],
+    textAlign: alignment
+  })
 };
 
 const Description = ({ text, alignment, sx }: Props) => {

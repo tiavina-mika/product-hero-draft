@@ -1,11 +1,16 @@
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+
 import Form from "../../components/form/Form";
 import FormLayout from "../../components/layouts/FormLayout";
 import TitleContainer from "../../components/layouts/TitleContainer";
+import TextField from "../../components/form/fields/TextField";
+import AutocompleteField from "../../components/form/fields/AutocompleteField";
 import { ITeamsInput } from "../../types/team.type";
 import { IUser } from "../../types/user.type";
 import { teamSchema } from "../../validations/team.validation";
+import { users } from "../../utils/data/user";
 
 const initialValues = {
   member: null,
@@ -48,8 +53,6 @@ const CreateTeam = () => {
         form={form}
         onSubmit={handleSubmit(onSubmitHandler)}
         primaryButtonText="Créer l'équipe"
-        error={(error as Error)?.message}
-        loading={isLoading}
         buttonSx={{ fontSize: 16 }}
       >
         <TextField
@@ -69,18 +72,8 @@ const CreateTeam = () => {
           previewName="members"
           fullWidth
           options={formatUserOption(users)}
-          loading={isUserLoading}
           withPreview
           left={<img alt="team" src="/icons/team.svg" />}
-        />
-        <AutocompleteField
-          placeholder="Leader"
-          name="leader"
-          previewName="members"
-          fullWidth
-          options={formatUserOption(users)}
-          loading={isUserLoading}
-          left={<img alt="leader" src="/icons/leader.svg" />}
         />
       </Form>
     </FormLayout>

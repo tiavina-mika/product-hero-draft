@@ -1,8 +1,8 @@
 export interface IUser {
   objectId: string;
   email: string;
-  password: string;
+  password?: string;
   firstName: string;
   lastName: string;
-  members: IUser[];
+  members?: IUser[];
 }

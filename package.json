@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@emotion/babel-plugin": "11.10.6",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@hookform/resolvers": "3.0.0",

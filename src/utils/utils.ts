@@ -72,3 +72,16 @@ export const getUserFullNameAbbreviation = (
   }
   return abbreviatedName.toUpperCase();
 };
+
+export const getAlignment = (
+  alignment: "left" | "center" | "right"
+): "flex-start" | "flex-end" | "center" => {
+  if (alignment === "left") {
+    return "flex-start";
+  }
+  if (alignment === "right") {
+    return "flex-end";
+  }
+
+  return "center";
+};

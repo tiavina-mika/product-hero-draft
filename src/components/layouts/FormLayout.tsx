@@ -8,10 +8,18 @@ import { Stack } from "@mui/material";
 import { ReactNode } from "react";
 
 const classes = {
-  root: (theme: Theme) => ({
+  content: (theme: Theme) => ({
     height: "100vh",
     [theme.breakpoints.up("md")]: {
       width: 400
+    },
+    [theme.breakpoints.between("sm", "md")]: {
+      width: 500
+    },
+    [theme.breakpoints.down("sm")]: {
+      flex: 1,
+      paddingLeft: 50,
+      paddingRight: 50
     }
   })
 };
@@ -27,7 +35,7 @@ const FormLayout = ({ children }: Props) => {
         spacing={8}
         alignItems="center"
         justifyContent="center"
-        css={classes.root}
+        css={classes.content}
       >
         {children}
       </Stack>

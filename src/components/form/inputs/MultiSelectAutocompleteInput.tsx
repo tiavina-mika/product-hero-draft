@@ -1,8 +1,15 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
-import { jsx } from "@emotion/react";
-import { Autocomplete, Avatar, Box, Stack } from "@mui/material";
+import { jsx, Theme } from "@emotion/react";
+import {
+  Autocomplete,
+  Avatar,
+  Box,
+  Divider,
+  Stack,
+  Typography
+} from "@mui/material";
 import { FC, ReactNode, SyntheticEvent, useEffect, useState } from "react";
 
 import { IEntityOption } from "../../../types/team.type";
@@ -29,10 +36,34 @@ const classes = {
   },
   listContainer: {
     background: "#FFFFFF",
-    border: "1px solid grey",
+    border: "1px solid #dddddd",
     // border: '1px solid #F3F3F3',
     borderRadius: 6,
     minHeight: 66
+  },
+  name: (theme: Theme) => ({
+    fontWeight: 400,
+    fontSize: 14,
+    lineHeight: 1,
+    color: theme.palette.grey[800]
+  }),
+  role: {
+    fontWeight: 700,
+    fontSize: 12,
+    lineHeight: 1,
+    color: "#A0A0A0"
+  },
+  leftAndRight: {
+    padding: "5px 14px"
+  },
+  center: {
+    paddingLeft: 14,
+    paddingRight: 14
+  },
+  divider: {
+    width: 1,
+    background: "#dddddd",
+    alignSelf: "stretch"
   }
 };
 type Props = {
@@ -89,7 +120,8 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
       label: "Tiks kun",
       value: {
         firstName: "Tiks",
-        lastName: "Kun"
+        lastName: "Kun",
+        role: { name: "Produit - Product designer" }
       }
     }
   ];
@@ -99,14 +131,32 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
       <Stack css={classes.listContainer} justifyContent="center">
         {fakes.map((value, index) => (
           <div key={value.label + index} className="flexRow center">
-            <div>
+            <div css={classes.leftAndRight}>
               {(value.value as any).image ? (
                 <Avatar alt={value.label} src={(value.value as any).image} />
               ) : (
                 <Avatar>{getUserFullNameAbbreviation(value.value)}</Avatar>
               )}
             </div>
-            <div>{value.label}</div>
+            <div css={classes.divider} />
+            <div className="flex1" css={classes.center}>
+              <Stack spacing={1}>
+                <Typography variant="h3" css={classes.name}>
+                  {value.label}
+                </Typography>
+                {value.value.role && (
+                  <Typography css={classes.role}>
+                    {value.value.role.name}
+                  </Typography>
+                )}
+              </Stack>
+            </div>
+            <div css={classes.divider} />
+            <div css={classes.leftAndRight} className="flexCenter">
+              <button css={classes.button} className="flexCenter">
+                <img alt="minus" src="/icons/minus.svg" />
+              </button>
+            </div>
           </div>
         ))}
       </Stack>

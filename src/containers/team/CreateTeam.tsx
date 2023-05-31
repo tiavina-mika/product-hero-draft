@@ -47,7 +47,7 @@ const CreateTeam = () => {
       <TitleContainer
         title="Créer une équipe"
         description="Indiquez quels sont les résultats attendus des actions qui résolvent cette problématique"
-        alignment="left"
+        alignment="center"
       />
       <Form
         form={form}

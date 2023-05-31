@@ -1,8 +1,8 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
-import { jsx, Theme } from "@emotion/react";
-import { Autocomplete, Avatar, Box, Stack, Typography } from "@mui/material";
+import { jsx } from "@emotion/react";
+import { Autocomplete, Box, Stack } from "@mui/material";
 import {
   FC,
   ReactNode,
@@ -13,9 +13,9 @@ import {
 } from "react";
 
 import { IEntityOption } from "../../../types/team.type";
-import { getUserFullNameAbbreviation } from "../../../utils/utils";
 
 import TextFieldInput from "./TextFieldInput";
+import MultiSelectAuctompleteInputOption from "./MultiSelectAuctompleteInputOption";
 
 // const fakes = [
 //   {
@@ -38,10 +38,6 @@ import TextFieldInput from "./TextFieldInput";
 
 const classes = {
   autocomplete: {
-    // "& .MuiAutocomplete-input": {
-    //   paddingTop: "13.5px !important",
-    //   paddingBottom: "13.5px !important"
-    // },
     "& .MuiAutocomplete-inputRoot": {
       paddingRight: "0px !important",
       paddingTop: 0,
@@ -62,57 +58,6 @@ const classes = {
   button: {
     backgroundColor: "transparent",
     border: "none"
-  },
-  listContainer: {
-    background: "#FFFFFF",
-    border: "1px solid #dddddd",
-    // border: '1px solid #F3F3F3',
-    borderRadius: 6,
-    minHeight: "calc(66px - 24px)",
-    paddingTop: 12,
-    paddingBottom: 12
-  },
-  name: (theme: Theme) => ({
-    fontWeight: 400,
-    fontSize: 14,
-    lineHeight: 1,
-    color: theme.palette.grey[800]
-  }),
-  role: {
-    fontWeight: 700,
-    fontSize: 12,
-    lineHeight: 1,
-    color: "#A0A0A0"
-  },
-  avatar: (theme: Theme) => ({
-    width: 24,
-    height: 24,
-    borderRadius: "50%",
-    fontWeight: 400,
-    fontSize: 14,
-    lineHeight: 1,
-    backgroundColor: theme.palette.primary.light,
-    color: theme.palette.primary.main
-  }),
-  left: {
-    padding: "5px 14px"
-  },
-  right: {
-    padding: "5px 20px !important",
-    cursor: "pointer"
-  },
-  center: {
-    paddingLeft: 14,
-    paddingRight: 14
-  },
-  divider: {
-    width: 1,
-    background: "#dddddd",
-    alignSelf: "stretch"
-  },
-  iconContainer: {
-    paddingBottom: 16.5,
-    paddingTop: 16.5
   }
 };
 type Props = {
@@ -196,46 +141,11 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
     <Stack spacing={1.6}>
       <Stack spacing={2} justifyContent="center">
         {values.map((value, index) => (
-          <div
+          <MultiSelectAuctompleteInputOption
             key={value.label + index}
-            className="flexRow center"
-            css={classes.listContainer}
-          >
-            <div css={classes.left}>
-              {(value.value as any).image ? (
-                <Avatar
-                  css={classes.avatar}
-                  alt={value.label}
-                  src={(value.value as any).image}
-                />
-              ) : (
-                <Avatar css={classes.avatar} className="flexCenter">
-                  {getUserFullNameAbbreviation(value.value)}
-                </Avatar>
-              )}
-            </div>
-            <div css={classes.divider} />
-            <div className="flex1" css={classes.center}>
-              <Stack spacing={1}>
-                <Typography variant="h3" css={classes.name}>
-                  {value.label}
-                </Typography>
-                {value.value.role && (
-                  <Typography css={classes.role}>
-                    {(value.value.role as any).name}
-                  </Typography>
-                )}
-              </Stack>
-            </div>
-            <div css={classes.divider} />
-            <button
-              css={[classes.right, classes.button]}
-              className="flexCenter stretchSelf"
-              onClick={() => handleDelete(value.value.objectId)}
-            >
-              <img alt="minus" src="/icons/minus.svg" />
-            </button>
-          </div>
+            selectedOption={value}
+            onDelete={handleDelete}
+          />
         ))}
       </Stack>
       <Box className="flexRow">

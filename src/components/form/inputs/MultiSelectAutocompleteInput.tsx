@@ -2,14 +2,7 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
-import {
-  Autocomplete,
-  Avatar,
-  Box,
-  Divider,
-  Stack,
-  Typography
-} from "@mui/material";
+import { Autocomplete, Avatar, Box, Stack, Typography } from "@mui/material";
 import {
   FC,
   ReactNode,
@@ -45,6 +38,10 @@ import TextFieldInput from "./TextFieldInput";
 
 const classes = {
   autocomplete: {
+    "& .MuiAutocomplete-input": {
+      paddingTop: "13.5px !important",
+      paddingBottom: "13.5px !important"
+    },
     "& .MuiAutocomplete-inputRoot": {
       paddingRight: "0px !important",
       paddingTop: 0,
@@ -161,15 +158,16 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
     const newValues = values.filter(
       (value: IEntityOption) => value.value.objectId !== id
     );
-    // const newValues = values.filter((value: IEntityOption) => value.value.objectId === id);
-    console.log("newValues", newValues);
     setValues(newValues);
     onChangeList?.(newValues);
 
+    // --------- udpate options --------- //
     const removedValue = values.find(
       (value: IEntityOption) => value.value.objectId === id
     );
     if (!removedValue) return;
+
+    // add the removed value to options
     setDynamicOptions((prev: IEntityOption[]): IEntityOption[] => [
       removedValue,
       ...prev

@@ -6,7 +6,7 @@ import {
   Autocomplete,
   AutocompleteRenderInputParams,
   Box,
-  Popper,
+  Paper,
   Stack
 } from "@mui/material";
 import {
@@ -18,7 +18,6 @@ import {
   useMemo,
   useState
 } from "react";
-import { css } from "@emotion/css";
 
 import { IEntityOption } from "../../../types/team.type";
 
@@ -66,13 +65,6 @@ const classes = {
   button: {
     backgroundColor: "transparent",
     border: "none"
-  },
-  options: {
-    borderBottomRightRadius: 16,
-    borderBottomLeftRadius: 6,
-    overflow: "hidden",
-    backgroundColor: "red",
-    padding: "0px !important"
   }
 };
 type Props = {
@@ -215,6 +207,13 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
                   isInputOption
                 />
               </li>
+            );
+          }}
+          PaperComponent={({ children }) => {
+            return (
+              <Paper elevation={0} css={classes.options}>
+                {children}
+              </Paper>
             );
           }}
         />

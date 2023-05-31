@@ -53,6 +53,13 @@ const classes = {
     lineHeight: 1,
     color: "#A0A0A0"
   },
+  avatar: {
+    width: 24,
+    height: 24,
+    borderRadius: "50%",
+    fontSize: 14,
+    lineHeight: 1
+  },
   leftAndRight: {
     padding: "5px 14px"
   },
@@ -133,9 +140,15 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
           <div key={value.label + index} className="flexRow center">
             <div css={classes.leftAndRight}>
               {(value.value as any).image ? (
-                <Avatar alt={value.label} src={(value.value as any).image} />
+                <Avatar
+                  css={classes.avatar}
+                  alt={value.label}
+                  src={(value.value as any).image}
+                />
               ) : (
-                <Avatar>{getUserFullNameAbbreviation(value.value)}</Avatar>
+                <Avatar css={classes.avatar} className="flexCenter">
+                  {getUserFullNameAbbreviation(value.value)}
+                </Avatar>
               )}
             </div>
             <div css={classes.divider} />

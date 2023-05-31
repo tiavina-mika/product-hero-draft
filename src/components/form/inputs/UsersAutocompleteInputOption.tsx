@@ -4,7 +4,6 @@
 import { jsx, Theme } from "@emotion/react";
 import { cx } from "@emotion/css";
 import { Avatar, Stack, Typography } from "@mui/material";
-import { FC } from "react";
 
 import { IEntityOption } from "../../../types/team.type";
 import { getUserFullNameAbbreviation } from "../../../utils/utils";
@@ -74,13 +73,13 @@ type Props = {
   isInputOption?: boolean;
 };
 
-const UsersAutocompleteInputOption: FC<Props> = ({
+const UsersAutocompleteInputOption = ({
   selectedOption,
   onDelete,
   className,
   isInputOption = false,
   ...selectParams
-}) => {
+}: Props) => {
   const handleDelete = (id: string) => {
     onDelete?.(id);
   };

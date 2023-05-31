@@ -10,7 +10,6 @@ import {
   Stack
 } from "@mui/material";
 import {
-  FC,
   HTMLAttributes,
   ReactNode,
   SyntheticEvent,
@@ -67,6 +66,7 @@ const classes = {
     border: "none"
   }
 };
+
 type Props = {
   value: any;
   label?: string;
@@ -79,7 +79,7 @@ type Props = {
   onChangeList?: (value: IEntityOption[]) => void;
 };
 
-const UsersAutocompleteInput: FC<Props> = ({
+const UsersAutocompleteInput = ({
   value,
   label,
   onChange,
@@ -89,7 +89,7 @@ const UsersAutocompleteInput: FC<Props> = ({
   left,
   right,
   onChangeList
-}) => {
+}: Props) => {
   const [values, setValues] = useState<IEntityOption[]>([]);
   const [dynamicOptions, setDynamicOptions] = useState<IEntityOption[]>([]);
   const [focused, setFocused] = useState<boolean>(false);

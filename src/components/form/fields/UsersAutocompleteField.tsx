@@ -3,7 +3,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
 import { FormControl, FormHelperText } from "@mui/material";
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
 import { IEntityOption } from "../../../types/team.type";
@@ -22,7 +22,7 @@ type Props = {
   listName: string;
 };
 
-const UsersAutocompleteField: FC<Props> = ({
+const UsersAutocompleteField = ({
   name,
   listName,
   label,
@@ -33,7 +33,7 @@ const UsersAutocompleteField: FC<Props> = ({
   left,
   right,
   options = []
-}) => {
+}: Props) => {
   const {
     control,
     formState: { errors },

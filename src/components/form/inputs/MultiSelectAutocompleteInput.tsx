@@ -2,10 +2,11 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Autocomplete, Box, Stack } from "@mui/material";
+import { Autocomplete, Avatar, Box, Stack } from "@mui/material";
 import { FC, ReactNode, SyntheticEvent, useEffect, useState } from "react";
 
 import { IEntityOption } from "../../../types/team.type";
+import { getUserFullNameAbbreviation } from "../../../utils/utils";
 
 import TextFieldInput from "./TextFieldInput";
 
@@ -25,6 +26,13 @@ const classes = {
   button: {
     backgroundColor: "transparent",
     border: "none"
+  },
+  listContainer: {
+    background: "#FFFFFF",
+    border: "1px solid grey",
+    // border: '1px solid #F3F3F3',
+    borderRadius: 6,
+    minHeight: 66
   }
 };
 type Props = {
@@ -76,11 +84,30 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
     setFocused(false);
   };
 
+  const fakes = [
+    {
+      label: "Tiks kun",
+      value: {
+        firstName: "Tiks",
+        lastName: "Kun"
+      }
+    }
+  ];
+
   return (
     <Stack spacing={1.6}>
-      <Stack>
-        {values.map((value, index) => (
-          <div key={value.label + index}>{value.label}</div>
+      <Stack css={classes.listContainer} justifyContent="center">
+        {fakes.map((value, index) => (
+          <div key={value.label + index} className="flexRow center">
+            <div>
+              {(value.value as any).image ? (
+                <Avatar alt={value.label} src={(value.value as any).image} />
+              ) : (
+                <Avatar>{getUserFullNameAbbreviation(value.value)}</Avatar>
+              )}
+            </div>
+            <div>{value.label}</div>
+          </div>
         ))}
       </Stack>
       <Box className="flexRow">

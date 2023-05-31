@@ -1,5 +1,6 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import { Typography } from "@mui/material";

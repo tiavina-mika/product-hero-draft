@@ -7,18 +7,16 @@ import { FC, ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
 import { IEntityOption } from "../../../types/team.type";
-import AutocompleteInput from "../inputs/AutocompleteInput";
+import MultiSelectAutocompleteInput from "../inputs/MultiSelectAutocompleteInput";
 
 type Props = {
   name: string;
   label?: string;
   options: IEntityOption[];
-  previewName: string;
   fullWidth?: boolean;
   helperText?: string;
   placeholder?: string;
   loading?: boolean;
-  withPreview?: boolean;
   left?: ReactNode | string;
   right?: ReactNode;
 };
@@ -29,17 +27,14 @@ const MemberAutocompleteField: FC<Props> = ({
   fullWidth,
   helperText,
   placeholder,
-  previewName,
   loading,
   left,
   right,
-  options = [],
-  withPreview = false
+  options = []
 }) => {
   const {
     control,
-    formState: { errors },
-    setValue
+    formState: { errors }
   } = useFormContext();
 
   return (
@@ -53,17 +48,13 @@ const MemberAutocompleteField: FC<Props> = ({
         control={control}
         defaultValue=""
         render={({ field: { value, onChange } }) => (
-          <AutocompleteInput
+          <MultiSelectAutocompleteInput
             value={value}
             onChange={onChange}
             options={options}
             label={label}
             placeholder={placeholder}
             loading={loading}
-            withPreview={withPreview}
-            onChangeList={(values: IEntityOption[]) =>
-              setValue(previewName, values)
-            }
             left={left}
             right={right}
           />

@@ -69,10 +69,8 @@ const CreateTeam = () => {
         <MembersAutocompleteField
           placeholder="Ajouter des membres"
           name="member"
-          previewName="members"
           fullWidth
           options={formatUserOption(users)}
-          right="+"
         />
       </Form>
     </FormLayout>

@@ -74,7 +74,7 @@ type Props = {
   isInputOption?: boolean;
 };
 
-const MultiSelectAuctompleteInputOption: FC<Props> = ({
+const UsersAutocompleteInputOption: FC<Props> = ({
   selectedOption,
   onDelete,
   className,
@@ -132,4 +132,4 @@ const MultiSelectAuctompleteInputOption: FC<Props> = ({
   );
 };
 
-export default MultiSelectAuctompleteInputOption;
+export default UsersAutocompleteInputOption;

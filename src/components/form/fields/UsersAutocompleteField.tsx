@@ -7,7 +7,7 @@ import { FC, ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
 import { IEntityOption } from "../../../types/team.type";
-import MultiSelectAutocompleteInput from "../inputs/MultiSelectAutocompleteInput";
+import UsersAutocompleteInput from "../inputs/UsersAutocompleteInput";
 
 type Props = {
   name: string;
@@ -22,7 +22,7 @@ type Props = {
   listName: string;
 };
 
-const MemberAutocompleteField: FC<Props> = ({
+const UsersAutocompleteField: FC<Props> = ({
   name,
   listName,
   label,
@@ -51,7 +51,7 @@ const MemberAutocompleteField: FC<Props> = ({
         control={control}
         defaultValue=""
         render={({ field: { value, onChange } }) => (
-          <MultiSelectAutocompleteInput
+          <UsersAutocompleteInput
             value={value}
             onChange={onChange}
             options={options}
@@ -75,4 +75,4 @@ const MemberAutocompleteField: FC<Props> = ({
   );
 };
 
-export default MemberAutocompleteField;
+export default UsersAutocompleteField;

@@ -22,7 +22,7 @@ import {
 import { IEntityOption } from "../../../types/team.type";
 
 import TextFieldInput from "./TextFieldInput";
-import MultiSelectAuctompleteInputOption from "./MultiSelectAuctompleteInputOption";
+import UsersAutocompleteInputOption from "./UsersAutocompleteInputOption";
 
 // const fakes = [
 //   {
@@ -79,7 +79,7 @@ type Props = {
   onChangeList?: (value: IEntityOption[]) => void;
 };
 
-const MultiSelectAutocompleteInput: FC<Props> = ({
+const UsersAutocompleteInput: FC<Props> = ({
   value,
   label,
   onChange,
@@ -148,7 +148,7 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
     <Stack spacing={1.6}>
       <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
         {values.map((value, index) => (
-          <MultiSelectAuctompleteInputOption
+          <UsersAutocompleteInputOption
             key={value.label + index}
             selectedOption={value}
             onDelete={handleDelete}
@@ -202,7 +202,7 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
           ) => {
             return (
               <li {...params} className="flex1">
-                <MultiSelectAuctompleteInputOption
+                <UsersAutocompleteInputOption
                   selectedOption={option}
                   isInputOption
                 />
@@ -210,11 +210,7 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
             );
           }}
           PaperComponent={({ children }) => {
-            return (
-              <Paper elevation={0} css={classes.options}>
-                {children}
-              </Paper>
-            );
+            return <Paper elevation={0}>{children}</Paper>;
           }}
         />
       </Box>
@@ -222,4 +218,4 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
   );
 };
 
-export default MultiSelectAutocompleteInput;
+export default UsersAutocompleteInput;

@@ -34,7 +34,8 @@ const MemberAutocompleteField: FC<Props> = ({
 }) => {
   const {
     control,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useFormContext();
 
   return (
@@ -57,6 +58,9 @@ const MemberAutocompleteField: FC<Props> = ({
             loading={loading}
             left={left}
             right={right}
+            onChangeList={(values: IEntityOption[]) =>
+              setValue("members", values)
+            }
           />
         )}
       />

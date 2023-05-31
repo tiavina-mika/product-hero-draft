@@ -2,15 +2,8 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Autocomplete, Avatar, Box, Button, Stack } from "@mui/material";
-import {
-  FC,
-  Fragment,
-  ReactNode,
-  SyntheticEvent,
-  useEffect,
-  useState
-} from "react";
+import { Autocomplete, Box, Stack } from "@mui/material";
+import { FC, ReactNode, SyntheticEvent, useEffect, useState } from "react";
 
 import { IEntityOption } from "../../../types/team.type";
 
@@ -43,6 +36,7 @@ type Props = {
   loading?: boolean;
   left?: ReactNode | string;
   right?: ReactNode;
+  onChangeList?: (value: IEntityOption[]) => void;
 };
 
 const MultiSelectAutocompleteInput: FC<Props> = ({
@@ -53,11 +47,12 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
   options = [],
   loading,
   left,
-  right
+  right,
+  onChangeList
 }) => {
-  // const [values, setValues] = useState<IEntityOption[]>([]);
+  const [values, setValues] = useState<IEntityOption[]>([]);
   const [dynamicOptions, setDynamicOptions] = useState<IEntityOption[]>([]);
-
+  const [focused, setFocused] = useState<boolean>(false);
   // const originalOptions = useMemo(() => [...options], [options]);
 
   useEffect(() => {
@@ -66,43 +61,63 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
 
   const handleChange = (_: SyntheticEvent, value: IEntityOption) => {
     onChange(value);
+
+    const newValues = [value, ...values];
+    setValues(newValues);
+    onChangeList?.(newValues);
+    onChange(value);
+  };
+
+  const onFocus = () => {
+    setFocused(true);
+  };
+
+  const onBlur = () => {
+    setFocused(false);
   };
 
   return (
-    <Fragment>
-      <Stack spacing={1.6}>
-        <Box className="flexRow">
-          <Autocomplete
-            loading={loading}
-            sx={{ flex: 1 }}
-            css={classes.autocomplete}
-            value={value}
-            onChange={handleChange}
-            options={dynamicOptions}
-            getOptionLabel={(option) => {
-              return option.label || "";
-            }}
-            selectOnFocus
-            clearOnBlur
-            handleHomeEndKeys
-            disableClearable
-            renderInput={(params) => (
-              <TextFieldInput
-                {...params}
-                placeholder={placeholder}
-                label={label}
-                left={left}
-                right={
+    <Stack spacing={1.6}>
+      <Stack>
+        {values.map((value, index) => (
+          <div key={value.label + index}>{value.label}</div>
+        ))}
+      </Stack>
+      <Box className="flexRow">
+        <Autocomplete
+          loading={loading}
+          sx={{ flex: 1 }}
+          css={classes.autocomplete}
+          value={value}
+          onChange={handleChange}
+          options={dynamicOptions}
+          getOptionLabel={(option) => {
+            return option.label || "";
+          }}
+          selectOnFocus
+          clearOnBlur
+          handleHomeEndKeys
+          disableClearable
+          onFocus={onFocus}
+          onBlur={onBlur}
+          renderInput={(params) => (
+            <TextFieldInput
+              {...params}
+              placeholder={placeholder}
+              label={label}
+              left={left}
+              right={
+                focused ? null : (
                   <button css={classes.button}>
                     {right || <img alt="plus" src="/icons/plus.svg" />}
                   </button>
-                }
-              />
-            )}
-          />
-        </Box>
-      </Stack>
-    </Fragment>
+                )
+              }
+            />
+          )}
+        />
+      </Box>
+    </Stack>
   );
 };
 

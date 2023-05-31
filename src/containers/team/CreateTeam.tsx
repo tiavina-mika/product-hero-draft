@@ -70,6 +70,7 @@ const CreateTeam = () => {
         <MembersAutocompleteField
           placeholder="Ajouter des membres"
           name="member"
+          listName="members"
           fullWidth
           options={formatUserOption(users)}
         />

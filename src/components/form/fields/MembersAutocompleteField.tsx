@@ -19,10 +19,12 @@ type Props = {
   loading?: boolean;
   left?: ReactNode | string;
   right?: ReactNode;
+  listName: string;
 };
 
 const MemberAutocompleteField: FC<Props> = ({
   name,
+  listName,
   label,
   fullWidth,
   helperText,
@@ -59,7 +61,7 @@ const MemberAutocompleteField: FC<Props> = ({
             left={left}
             right={right}
             onChangeList={(values: IEntityOption[]) =>
-              setValue("members", values)
+              setValue(listName, values)
             }
           />
         )}

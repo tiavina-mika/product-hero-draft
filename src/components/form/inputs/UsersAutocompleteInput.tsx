@@ -146,15 +146,17 @@ const UsersAutocompleteInput = ({
 
   return (
     <Stack spacing={1.6}>
-      <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
-        {values.map((value, index) => (
-          <UsersAutocompleteInputOption
-            key={value.label + index}
-            selectedOption={value}
-            onDelete={handleDelete}
-          />
-        ))}
-      </Stack>
+      {values.length > 1 && (
+        <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
+          {values.map((value, index) => (
+            <UsersAutocompleteInputOption
+              key={value.label + index}
+              selectedOption={value}
+              onDelete={handleDelete}
+            />
+          ))}
+        </Stack>
+      )}
       <Box className="flexRow">
         <Autocomplete
           loading={loading}

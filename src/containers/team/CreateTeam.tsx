@@ -11,6 +11,7 @@ import { ITeamsInput } from "../../types/team.type";
 import { IUser } from "../../types/user.type";
 import { teamSchema } from "../../validations/team.validation";
 import { users } from "../../utils/data/user";
+import { getUserFullName } from "../../utils/utils";
 
 const initialValues = {
   member: null,
@@ -22,7 +23,7 @@ const initialValues = {
 const formatUserOption = (users: IUser[] | undefined) => {
   if (!users) return [];
   return users.map((user: IUser) => ({
-    label: user.lastName,
+    label: getUserFullName(user),
     value: {
       objectId: user.objectId,
       lastName: user.lastName,

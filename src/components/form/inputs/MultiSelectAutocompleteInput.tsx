@@ -10,12 +10,38 @@ import {
   Stack,
   Typography
 } from "@mui/material";
-import { FC, ReactNode, SyntheticEvent, useEffect, useState } from "react";
+import {
+  FC,
+  ReactNode,
+  SyntheticEvent,
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 
 import { IEntityOption } from "../../../types/team.type";
 import { getUserFullNameAbbreviation } from "../../../utils/utils";
 
 import TextFieldInput from "./TextFieldInput";
+
+// const fakes = [
+//   {
+//     label: "Tiks kun",
+//     value: {
+//       firstName: "Tiks",
+//       lastName: "Kun",
+//       role: { name: "Produit - Product Designer" }
+//     }
+//   },
+//   {
+//     label: "Tiavina Michael",
+//     value: {
+//       firstName: "Tiavina",
+//       lastName: "Michael",
+//       role: { name: "Produit - Product Owner" }
+//     }
+//   }
+// ];
 
 const classes = {
   autocomplete: {
@@ -39,7 +65,9 @@ const classes = {
     border: "1px solid #dddddd",
     // border: '1px solid #F3F3F3',
     borderRadius: 6,
-    minHeight: 66
+    minHeight: "calc(66px - 24px)",
+    paddingTop: 12,
+    paddingBottom: 12
   },
   name: (theme: Theme) => ({
     fontWeight: 400,
@@ -60,8 +88,12 @@ const classes = {
     fontSize: 14,
     lineHeight: 1
   },
-  leftAndRight: {
+  left: {
     padding: "5px 14px"
+  },
+  right: {
+    padding: "5px 20px",
+    cursor: "pointer"
   },
   center: {
     paddingLeft: 14,
@@ -99,12 +131,13 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
   const [values, setValues] = useState<IEntityOption[]>([]);
   const [dynamicOptions, setDynamicOptions] = useState<IEntityOption[]>([]);
   const [focused, setFocused] = useState<boolean>(false);
-  // const originalOptions = useMemo(() => [...options], [options]);
+  const originalOptions = useMemo(() => [...options], [options]);
 
   useEffect(() => {
     setDynamicOptions(options);
   }, [options]);
 
+  // input change
   const handleChange = (_: SyntheticEvent, value: IEntityOption) => {
     onChange(value);
 
@@ -112,6 +145,32 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
     setValues(newValues);
     onChangeList?.(newValues);
     onChange(value);
+
+    // --------- udpate options --------- //
+    const index = options.findIndex(
+      (option: IEntityOption) => option.value === value.value
+    );
+    options.splice(index, 1);
+    setDynamicOptions(options);
+  };
+
+  const handleDelete = (id: string) => {
+    const newValues = values.filter(
+      (value: IEntityOption) => value.value.objectId !== id
+    );
+    // const newValues = values.filter((value: IEntityOption) => value.value.objectId === id);
+    console.log("newValues", newValues);
+    setValues(newValues);
+    onChangeList?.(newValues);
+
+    const removedValue = values.find(
+      (value: IEntityOption) => value.value.objectId === id
+    );
+    if (!removedValue) return;
+    setDynamicOptions((prev: IEntityOption[]): IEntityOption[] => [
+      removedValue,
+      ...prev
+    ]);
   };
 
   const onFocus = () => {
@@ -122,35 +181,16 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
     setFocused(false);
   };
 
-  const fakes = [
-    {
-      label: "Tiks kun",
-      value: {
-        firstName: "Tiks",
-        lastName: "Kun",
-        role: { name: "Produit - Product Designer" }
-      }
-    },
-    {
-      label: "Tiavina Michael",
-      value: {
-        firstName: "Tiavina",
-        lastName: "Michael",
-        role: { name: "Produit - Product Owner" }
-      }
-    }
-  ];
-
   return (
     <Stack spacing={1.6}>
       <Stack spacing={2} justifyContent="center">
-        {fakes.map((value, index) => (
+        {values.map((value, index) => (
           <div
             key={value.label + index}
             className="flexRow center"
             css={classes.listContainer}
           >
-            <div css={classes.leftAndRight}>
+            <div css={classes.left}>
               {(value.value as any).image ? (
                 <Avatar
                   css={classes.avatar}
@@ -171,17 +211,19 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
                 </Typography>
                 {value.value.role && (
                   <Typography css={classes.role}>
-                    {value.value.role.name}
+                    {(value.value.role as any).name}
                   </Typography>
                 )}
               </Stack>
             </div>
             <div css={classes.divider} />
-            <div css={classes.leftAndRight} className="flexCenter">
-              <button css={classes.button} className="flexCenter">
-                <img alt="minus" src="/icons/minus.svg" />
-              </button>
-            </div>
+            <button
+              css={[classes.right, classes.button]}
+              className="flexCenter stretchSelf"
+              onClick={() => handleDelete(value.value.objectId)}
+            >
+              <img alt="minus" src="/icons/minus.svg" />
+            </button>
           </div>
         ))}
       </Stack>
@@ -193,8 +235,17 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
           value={value}
           onChange={handleChange}
           options={dynamicOptions}
-          getOptionLabel={(option) => {
+          getOptionLabel={(option: IEntityOption) => {
             return option.label || "";
+          }}
+          isOptionEqualToValue={(
+            option: IEntityOption,
+            value: IEntityOption
+          ) => {
+            return originalOptions.find(
+              (option: IEntityOption) =>
+                option.value.objectId === value.value.objectId
+            );
           }}
           selectOnFocus
           clearOnBlur

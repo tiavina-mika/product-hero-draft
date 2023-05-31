@@ -73,6 +73,20 @@ export const getUserFullNameAbbreviation = (
   return abbreviatedName.toUpperCase();
 };
 
+/**
+ * get user full name
+ * @param person
+ * @returns
+ */
+export const getUserFullName = (person: Record<string, any>): string => {
+  if (!person) return "";
+  let name = person.lastName;
+  if (person.firstName) {
+    name += " " + person.firstName;
+  }
+  return name;
+};
+
 export const getAlignment = (
   alignment: "left" | "center" | "right"
 ): "flex-start" | "flex-end" | "center" => {

@@ -1,5 +1,6 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
+import { jsx } from "@emotion/react";
 import React from "react";
 import { Theme } from "@emotion/react";
 import { Box, Stack } from "@mui/material";

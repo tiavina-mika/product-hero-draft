@@ -1,9 +1,12 @@
-import { FormControl, FormHelperText } from '@mui/material';
-import { FC, ReactNode } from 'react';
-import { useFormContext, Controller } from 'react-hook-form';
+/** @jsxRuntime classic /
+/* @jsx jsx */
+import { jsx } from "@emotion/react";
+import { FormControl, FormHelperText } from "@mui/material";
+import { FC, ReactNode } from "react";
+import { useFormContext, Controller } from "react-hook-form";
 
-import { IEntityOption } from '../../../types/team.type';
-import AutocompleteInput from '../inputs/AutocompleteInput';
+import { IEntityOption } from "../../../types/team.type";
+import AutocompleteInput from "../inputs/AutocompleteInput";
 
 type Props = {
   name: string;
@@ -30,16 +33,20 @@ const AutocompleteField: FC<Props> = ({
   left,
   right,
   options = [],
-  withPreview = false,
+  withPreview = false
 }) => {
   const {
     control,
     formState: { errors },
-    setValue,
+    setValue
   } = useFormContext();
 
   return (
-    <FormControl component="fieldset" error={!!errors?.[name]} fullWidth={fullWidth}>
+    <FormControl
+      component="fieldset"
+      error={!!errors?.[name]}
+      fullWidth={fullWidth}
+    >
       <Controller
         name={name}
         control={control}
@@ -53,7 +60,9 @@ const AutocompleteField: FC<Props> = ({
             placeholder={placeholder}
             loading={loading}
             withPreview={withPreview}
-            onChangeList={(values: IEntityOption[]) => setValue(previewName, values)}
+            onChangeList={(values: IEntityOption[]) =>
+              setValue(previewName, values)
+            }
             left={left}
             right={right}
           />

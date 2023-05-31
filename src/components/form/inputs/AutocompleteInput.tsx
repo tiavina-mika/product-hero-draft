@@ -1,3 +1,6 @@
+/** @jsxRuntime classic /
+/* @jsx jsx */
+import { jsx } from "@emotion/react";
 import { Autocomplete, Avatar, Box, Stack } from "@mui/material";
 import {
   FC,

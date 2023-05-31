@@ -1,6 +1,9 @@
-import { Stack, Button, SxProps, Theme, Alert } from '@mui/material';
-import { FormEvent, ReactNode } from 'react';
-import { FormProvider } from 'react-hook-form';
+/** @jsxRuntime classic /
+/* @jsx jsx */
+import { jsx } from "@emotion/react";
+import { Stack, Button, SxProps, Theme, Alert } from "@mui/material";
+import { FormEvent, ReactNode } from "react";
+import { FormProvider } from "react-hook-form";
 
 type Props = {
   onSubmit?: (() => void) | ((event: FormEvent<HTMLFormElement>) => void);
@@ -12,7 +15,15 @@ type Props = {
   buttonSx?: SxProps<Theme>;
 };
 
-const Form = ({ onSubmit, form, error, children, primaryButtonText, loading, buttonSx }: Props) => {
+const Form = ({
+  onSubmit,
+  form,
+  error,
+  children,
+  primaryButtonText,
+  loading,
+  buttonSx
+}: Props) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={onSubmit} className="stretchSelf">
@@ -23,8 +34,13 @@ const Form = ({ onSubmit, form, error, children, primaryButtonText, loading, but
         )}
         <Stack spacing={3} justifyContent="center">
           {children}
-          <Button type="submit" variant="contained" className="endSelf" sx={buttonSx}>
-            {loading ? '...' : primaryButtonText}
+          <Button
+            type="submit"
+            variant="contained"
+            className="endSelf"
+            sx={buttonSx}
+          >
+            {loading ? "..." : primaryButtonText}
           </Button>
         </Stack>
       </form>

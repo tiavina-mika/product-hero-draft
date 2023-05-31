@@ -20,6 +20,11 @@ import TextFieldInput from "./TextFieldInput";
 
 const classes = {
   autocomplete: {
+    "& .MuiAutocomplete-inputRoot": {
+      paddingRight: "0px !important",
+      paddingTop: 0,
+      paddingBottom: 0
+    },
     "& .MuiFormControl-root": {
       padding: "0px !important",
       border: "1px solid #303030",

@@ -6,7 +6,7 @@ import Form from "../../components/form/Form";
 import FormLayout from "../../components/layouts/FormLayout";
 import TitleContainer from "../../components/layouts/TitleContainer";
 import TextField from "../../components/form/fields/TextField";
-import AutocompleteField from "../../components/form/fields/AutocompleteField";
+import MembersAutocompleteField from "../../components/form/fields/MembersAutocompleteField";
 import { ITeamsInput } from "../../types/team.type";
 import { IUser } from "../../types/user.type";
 import { teamSchema } from "../../validations/team.validation";
@@ -66,14 +66,13 @@ const CreateTeam = () => {
           name="email"
         />
         <TextField label="Alias" placeholder="@Produit" name="alias" />
-        <AutocompleteField
+        <MembersAutocompleteField
           placeholder="Ajouter des membres"
           name="member"
           previewName="members"
           fullWidth
           options={formatUserOption(users)}
-          withPreview
-          left={<img alt="team" src="/icons/team.svg" />}
+          right="+"
         />
       </Form>
     </FormLayout>

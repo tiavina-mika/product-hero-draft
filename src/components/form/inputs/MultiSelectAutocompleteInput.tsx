@@ -2,9 +2,16 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Autocomplete, Box, Stack } from "@mui/material";
+import {
+  Autocomplete,
+  AutocompleteRenderInputParams,
+  Box,
+  Popper,
+  Stack
+} from "@mui/material";
 import {
   FC,
+  HTMLAttributes,
   ReactNode,
   SyntheticEvent,
   useEffect,
@@ -147,7 +154,7 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
 
   return (
     <Stack spacing={1.6}>
-      <Stack spacing={2} justifyContent="center">
+      <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
         {values.map((value, index) => (
           <MultiSelectAuctompleteInputOption
             key={value.label + index}
@@ -182,7 +189,7 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
           disableClearable
           onFocus={onFocus}
           onBlur={onBlur}
-          renderInput={(params) => (
+          renderInput={(params: AutocompleteRenderInputParams) => (
             <TextFieldInput
               {...params}
               placeholder={placeholder}
@@ -197,24 +204,18 @@ const MultiSelectAutocompleteInput: FC<Props> = ({
               }
             />
           )}
-          renderOption={(params, option) => (
-            <MultiSelectAuctompleteInputOption
-              {...params}
-              selectedOption={option}
-              isInputOption
-            />
-          )}
-          PaperComponent={({ children }) => {
-            return <div css={classes.options}>{children}</div>;
-          }}
-          ListboxComponent={(props) => {
-            console.log("porps", props);
-            return <Box {...props} sx={{ padding: 0 }} />;
-          }}
-          componentsProps={{
-            popper: {
-              placement: "bottom"
-            }
+          renderOption={(
+            params: HTMLAttributes<HTMLLIElement>,
+            option: IEntityOption
+          ) => {
+            return (
+              <li {...params} className="flex1">
+                <MultiSelectAuctompleteInputOption
+                  selectedOption={option}
+                  isInputOption
+                />
+              </li>
+            );
           }}
         />
       </Box>

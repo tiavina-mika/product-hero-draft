@@ -3,12 +3,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
 import { cx } from "@emotion/css";
-import {
-  AutocompleteRenderInputParams,
-  Avatar,
-  Stack,
-  Typography
-} from "@mui/material";
+import { Avatar, Stack, Typography } from "@mui/material";
 import { FC } from "react";
 
 import { IEntityOption } from "../../../types/team.type";
@@ -77,7 +72,7 @@ type Props = {
   onDelete?: (id: string) => void;
   className?: string;
   isInputOption?: boolean;
-} & Partial<AutocompleteRenderInputParams>;
+};
 
 const MultiSelectAuctompleteInputOption: FC<Props> = ({
   selectedOption,

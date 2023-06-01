@@ -2,14 +2,24 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { ISettingsTab } from "../../../types/app.type";
 import Teams from "../../team/Teams";
 
 const PADDING_Y = 9;
 const classes = {
-  top: (theme: Theme) => ({
+  header: {
+    height: "calc(104px - 48px)",
+    padding: 24
+  },
+  pageTitle: {
+    fontWeight: 500,
+    fontSize: 32,
+    lineHeight: 1,
+    color: "#000"
+  },
+  tabs: (theme: Theme) => ({
     height: `calc(72px - ${PADDING_Y}px)`,
     backgroundColor: "#fff",
     borderBottom: "1px solid " + theme.palette.grey[600]
@@ -28,13 +38,7 @@ const classes = {
     color: "#fff",
     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.05)",
     borderRadius: 100
-  }),
-  pageTitle: {
-    fontWeight: 500,
-    fontSize: 32,
-    lineHeight: 1,
-    color: "#000"
-  }
+  })
 };
 
 interface IOption {
@@ -77,9 +81,22 @@ const SettingsLayout = () => {
 
   return (
     <Box className="flexColumn spaceBetween flex1 stretchSelf">
-      {/* ------ top ------ */}
+      {/* --------- header ------- */}
+      <Box
+        css={classes.header}
+        className="flexRow spaceBetween flexEnd stretchSelf"
+      >
+        <Typography variant="h3" css={classes.pageTitle}>
+          Paramètres
+        </Typography>
+        <IconButton>
+          <img alt="setting" src="/icons/app-setting.svg" />
+        </IconButton>
+      </Box>
+
+      {/* ------ tabs ------ */}
       <div
-        css={classes.top}
+        css={classes.tabs}
         className="flexRow center justifyCenter stretchSelf"
       >
         {options.map((option: IOption, index: number) => (

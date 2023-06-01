@@ -2,10 +2,14 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 const classes = {
+  top: {
+    height: "calc(104px - 48px)",
+    padding: 24
+  },
   bottom: {
     boxShadow: "0px -4px 8px rgba(31, 31, 31, 0.05)",
     height: 78,
@@ -33,7 +37,13 @@ const classes = {
   }),
   active: (theme: Theme) => ({
     color: theme.palette.primary.main
-  })
+  }),
+  pageTitle: {
+    fontWeight: 500,
+    fontSize: 32,
+    lineHeight: 1,
+    color: "#000"
+  }
 };
 interface IOption {
   url: string;
@@ -68,7 +78,19 @@ const options: IOption[] = [
 const Settings = () => {
   return (
     <Box sx={{ minHeight: "100vh " }} className="flexColumn spaceBetween">
-      <h1>Hello</h1>
+      {/* ------ top ------ */}
+      <Box
+        css={classes.top}
+        className="flexRow spaceBetween flexEnd stretchSelf"
+      >
+        <Typography variant="h3" css={classes.pageTitle}>
+          Paramètres
+        </Typography>
+        <IconButton>
+          <img alt="setting" src="/icons/app-setting.svg" />
+        </IconButton>
+      </Box>
+      {/* ------ bottom ------ */}
       <div
         css={classes.bottom}
         className="flexRow center justifyCenter stretchSelf"
@@ -82,7 +104,6 @@ const Settings = () => {
                   src={`/icons/${option.icon}${
                     currentUrl === option.url ? "-active" : ""
                   }.svg`}
-                  // src={"/icons/" + option.icon + ".svg"}
                 />
               </div>
               <Typography

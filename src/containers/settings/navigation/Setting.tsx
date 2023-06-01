@@ -3,6 +3,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
+import AddIcon from "../AddIcon";
 
 const PADDING_Y = 9;
 const classes = {
@@ -65,7 +66,7 @@ const options: IOption[] = [
 const Setting = () => {
   return (
     <Box className="flexColumn spaceBetween flex1 stretchSelf">
-      {/* ------ bottom ------ */}
+      {/* ------ top ------ */}
       <div
         css={classes.top}
         className="flexRow center justifyCenter stretchSelf"
@@ -83,7 +84,9 @@ const Setting = () => {
             </Typography>
           </button>
         ))}
-        {/* </div> */}
+        <div>
+          <AddIcon onClick={() => {}} />
+        </div>
       </div>
     </Box>
   );

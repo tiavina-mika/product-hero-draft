@@ -4,7 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
-import Teams from "../../team/Teams";
+import Teams from "../../../team/Teams";
 
 const PADDING_Y = 9;
 const classes = {
@@ -35,10 +35,11 @@ const classes = {
     color: "#000"
   }
 };
+type TabType = "drivers" | "okr" | "teams" | "profiles";
 
 interface IOption {
   label: any;
-  value: ISettingsTab;
+  value: TabType;
 }
 
 const options: IOption[] = [
@@ -68,9 +69,9 @@ enum TABS {
 }
 
 const SettingsLayout = () => {
-  const [tab, setTab] = useState<ISettingsTab>(TABS.TEAMS);
+  const [tab, setTab] = useState<TabType>(TABS.TEAMS);
 
-  const onTabChange = (value: ISettingsTab) => {
+  const onTabChange = (value: TabType) => {
     setTab(value);
   };
 

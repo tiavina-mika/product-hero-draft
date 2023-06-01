@@ -44,19 +44,17 @@ const classes = {
   }
 };
 
-type TabType = "setting" | "roadmap" | "backlog" | "user-activity";
-
 interface IOption {
   label: any;
   icon: ReactNode | string;
-  value: TabType;
+  value: IHomeTab;
 }
 
 const options: IOption[] = [
   {
     label: "Mon focus",
     icon: "user-activity",
-    value: "user-activity"
+    value: "userActivity"
   },
   {
     label: "Vues",
@@ -71,21 +69,21 @@ const options: IOption[] = [
   {
     label: "Paramètres",
     icon: "setting",
-    value: "setting"
+    value: "settings"
   }
 ];
 
 enum TABS {
-  SETTING = "setting",
+  SETTINGS = "settings",
   ROADMAP = "roadmap",
   BACKLOG = "backlog",
-  USER_ACTIVITY = "user-activity"
+  USER_ACTIVITY = "userActivity"
 }
 
 const HomeLayout = () => {
-  const [tab, setTab] = useState<TabType>(TABS.SETTING);
+  const [tab, setTab] = useState<IHomeTab>(TABS.SETTINGS);
 
-  const onTabChange = (value: TabType) => {
+  const onTabChange = (value: IHomeTab) => {
     setTab(value);
   };
 
@@ -107,7 +105,7 @@ const HomeLayout = () => {
       {/* ------ center ------ */}
       <div className="flexColumn flex1 stretchSelf">
         {/* ------ tabs ------ */}
-        {tab === TABS.SETTING && <SettingsLayout />}
+        {tab === TABS.SETTINGS && <SettingsLayout />}
       </div>
 
       {/* ------ bottom ------ */}

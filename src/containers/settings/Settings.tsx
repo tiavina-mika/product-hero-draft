@@ -47,14 +47,15 @@ const classes = {
   }
 };
 
+type TabType = "setting" | "roadmap" | "backlog" | "user-activity";
+
 interface IOption {
   url: string;
   label: any;
   icon: ReactNode | string;
-  value: string;
+  value: TabType;
 }
 
-const currentUrl = "/setting";
 const options: IOption[] = [
   {
     url: "/user-activity",
@@ -90,13 +91,9 @@ enum TABS {
 }
 
 const Settings = () => {
-  const [tab, setTab] = useState<
-    "setting" | "roadmap" | "backlog" | "user-activity"
-  >(TABS.SETTING);
+  const [tab, setTab] = useState<TabType>(TABS.SETTING);
 
-  const onTabChange = (
-    value: "setting" | "roadmap" | "backlog" | "user-activity"
-  ) => {
+  const onTabChange = (value: TabType) => {
     setTab(value);
   };
 

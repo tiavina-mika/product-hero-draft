@@ -47,7 +47,6 @@ const classes = {
 type TabType = "setting" | "roadmap" | "backlog" | "user-activity";
 
 interface IOption {
-  url: string;
   label: any;
   icon: ReactNode | string;
   value: TabType;
@@ -55,25 +54,21 @@ interface IOption {
 
 const options: IOption[] = [
   {
-    url: "/user-activity",
     label: "Mon focus",
     icon: "user-activity",
     value: "user-activity"
   },
   {
-    url: "/roadmap",
     label: "Vues",
     icon: "roadmap",
     value: "roadmap"
   },
   {
-    url: "/catalogue",
     label: "Backlog",
     icon: "catalogue",
     value: "backlog"
   },
   {
-    url: "/setting",
     label: "Vues",
     icon: "setting",
     value: "setting"

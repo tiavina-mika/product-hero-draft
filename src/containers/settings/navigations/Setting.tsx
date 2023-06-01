@@ -38,29 +38,24 @@ const classes = {
 type TabType = "drivers" | "okr" | "teams" | "profils";
 
 interface IOption {
-  url: string;
   label: any;
   value: TabType;
 }
 
 const options: IOption[] = [
   {
-    url: "/drivers",
     label: "Drivers",
     value: "drivers"
   },
   {
-    url: "/okr",
     label: "OKR",
     value: "okr"
   },
   {
-    url: "/teamS",
     label: "Équipes",
     value: "teams"
   },
   {
-    url: "/profils",
     label: "Profils",
     value: "profils"
   }

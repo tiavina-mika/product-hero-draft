@@ -3,7 +3,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import Setting from "./navigation/Setting";
 
 const classes = {
@@ -46,10 +46,12 @@ const classes = {
     color: "#000"
   }
 };
+
 interface IOption {
   url: string;
   label: any;
   icon: ReactNode | string;
+  value: string;
 }
 
 const currentUrl = "/setting";
@@ -57,26 +59,47 @@ const options: IOption[] = [
   {
     url: "/user-activity",
     label: "Mon focus",
-    icon: "user-activity"
+    icon: "user-activity",
+    value: "user-activity"
   },
   {
     url: "/roadmap",
     label: "Vues",
-    icon: "roadmap"
+    icon: "roadmap",
+    value: "roadmap"
   },
   {
     url: "/catalogue",
     label: "Backlog",
-    icon: "catalogue"
+    icon: "catalogue",
+    value: "backlog"
   },
   {
     url: "/setting",
     label: "Vues",
-    icon: "setting"
+    icon: "setting",
+    value: "setting"
   }
 ];
 
+enum TABS {
+  SETTING = "setting",
+  ROADMAP = "roadmap",
+  BACKLOG = "backlog",
+  USER_ACTIVITY = "user-activity"
+}
+
 const Settings = () => {
+  const [tab, setTab] = useState<
+    "setting" | "roadmap" | "backlog" | "user-activity"
+  >(TABS.SETTING);
+
+  const onTabChange = (
+    value: "setting" | "roadmap" | "backlog" | "user-activity"
+  ) => {
+    setTab(value);
+  };
+
   return (
     <Box sx={{ minHeight: "100vh " }} className="flexColumn spaceBetween">
       {/* ------ top ------ */}
@@ -91,10 +114,13 @@ const Settings = () => {
           <img alt="setting" src="/icons/app-setting.svg" />
         </IconButton>
       </Box>
+
       {/* ------ center ------ */}
       <div className="flexColumn flex1 stretchSelf">
-        <Setting />
+        {/* ------ tabs ------ */}
+        {tab === TABS.SETTING && <Setting />}
       </div>
+
       {/* ------ bottom ------ */}
       <div
         css={classes.bottom}
@@ -102,19 +128,22 @@ const Settings = () => {
       >
         <div className="flexRow spaceBetween" css={classes.bottomContent}>
           {options.map((option: IOption, index: number) => (
-            <button className="transparentButton">
+            <button
+              className="transparentButton"
+              onClick={() => onTabChange(option.value)}
+            >
               <div key={option.label + index}>
                 <img
                   alt={option.label}
                   src={`/icons/${option.icon}${
-                    currentUrl === option.url ? "-active" : ""
+                    tab === option.value ? "-active" : ""
                   }.svg`}
                 />
               </div>
               <Typography
                 css={[
                   classes.label,
-                  currentUrl === option.url ? classes.active : null
+                  tab === option.value ? classes.active : null
                 ]}
               >
                 {option.label}

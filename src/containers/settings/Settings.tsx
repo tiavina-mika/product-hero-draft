@@ -125,6 +125,7 @@ const Settings = () => {
             <button
               className="transparentButton"
               onClick={() => onTabChange(option.value)}
+              key={option.label + index}
             >
               <div key={option.label + index}>
                 <img

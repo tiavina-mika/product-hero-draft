@@ -8,7 +8,6 @@ import { ReactNode } from "react";
 const classes = {
   bottom: {
     boxShadow: "0px -4px 8px rgba(31, 31, 31, 0.05)",
-    // border: '1px solid rgba(31, 31, 31, 0.5)',
     height: 78,
     backgroundColor: "#fff",
     paddingLeft: 40,

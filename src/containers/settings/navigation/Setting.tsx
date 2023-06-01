@@ -20,8 +20,6 @@ const classes = {
     fontSize: 14,
     lineHeight: 1,
     color: theme.palette.grey[600],
-    textTransform: "uppercase",
-    // height: 32,
     paddingTop: PADDING_Y,
     paddingBottom: PADDING_Y
   }),
@@ -55,7 +53,7 @@ const options: IOption[] = [
   },
   {
     url: "/team",
-    label: "Team"
+    label: "Équipes"
   },
   {
     url: "/profils",

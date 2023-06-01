@@ -69,7 +69,7 @@ const options: IOption[] = [
     value: "backlog"
   },
   {
-    label: "Vues",
+    label: "Paramètres",
     icon: "setting",
     value: "setting"
   }

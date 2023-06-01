@@ -5,6 +5,7 @@ import { jsx, Theme } from "@emotion/react";
 import { Box, Fab, IconButton, Typography } from "@mui/material";
 import { ReactNode } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import Setting from "./navigation/Setting";
 
 const classes = {
   top: {
@@ -93,6 +94,7 @@ const Settings = () => {
       </Box>
       {/* ------ center ------ */}
       <div className="flexColumn flex1 stretchSelf">
+        <Setting />
         <Fab
           color="primary"
           aria-label="add"

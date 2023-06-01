@@ -4,7 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { ReactNode, useState } from "react";
-import Setting from "./navigations/Setting";
+import SettingLayout from "./navigations/SettingLayout";
 
 const classes = {
   top: {
@@ -107,7 +107,7 @@ const SettingsLayout = () => {
       {/* ------ center ------ */}
       <div className="flexColumn flex1 stretchSelf">
         {/* ------ tabs ------ */}
-        {tab === TABS.SETTING && <Setting />}
+        {tab === TABS.SETTING && <SettingLayout />}
       </div>
 
       {/* ------ bottom ------ */}

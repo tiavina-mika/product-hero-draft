@@ -4,7 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
-import AddIcon from "../AddIcon";
+import Teams from "../../team/Teams";
 
 const PADDING_Y = 9;
 const classes = {
@@ -35,7 +35,7 @@ const classes = {
     color: "#000"
   }
 };
-type TabType = "drivers" | "okr" | "teams" | "profils";
+type TabType = "drivers" | "okr" | "teams" | "profiles";
 
 interface IOption {
   label: any;
@@ -57,7 +57,7 @@ const options: IOption[] = [
   },
   {
     label: "Profils",
-    value: "profils"
+    value: "profiles"
   }
 ];
 
@@ -65,10 +65,10 @@ enum TABS {
   DRIVERS = "drivers",
   OKR = "okr",
   TEAMS = "teams",
-  PROFILS = "profils"
+  PROFILES = "profiles"
 }
 
-const Setting = () => {
+const SettingLayout = () => {
   const [tab, setTab] = useState<TabType>(TABS.TEAMS);
 
   const onTabChange = (value: TabType) => {
@@ -98,12 +98,12 @@ const Setting = () => {
             </Typography>
           </button>
         ))}
-        <div>
-          <AddIcon onClick={() => {}} />
-        </div>
+      </div>
+      <div className="flexCenter flex1 stretchSelf">
+        {tab === TABS.TEAMS && <Teams />}
       </div>
     </Box>
   );
 };
 
-export default Setting;
+export default SettingLayout;

@@ -4,7 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { ReactNode, useState } from "react";
-import SettingLayout from "./navigations/SettingLayout";
+import SettingsLayout from "./navigations/SettingsLayout";
 
 const classes = {
   top: {
@@ -82,7 +82,7 @@ enum TABS {
   USER_ACTIVITY = "user-activity"
 }
 
-const SettingsLayout = () => {
+const HomeLayout = () => {
   const [tab, setTab] = useState<TabType>(TABS.SETTING);
 
   const onTabChange = (value: TabType) => {
@@ -107,7 +107,7 @@ const SettingsLayout = () => {
       {/* ------ center ------ */}
       <div className="flexColumn flex1 stretchSelf">
         {/* ------ tabs ------ */}
-        {tab === TABS.SETTING && <SettingLayout />}
+        {tab === TABS.SETTING && <SettingsLayout />}
       </div>
 
       {/* ------ bottom ------ */}
@@ -146,4 +146,4 @@ const SettingsLayout = () => {
   );
 };
 
-export default SettingsLayout;
+export default HomeLayout;

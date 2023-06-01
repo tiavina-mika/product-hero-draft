@@ -4,7 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
-import Teams from "../../../team/Teams";
+import Teams from "../../team/Teams";
 
 const PADDING_Y = 9;
 const classes = {
@@ -68,7 +68,7 @@ enum TABS {
   PROFILES = "profiles"
 }
 
-const SettingLayout = () => {
+const SettingsLayout = () => {
   const [tab, setTab] = useState<TabType>(TABS.TEAMS);
 
   const onTabChange = (value: TabType) => {
@@ -106,4 +106,4 @@ const SettingLayout = () => {
   );
 };
 
-export default SettingLayout;
+export default SettingsLayout;

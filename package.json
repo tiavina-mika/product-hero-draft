@@ -5,6 +5,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@hookform/resolvers": "3.0.0",
+    "@mui/icons-material": "5.11.11",
     "@mui/material": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

@@ -2,8 +2,9 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Fab, IconButton, Typography } from "@mui/material";
 import { ReactNode } from "react";
+import AddIcon from "@mui/icons-material/Add";
 
 const classes = {
   top: {
@@ -90,6 +91,16 @@ const Settings = () => {
           <img alt="setting" src="/icons/app-setting.svg" />
         </IconButton>
       </Box>
+      {/* ------ center ------ */}
+      <div className="flexColumn flex1 stretchSelf">
+        <Fab
+          color="primary"
+          aria-label="add"
+          sx={{ position: "absolute", bottom: 94, right: 24 }}
+        >
+          <AddIcon />
+        </Fab>
+      </div>
       {/* ------ bottom ------ */}
       <div
         css={classes.bottom}

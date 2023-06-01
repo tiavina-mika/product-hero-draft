@@ -1,7 +1,7 @@
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material";
 import { theme } from "./src/utils/theme";
-import SettingsLayout from "./src/containers/settings/SettingsLayout";
+import SettingsLayout from "./src/containers/home/settings/SettingsLayout";
 
 const App = () => {
   return (

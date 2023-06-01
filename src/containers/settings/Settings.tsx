@@ -4,7 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { ReactNode, useState } from "react";
-import Setting from "./navigation/Setting";
+import Setting from "./navigations/Setting";
 
 const classes = {
   top: {
@@ -19,13 +19,10 @@ const classes = {
     paddingRight: 40
   },
   bottomContent: (theme: Theme) => ({
-    // [theme.breakpoints.up('sm')]: {
-    //   width: 400,
-    // },
-    // [theme.breakpoints.down('sm')]: {
-    //   flex: 1
-    // }
     [theme.breakpoints.up("sm")]: {
+      width: 400
+    },
+    [theme.breakpoints.down("sm")]: {
       flex: 1
     }
   }),

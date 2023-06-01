@@ -1,14 +1,14 @@
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material";
 import { theme } from "./src/utils/theme";
-import Settings from "./src/containers/settings/Settings";
+import SettingsLayout from "./src/containers/settings/SettingsLayout";
 
 const App = () => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <EmotionThemeProvider theme={theme}>
-          <Settings />
+          <SettingsLayout />
         </EmotionThemeProvider>
       </ThemeProvider>
     </StyledEngineProvider>

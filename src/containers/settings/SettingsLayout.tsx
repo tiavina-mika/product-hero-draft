@@ -82,7 +82,7 @@ enum TABS {
   USER_ACTIVITY = "user-activity"
 }
 
-const Settings = () => {
+const SettingsLayout = () => {
   const [tab, setTab] = useState<TabType>(TABS.SETTING);
 
   const onTabChange = (value: TabType) => {
@@ -146,4 +146,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default SettingsLayout;

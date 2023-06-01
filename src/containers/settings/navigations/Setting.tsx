@@ -10,9 +10,7 @@ const classes = {
   top: (theme: Theme) => ({
     height: `calc(72px - ${PADDING_Y}px)`,
     backgroundColor: "#fff",
-    borderBottom: "1px solid " + theme.palette.grey[600],
-    paddingLeft: 40,
-    paddingRight: 40
+    borderBottom: "1px solid " + theme.palette.grey[600]
     // overflowX: 'scroll',
   }),
   label: (theme: Theme) => ({
@@ -69,7 +67,6 @@ const Setting = () => {
         css={classes.top}
         className="flexRow center justifyCenter stretchSelf"
       >
-        {/* <div className="flexRow spaceBetween green" css={classes.topContent}> */}
         {options.map((option: IOption, index: number) => (
           <button className="transparentButton flex1" key={index}>
             <Typography

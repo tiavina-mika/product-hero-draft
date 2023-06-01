@@ -30,6 +30,9 @@ const classes = {
     lineHeight: 1,
     color: theme.palette.grey[600],
     marginTop: 2
+  }),
+  active: (theme: Theme) => ({
+    color: theme.palette.primary.main
   })
 };
 interface IOption {
@@ -38,24 +41,25 @@ interface IOption {
   icon: ReactNode | string;
 }
 
+const currentUrl = "/setting";
 const options: IOption[] = [
   {
-    url: "/",
+    url: "/user-activity",
     label: "Mon focus",
     icon: "user-activity"
   },
   {
-    url: "/",
+    url: "/roadmap",
     label: "Vues",
     icon: "roadmap"
   },
   {
-    url: "/",
+    url: "/catalogue",
     label: "Backlog",
     icon: "catalogue"
   },
   {
-    url: "/",
+    url: "/setting",
     label: "Vues",
     icon: "setting"
   }
@@ -75,10 +79,20 @@ const Settings = () => {
               <div key={option.label + index}>
                 <img
                   alt={option.label}
-                  src={"/icons/" + option.icon + ".svg"}
+                  src={`/icons/${option.icon}${
+                    currentUrl === option.url ? "-active" : ""
+                  }.svg`}
+                  // src={"/icons/" + option.icon + ".svg"}
                 />
               </div>
-              <Typography css={classes.label}>{option.label}</Typography>
+              <Typography
+                css={[
+                  classes.label,
+                  currentUrl === option.url ? classes.active : null
+                ]}
+              >
+                {option.label}
+              </Typography>
             </button>
           ))}
         </div>

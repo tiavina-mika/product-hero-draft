@@ -4,6 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
+import { ISettingsTab } from "../../../types/app.type";
 import Teams from "../../team/Teams";
 
 const PADDING_Y = 9;

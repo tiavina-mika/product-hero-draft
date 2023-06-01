@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import AddIcon from "../home/settings/AddIcon";
+import AddIcon from "../../components/AddIcon";
 
 const Teams = () => {
   return (

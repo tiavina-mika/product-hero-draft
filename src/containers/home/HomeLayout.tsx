@@ -4,6 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { ReactNode, useState } from "react";
+import { IHomeTab } from "../../types/app.type";
 import SettingsLayout from "./navigations/SettingsLayout";
 
 const classes = {

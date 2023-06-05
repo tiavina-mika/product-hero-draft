@@ -73,7 +73,7 @@ type Props = {
   onDelete?: (id: string) => void;
   className?: string;
   isInputOption?: boolean;
-  onTeamTypeSelect: (type: ISelectOption, user: IEntityOption) => void;
+  onTeamTypeSelect?: (type: ISelectOption, user: IEntityOption) => void;
 };
 
 const UsersAutocompleteInputOption = ({
@@ -89,7 +89,7 @@ const UsersAutocompleteInputOption = ({
   };
 
   const handleSelectTeamType = (type: ISelectOption) => {
-    onTeamTypeSelect(type, selectedOption);
+    onTeamTypeSelect?.(type, selectedOption);
   };
 
   return (

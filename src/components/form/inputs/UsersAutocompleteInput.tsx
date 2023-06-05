@@ -106,7 +106,6 @@ const UsersAutocompleteInput = ({
     const newValues = [value, ...values];
     setValues(newValues);
     onChangeList?.(newValues);
-    onChange(value);
 
     // --------- udpate options --------- //
     const index = options.findIndex(
@@ -146,7 +145,7 @@ const UsersAutocompleteInput = ({
 
   return (
     <Stack spacing={1.6}>
-      {values.length > 1 && (
+      {values.length > 0 && (
         <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
           {values.map((value, index) => (
             <UsersAutocompleteInputOption

@@ -13,7 +13,7 @@ type Props = {
   children: ReactNode;
   onSelect: (value: ISelectOption) => void;
 };
-const SelectRoleInput = ({ children, onSelect }: Props) => {
+const SelectTeamTypeInput = ({ children, onSelect }: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -62,4 +62,4 @@ const SelectRoleInput = ({ children, onSelect }: Props) => {
   );
 };
 
-export default SelectRoleInput;
+export default SelectTeamTypeInput;

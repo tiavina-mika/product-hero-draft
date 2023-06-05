@@ -7,9 +7,8 @@ import { Avatar, Stack, Typography } from "@mui/material";
 
 import { IEntityOption } from "../../../../types/team.type";
 import { getUserFullNameAbbreviation } from "../../../../utils/utils";
-import SelectRoleInput from "./SelectRoleInput";
-import { ISelectOption } from "../../../../types/user.type";
-import { useState } from "react";
+import SelectTeamTypeInput from "./SelectTeamTypeInput";
+import { ISelectOption } from "../../../../types/app.type";
 
 const classes = {
   button: {
@@ -103,7 +102,7 @@ const UsersAutocompleteInputOption = ({
       ]}
     >
       <div css={classes.left}>
-        <SelectRoleInput onSelect={handleSelectTeamType}>
+        <SelectTeamTypeInput onSelect={handleSelectTeamType}>
           {(selectedOption.value as any).image ? (
             <Avatar
               css={classes.avatar}
@@ -115,7 +114,7 @@ const UsersAutocompleteInputOption = ({
               {getUserFullNameAbbreviation(selectedOption.value)}
             </Avatar>
           )}
-        </SelectRoleInput>
+        </SelectTeamTypeInput>
       </div>
       <div css={classes.divider} />
       <div className="flex1" css={classes.center}>

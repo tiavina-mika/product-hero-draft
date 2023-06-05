@@ -22,7 +22,7 @@ import { ISelectOption } from "../../../../types/app.type";
 import { IEntityOption } from "../../../../types/team.type";
 
 import TextFieldInput from "../TextFieldInput";
-import UsersAutocompleteInputOption from "./UsersAutocompleteInputOption";
+import UserItem from "./UserItem";
 
 const fakes = [
   {
@@ -97,10 +97,6 @@ const UsersAutocompleteInput = ({
   const [dynamicOptions, setDynamicOptions] = useState<IEntityOption[]>([]);
   const [focused, setFocused] = useState<boolean>(false);
   const originalOptions = useMemo(() => [...options], [options]);
-  const [seletedTeamType, setSelectedTeamType] = useState<ISelectOption | null>(
-    null
-  );
-  // console.log('value', value)
 
   useEffect(() => {
     setDynamicOptions(options);
@@ -161,7 +157,7 @@ const UsersAutocompleteInput = ({
         // {values.length > 0 && (
         <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
           {values.map((value, index) => (
-            <UsersAutocompleteInputOption
+            <UserItem
               key={value.label + index}
               selectedOption={value}
               onDelete={handleDelete}
@@ -218,10 +214,7 @@ const UsersAutocompleteInput = ({
           ) => {
             return (
               <li {...params} className="flex1">
-                <UsersAutocompleteInputOption
-                  selectedOption={option}
-                  isInputOption
-                />
+                <UserItem selectedOption={option} isInputOption />
               </li>
             );
           }}

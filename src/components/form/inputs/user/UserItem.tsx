@@ -76,7 +76,7 @@ type Props = {
   onTeamTypeSelect?: (type: ISelectOption, user: IEntityOption) => void;
 };
 
-const UsersAutocompleteInputOption = ({
+const UserItem = ({
   selectedOption,
   onDelete,
   className,
@@ -141,4 +141,4 @@ const UsersAutocompleteInputOption = ({
   );
 };
 
-export default UsersAutocompleteInputOption;
+export default UserItem;

@@ -17,6 +17,7 @@ import {
   useMemo,
   useState
 } from "react";
+import { ISelectOption } from "../../../../types/app.type";
 
 import { IEntityOption } from "../../../../types/team.type";
 
@@ -77,6 +78,7 @@ type Props = {
   left?: ReactNode | string;
   right?: ReactNode;
   onChangeList?: (value: IEntityOption[]) => void;
+  onChangeTeamType: (type: string, user: IEntityOption) => void;
 };
 
 const UsersAutocompleteInput = ({
@@ -88,12 +90,17 @@ const UsersAutocompleteInput = ({
   loading,
   left,
   right,
+  onChangeTeamType,
   onChangeList
 }: Props) => {
   const [values, setValues] = useState<IEntityOption[]>([]);
   const [dynamicOptions, setDynamicOptions] = useState<IEntityOption[]>([]);
   const [focused, setFocused] = useState<boolean>(false);
   const originalOptions = useMemo(() => [...options], [options]);
+  const [seletedTeamType, setSelectedTeamType] = useState<ISelectOption | null>(
+    null
+  );
+  // console.log('value', value)
 
   useEffect(() => {
     setDynamicOptions(options);
@@ -143,16 +150,23 @@ const UsersAutocompleteInput = ({
     setFocused(false);
   };
 
+  const handleTeamTypeSelect = (type: ISelectOption, user: IEntityOption) => {
+    // console.log('type', { type, user })
+    onChangeTeamType(type.value, user);
+  };
+
   return (
     <Stack spacing={1.6}>
-      {fakes.length > 0 && (
+      {values.length > 0 && (
         // {values.length > 0 && (
         <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
-          {fakes.map((value, index) => (
+          {values.map((value, index) => (
             <UsersAutocompleteInputOption
               key={value.label + index}
               selectedOption={value}
               onDelete={handleDelete}
+              onTeamTypeSelect={handleTeamTypeSelect}
+              // seletedTeamType={seletedTeamType}
             />
           ))}
         </Stack>

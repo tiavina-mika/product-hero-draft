@@ -16,7 +16,7 @@ import { getUserFullName } from "../../utils/utils";
 const initialValues = {
   member: null,
   members: [],
-  leader: null
+  followers: []
 };
 
 // user data to input select option
@@ -40,7 +40,7 @@ const CreateTeam = () => {
   const { handleSubmit } = form;
 
   const onSubmitHandler: SubmitHandler<ITeamsInput> = (values) => {
-    console.log(values);
+    console.log("createTeam values", values);
   };
 
   return (

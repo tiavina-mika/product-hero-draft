@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export interface IUser {
   objectId: string;
   email: string;
@@ -12,8 +10,4 @@ export interface IUser {
 export interface IRole {
   objectId: string;
   name: string;
-}
-
-export interface IRoleOption extends IRole {
-  icon?: ReactNode;
 }

@@ -9,6 +9,7 @@ import { IEntityOption } from "../../../../types/team.type";
 import { getUserFullNameAbbreviation } from "../../../../utils/utils";
 import SelectRoleInput from "./SelectRoleInput";
 import { ISelectOption } from "../../../../types/user.type";
+import { useState } from "react";
 
 const classes = {
   button: {
@@ -73,12 +74,14 @@ type Props = {
   onDelete?: (id: string) => void;
   className?: string;
   isInputOption?: boolean;
+  onTeamTypeSelect: (type: ISelectOption, user: IEntityOption) => void;
 };
 
 const UsersAutocompleteInputOption = ({
   selectedOption,
   onDelete,
   className,
+  onTeamTypeSelect,
   isInputOption = false,
   ...selectParams
 }: Props) => {
@@ -86,7 +89,9 @@ const UsersAutocompleteInputOption = ({
     onDelete?.(id);
   };
 
-  const handleSelectRole = (role: ISelectOption) => {};
+  const handleSelectTeamType = (type: ISelectOption) => {
+    onTeamTypeSelect(type, selectedOption);
+  };
 
   return (
     <div
@@ -98,7 +103,7 @@ const UsersAutocompleteInputOption = ({
       ]}
     >
       <div css={classes.left}>
-        <SelectRoleInput onSelect={handleSelectRole}>
+        <SelectRoleInput onSelect={handleSelectTeamType}>
           {(selectedOption.value as any).image ? (
             <Avatar
               css={classes.avatar}

@@ -26,8 +26,8 @@ const SelectRoleInput = ({ children, onSelect }: Props) => {
   };
 
   const handleSelect = (value: ISelectOption) => {
-    handleClose();
     onSelect(value);
+    handleClose();
   };
 
   return (
@@ -39,6 +39,7 @@ const SelectRoleInput = ({ children, onSelect }: Props) => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         className="transparentButton"
+        type="button"
       >
         {children}
       </button>

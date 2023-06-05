@@ -5,8 +5,10 @@ import { jsx } from "@emotion/react";
 import { FormControl, FormHelperText } from "@mui/material";
 import { ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
+import { ISelectOption } from "../../../types/app.type";
 
 import { IEntityOption } from "../../../types/team.type";
+import { TEAM_TYPE_ENUM } from "../../../utils/user.utils";
 import UsersAutocompleteInput from "../inputs/user/UsersAutocompleteInput";
 
 type Props = {
@@ -37,9 +39,23 @@ const UsersAutocompleteField = ({
   const {
     control,
     formState: { errors },
-    setValue
+    setValue,
+    watch
   } = useFormContext();
 
+  const onChangeTeamType = (type: string, user: IEntityOption) => {
+    // the followers field is an array
+    // so we need the old values
+    if (type === TEAM_TYPE_ENUM.FOLLOWERS) {
+      const previousFollowers = watch(TEAM_TYPE_ENUM.FOLLOWERS);
+      setValue(type, [user, ...previousFollowers]);
+      return;
+    }
+
+    setValue(type, user);
+  };
+
+  // console.log('watch', watch('name'))
   return (
     <FormControl
       component="fieldset"
@@ -63,6 +79,7 @@ const UsersAutocompleteField = ({
             onChangeList={(values: IEntityOption[]) =>
               setValue(listName, values)
             }
+            onChangeTeamType={onChangeTeamType}
           />
         )}
       />

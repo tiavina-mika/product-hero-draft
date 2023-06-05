@@ -1,14 +1,20 @@
 export const teamTypes = [
   {
     label: "Follower",
-    value: "teams"
+    value: "followers"
   },
   {
     label: "Leader",
-    value: "teams"
+    value: "leader"
   },
   {
     label: "Owner",
     value: "owner"
   }
 ];
+
+export enum TEAM_TYPE_ENUM {
+  FOLLOWERS = "followers",
+  LEADER = "leader",
+  OWNER = "owner"
+}

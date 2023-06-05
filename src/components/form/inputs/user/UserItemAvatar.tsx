@@ -20,23 +20,23 @@ const classes = {
   })
 };
 type Props = {
-  selectedOption: IEntityOption;
+  option: IEntityOption;
 };
 
-const UserItemAvatar = ({ selectedOption }: Props) => {
-  if ((selectedOption.value as any)?.image) {
+const UserItemAvatar = ({ option }: Props) => {
+  if ((option.value as any)?.image) {
     return (
       <Avatar
         css={classes.avatar}
-        alt={selectedOption.label}
-        src={(selectedOption.value as any).image}
+        alt={option.label}
+        src={(option.value as any).image}
       />
     );
   }
 
   return (
     <Avatar css={classes.avatar} className="flexCenter">
-      {getUserFullNameAbbreviation(selectedOption.value)}
+      {getUserFullNameAbbreviation(option.value)}
     </Avatar>
   );
 };

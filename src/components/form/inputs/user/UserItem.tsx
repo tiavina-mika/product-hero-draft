@@ -2,7 +2,6 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
-import { useState } from "react";
 import { cx } from "@emotion/css";
 import { Stack, Typography } from "@mui/material";
 
@@ -10,7 +9,7 @@ import { IEntityOption } from "../../../../types/team.type";
 import SelectTeamTypeInput from "./SelectTeamTypeInput";
 import { ISelectOption } from "../../../../types/app.type";
 import UserItemAvatar from "./UserItemAvatar";
-import { TEAM_TYPE_ENUM } from "../../../../utils/user.utils";
+import { getTeamTypeIcon } from "../../../../utils/user.utils";
 
 const classes = {
   button: {
@@ -79,38 +78,34 @@ const classes = {
     background: theme.palette.warning.main
   })
 };
+
 type Props = {
-  selectedOption: IEntityOption;
+  option: IEntityOption;
   onDelete?: (id: string) => void;
   className?: string;
   isInputOption?: boolean;
+  selectedTeamType?: ISelectOption | null;
   onTeamTypeSelect?: (type: ISelectOption, user: IEntityOption) => void;
+  isLeaderSelected?: boolean;
 };
 
 const UserItem = ({
-  selectedOption,
+  option,
   onDelete,
   className,
   onTeamTypeSelect,
+  selectedTeamType,
+  isLeaderSelected = false,
   isInputOption = false,
   ...selectParams
 }: Props) => {
-  const [
-    selectedTeamType,
-    setSelectedTeamType
-  ] = useState<ISelectOption | null>(null);
-
   const handleDelete = (id: string) => {
     onDelete?.(id);
   };
 
   const handleSelectTeamType = (type: ISelectOption) => {
-    onTeamTypeSelect?.(type, selectedOption);
-    setSelectedTeamType(type);
+    onTeamTypeSelect?.(type, option);
   };
-
-  const isLeaderSelected =
-    selectedTeamType?.value === TEAM_TYPE_ENUM.LEADER && !isInputOption;
 
   return (
     <div
@@ -125,12 +120,15 @@ const UserItem = ({
       {/* ----------- left ----------- */}
       <div css={classes.left} className="stretchSelf flexCenter">
         <SelectTeamTypeInput onSelect={handleSelectTeamType}>
-          {selectedTeamType ? (
+          {option.value.type ? (
             <div className="flexCenter stretchSelf flex1">
-              <img alt="" src={"/icons/" + selectedTeamType.icon + ".svg"} />
+              <img
+                alt=""
+                src={"/icons/" + getTeamTypeIcon(option.value.type) + ".svg"}
+              />
             </div>
           ) : (
-            <UserItemAvatar selectedOption={selectedOption} />
+            <UserItemAvatar option={option} />
           )}
         </SelectTeamTypeInput>
       </div>
@@ -141,11 +139,11 @@ const UserItem = ({
       <div className="flex1" css={classes.center}>
         <Stack spacing={1}>
           <Typography variant="h3" css={classes.name}>
-            {selectedOption.label}
+            {option.label}
           </Typography>
-          {selectedOption.value.role && (
+          {option.value.role && (
             <Typography css={classes.role}>
-              {(selectedOption.value.role as any).name}
+              {(option.value.role as any).name}
             </Typography>
           )}
         </Stack>
@@ -157,7 +155,7 @@ const UserItem = ({
       <button
         css={[classes.right, classes.button]}
         className="flexCenter stretchSelf"
-        onClick={() => handleDelete(selectedOption.value.objectId)}
+        onClick={() => handleDelete(option.value.objectId)}
       >
         <img alt="minus" src="/icons/minus.svg" />
       </button>

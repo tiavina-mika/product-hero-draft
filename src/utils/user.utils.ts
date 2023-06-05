@@ -1,4 +1,6 @@
-export const teamTypes = [
+import { ISelectOption } from "../types/app.type";
+
+export const teamTypes: ISelectOption[] = [
   {
     icon: "minus",
     label: "Follower",
@@ -15,6 +17,14 @@ export const teamTypes = [
     value: "owner"
   }
 ];
+
+export const getTeamTypeIcon = (value: string): string => {
+  const currentType = teamTypes.find(
+    (type: ISelectOption) => type.value === value
+  );
+  if (!currentType) return "";
+  return currentType.icon as string;
+};
 
 export enum TEAM_TYPE_ENUM {
   FOLLOWERS = "followers",

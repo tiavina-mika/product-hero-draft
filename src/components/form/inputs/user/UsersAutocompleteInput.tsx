@@ -20,6 +20,7 @@ import {
 import { ISelectOption } from "../../../../types/app.type";
 
 import { IEntityOption } from "../../../../types/team.type";
+import { TEAM_TYPE_ENUM } from "../../../../utils/user.utils";
 
 import TextFieldInput from "../TextFieldInput";
 import UserItem from "./UserItem";
@@ -67,6 +68,10 @@ const classes = {
     border: "none"
   }
 };
+
+type ITeamTypeWithUser = {
+  user: IEntityOption;
+} & ISelectOption;
 
 type Props = {
   value: any;
@@ -148,20 +153,40 @@ const UsersAutocompleteInput = ({
 
   const handleTeamTypeSelect = (type: ISelectOption, user: IEntityOption) => {
     onChangeTeamType(type.value, user);
+
+    // add the selected type to users
+    const newValues = [];
+    for (const prevValue of values) {
+      if (prevValue.value.type === TEAM_TYPE_ENUM.LEADER) {
+        console.log("prevValue", prevValue.value);
+        newValues.push(prevValue);
+      } else if (prevValue.value.objectId === user.value.objectId) {
+        newValues.push({
+          ...user,
+          value: {
+            ...user.value,
+            type: type.value
+          }
+        });
+      } else {
+        newValues.push(prevValue);
+      }
+    }
+
+    setValues(newValues);
   };
 
   return (
     <Stack spacing={1.6}>
       {values.length > 0 && (
-        // {values.length > 0 && (
         <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
           {values.map((value, index) => (
             <UserItem
               key={value.label + index}
-              selectedOption={value}
+              option={value}
               onDelete={handleDelete}
               onTeamTypeSelect={handleTeamTypeSelect}
-              // seletedTeamType={seletedTeamType}
+              isLeaderSelected={value.value.type === TEAM_TYPE_ENUM.LEADER}
             />
           ))}
         </Stack>
@@ -213,7 +238,7 @@ const UsersAutocompleteInput = ({
           ) => {
             return (
               <li {...params} className="flex1">
-                <UserItem selectedOption={option} isInputOption />
+                <UserItem option={option} isInputOption />
               </li>
             );
           }}

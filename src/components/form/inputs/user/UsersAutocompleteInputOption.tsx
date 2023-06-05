@@ -5,8 +5,8 @@ import { jsx, Theme } from "@emotion/react";
 import { cx } from "@emotion/css";
 import { Avatar, Stack, Typography } from "@mui/material";
 
-import { IEntityOption } from "../../../types/team.type";
-import { getUserFullNameAbbreviation } from "../../../utils/utils";
+import { IEntityOption } from "../../../../types/team.type";
+import { getUserFullNameAbbreviation } from "../../../../utils/utils";
 
 const classes = {
   button: {

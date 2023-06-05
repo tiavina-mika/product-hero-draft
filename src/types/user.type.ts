@@ -6,3 +6,8 @@ export interface IUser {
   lastName: string;
   members?: IUser[];
 }
+
+export interface IRole {
+  objectId: string;
+  name: string;
+}

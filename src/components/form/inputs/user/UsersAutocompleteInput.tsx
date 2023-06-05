@@ -18,29 +18,29 @@ import {
   useState
 } from "react";
 
-import { IEntityOption } from "../../../types/team.type";
+import { IEntityOption } from "../../../../types/team.type";
 
-import TextFieldInput from "./TextFieldInput";
+import TextFieldInput from "../TextFieldInput";
 import UsersAutocompleteInputOption from "./UsersAutocompleteInputOption";
 
-// const fakes = [
-//   {
-//     label: "Tiks kun",
-//     value: {
-//       firstName: "Tiks",
-//       lastName: "Kun",
-//       role: { name: "Produit - Product Designer" }
-//     }
-//   },
-//   {
-//     label: "Tiavina Michael",
-//     value: {
-//       firstName: "Tiavina",
-//       lastName: "Michael",
-//       role: { name: "Produit - Product Owner" }
-//     }
-//   }
-// ];
+const fakes = [
+  {
+    label: "Tiks kun",
+    value: {
+      firstName: "Tiks",
+      lastName: "Kun",
+      role: { name: "Produit - Product Designer" }
+    }
+  },
+  {
+    label: "Tiavina Michael",
+    value: {
+      firstName: "Tiavina",
+      lastName: "Michael",
+      role: { name: "Produit - Product Owner" }
+    }
+  }
+];
 
 const classes = {
   autocomplete: {
@@ -145,9 +145,10 @@ const UsersAutocompleteInput = ({
 
   return (
     <Stack spacing={1.6}>
-      {values.length > 0 && (
+      {fakes.length > 0 && (
+        // {values.length > 0 && (
         <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
-          {values.map((value, index) => (
+          {fakes.map((value, index) => (
             <UsersAutocompleteInputOption
               key={value.label + index}
               selectedOption={value}

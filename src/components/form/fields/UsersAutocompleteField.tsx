@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
 import { IEntityOption } from "../../../types/team.type";
-import UsersAutocompleteInput from "../inputs/UsersAutocompleteInput";
+import UsersAutocompleteInput from "../inputs/user/UsersAutocompleteInput";
 
 type Props = {
   name: string;

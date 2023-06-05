@@ -10,6 +10,7 @@ import { IEntityOption } from "../../../../types/team.type";
 import SelectTeamTypeInput from "./SelectTeamTypeInput";
 import { ISelectOption } from "../../../../types/app.type";
 import UserItemAvatar from "./UserItemAvatar";
+import { TEAM_TYPE_ENUM } from "../../../../utils/user.utils";
 
 const classes = {
   button: {
@@ -17,13 +18,19 @@ const classes = {
     border: "none"
   },
   root: {
-    background: "#FFFFFF",
-    border: "1px solid #dddddd",
-    // border: '1px solid #F3F3F3',
     minHeight: "calc(66px - 24px)",
     paddingTop: 12,
     paddingBottom: 12
   },
+  defaultRoot: {
+    background: "#FFFFFF",
+    border: "1px solid #dddddd"
+    // border: '1px solid #F3F3F3',
+  },
+  selectedRoot: (theme: Theme) => ({
+    background: theme.palette.warning.light,
+    border: "1px solid " + theme.palette.warning.main
+  }),
   rootResult: {
     borderRadius: 6
   },
@@ -67,7 +74,10 @@ const classes = {
     width: 1,
     background: "#dddddd",
     alignSelf: "stretch"
-  }
+  },
+  selectedDivider: (theme: Theme) => ({
+    background: theme.palette.warning.main
+  })
 };
 type Props = {
   selectedOption: IEntityOption;
@@ -99,15 +109,20 @@ const UserItem = ({
     setSelectedTeamType(type);
   };
 
+  const isLeaderSelected =
+    selectedTeamType?.value === TEAM_TYPE_ENUM.LEADER && !isInputOption;
+
   return (
     <div
       {...selectParams}
       className={cx("flexRow center", className)}
       css={[
         classes.root,
+        isLeaderSelected ? classes.selectedRoot : classes.defaultRoot,
         isInputOption ? classes.rootOption : classes.rootResult
       ]}
     >
+      {/* ----------- left ----------- */}
       <div css={classes.left} className="stretchSelf flexCenter">
         <SelectTeamTypeInput onSelect={handleSelectTeamType}>
           {selectedTeamType ? (
@@ -119,7 +134,10 @@ const UserItem = ({
           )}
         </SelectTeamTypeInput>
       </div>
-      <div css={classes.divider} />
+      <div
+        css={[classes.divider, isLeaderSelected && classes.selectedDivider]}
+      />
+      {/* ----------- center ----------- */}
       <div className="flex1" css={classes.center}>
         <Stack spacing={1}>
           <Typography variant="h3" css={classes.name}>
@@ -132,7 +150,10 @@ const UserItem = ({
           )}
         </Stack>
       </div>
-      <div css={classes.divider} />
+      <div
+        css={[classes.divider, isLeaderSelected && classes.selectedDivider]}
+      />
+      {/* ----------- right ----------- */}
       <button
         css={[classes.right, classes.button]}
         className="flexCenter stretchSelf"

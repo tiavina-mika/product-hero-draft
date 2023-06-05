@@ -5,7 +5,7 @@ import { jsx } from "@emotion/react";
 import { Stack } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { ReactNode, useState, MouseEvent } from "react";
+import { ReactNode, useState, MouseEvent, Fragment } from "react";
 import { ISelectOption } from "../../../../types/app.type";
 import { teamTypes } from "../../../../utils/user.utils";
 
@@ -31,14 +31,14 @@ const SelectTeamTypeInput = ({ children, onSelect }: Props) => {
   };
 
   return (
-    <div>
+    <Fragment>
       <button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        className="transparentButton"
+        className="transparentButton flex1 stretchSelf flexCenter"
         type="button"
       >
         {children}
@@ -54,11 +54,14 @@ const SelectTeamTypeInput = ({ children, onSelect }: Props) => {
       >
         {teamTypes.map((type: ISelectOption, index: number) => (
           <MenuItem key={type.label + index} onClick={() => handleSelect(type)}>
-            <Stack direction="row">{type.label}</Stack>
+            <Stack direction="row" spacing={1}>
+              <img alt="" src={"/icons/" + type.icon + ".svg"} />
+              <span>{type.label}</span>
+            </Stack>
           </MenuItem>
         ))}
       </Menu>
-    </div>
+    </Fragment>
   );
 };
 

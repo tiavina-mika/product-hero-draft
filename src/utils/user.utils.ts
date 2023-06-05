@@ -1,13 +1,16 @@
 export const teamTypes = [
   {
+    icon: "minus",
     label: "Follower",
     value: "followers"
   },
   {
+    icon: "minus",
     label: "Leader",
     value: "leader"
   },
   {
+    icon: "minus",
     label: "Owner",
     value: "owner"
   }

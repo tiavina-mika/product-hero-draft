@@ -2,13 +2,14 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
+import { useState } from "react";
 import { cx } from "@emotion/css";
-import { Avatar, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 import { IEntityOption } from "../../../../types/team.type";
-import { getUserFullNameAbbreviation } from "../../../../utils/utils";
 import SelectTeamTypeInput from "./SelectTeamTypeInput";
 import { ISelectOption } from "../../../../types/app.type";
+import UserItemAvatar from "./UserItemAvatar";
 
 const classes = {
   button: {
@@ -84,12 +85,18 @@ const UserItem = ({
   isInputOption = false,
   ...selectParams
 }: Props) => {
+  const [
+    selectedTeamType,
+    setSelectedTeamType
+  ] = useState<ISelectOption | null>(null);
+
   const handleDelete = (id: string) => {
     onDelete?.(id);
   };
 
   const handleSelectTeamType = (type: ISelectOption) => {
     onTeamTypeSelect?.(type, selectedOption);
+    setSelectedTeamType(type);
   };
 
   return (
@@ -101,18 +108,14 @@ const UserItem = ({
         isInputOption ? classes.rootOption : classes.rootResult
       ]}
     >
-      <div css={classes.left}>
+      <div css={classes.left} className="stretchSelf flexCenter">
         <SelectTeamTypeInput onSelect={handleSelectTeamType}>
-          {(selectedOption.value as any).image ? (
-            <Avatar
-              css={classes.avatar}
-              alt={selectedOption.label}
-              src={(selectedOption.value as any).image}
-            />
+          {selectedTeamType ? (
+            <div className="flexCenter stretchSelf flex1">
+              <img alt="" src={"/icons/" + selectedTeamType.icon + ".svg"} />
+            </div>
           ) : (
-            <Avatar css={classes.avatar} className="flexCenter">
-              {getUserFullNameAbbreviation(selectedOption.value)}
-            </Avatar>
+            <UserItemAvatar selectedOption={selectedOption} />
           )}
         </SelectTeamTypeInput>
       </div>

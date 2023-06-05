@@ -55,7 +55,10 @@ const UsersAutocompleteField = ({
     setValue(type, user);
   };
 
-  // console.log('watch', watch('name'))
+  const onChangeMembers = (values: IEntityOption[]) => {
+    setValue(listName, values);
+  };
+
   return (
     <FormControl
       component="fieldset"
@@ -76,9 +79,7 @@ const UsersAutocompleteField = ({
             loading={loading}
             left={left}
             right={right}
-            onChangeList={(values: IEntityOption[]) =>
-              setValue(listName, values)
-            }
+            onChangeList={onChangeMembers}
             onChangeTeamType={onChangeTeamType}
           />
         )}

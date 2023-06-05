@@ -147,7 +147,6 @@ const UsersAutocompleteInput = ({
   };
 
   const handleTeamTypeSelect = (type: ISelectOption, user: IEntityOption) => {
-    // console.log('type', { type, user })
     onChangeTeamType(type.value, user);
   };
 

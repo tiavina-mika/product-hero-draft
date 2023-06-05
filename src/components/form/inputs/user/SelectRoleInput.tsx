@@ -3,22 +3,17 @@
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
 import { Stack } from "@mui/material";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { ReactNode, useState, MouseEvent } from "react";
+import { ISelectOption } from "../../../../types/app.type";
+import { teamTypes } from "../../../../utils/user.utils";
 
-interface ISelectOption {
-  icon?: ReactNode;
-  label: string;
-  value: any;
-}
 type Props = {
   children: ReactNode;
-  options: ISelectOption[];
   onSelect: (value: ISelectOption) => void;
 };
-const SelectRoleInput = ({ children, options, onSelect }: Props) => {
+const SelectRoleInput = ({ children, onSelect }: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -37,15 +32,16 @@ const SelectRoleInput = ({ children, options, onSelect }: Props) => {
 
   return (
     <div>
-      <Button
+      <button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
+        className="transparentButton"
       >
         {children}
-      </Button>
+      </button>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -55,14 +51,9 @@ const SelectRoleInput = ({ children, options, onSelect }: Props) => {
           "aria-labelledby": "basic-button"
         }}
       >
-        {options.map((option, index) => (
-          <MenuItem
-            key={option.label + index}
-            onClick={() => handleSelect(option)}
-          >
-            <Stack direction="row">
-              {option.icon} {option.label}
-            </Stack>
+        {teamTypes.map((type: ISelectOption, index: number) => (
+          <MenuItem key={type.label + index} onClick={() => handleSelect(type)}>
+            <Stack direction="row">{type.label}</Stack>
           </MenuItem>
         ))}
       </Menu>

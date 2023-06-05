@@ -7,6 +7,8 @@ import { Avatar, Stack, Typography } from "@mui/material";
 
 import { IEntityOption } from "../../../../types/team.type";
 import { getUserFullNameAbbreviation } from "../../../../utils/utils";
+import SelectRoleInput from "./SelectRoleInput";
+import { ISelectOption } from "../../../../types/user.type";
 
 const classes = {
   button: {
@@ -84,6 +86,8 @@ const UsersAutocompleteInputOption = ({
     onDelete?.(id);
   };
 
+  const handleSelectRole = (role: ISelectOption) => {};
+
   return (
     <div
       {...selectParams}
@@ -94,17 +98,19 @@ const UsersAutocompleteInputOption = ({
       ]}
     >
       <div css={classes.left}>
-        {(selectedOption.value as any).image ? (
-          <Avatar
-            css={classes.avatar}
-            alt={selectedOption.label}
-            src={(selectedOption.value as any).image}
-          />
-        ) : (
-          <Avatar css={classes.avatar} className="flexCenter">
-            {getUserFullNameAbbreviation(selectedOption.value)}
-          </Avatar>
-        )}
+        <SelectRoleInput onSelect={handleSelectRole}>
+          {(selectedOption.value as any).image ? (
+            <Avatar
+              css={classes.avatar}
+              alt={selectedOption.label}
+              src={(selectedOption.value as any).image}
+            />
+          ) : (
+            <Avatar css={classes.avatar} className="flexCenter">
+              {getUserFullNameAbbreviation(selectedOption.value)}
+            </Avatar>
+          )}
+        </SelectRoleInput>
       </div>
       <div css={classes.divider} />
       <div className="flex1" css={classes.center}>

@@ -23,7 +23,7 @@ import { IEntityOption } from "../../../../types/team.type";
 import {
   addTeamtypeToMembers,
   TEAM_STATUS_ENUM
-} from "../../../../utils/user.utils";
+} from "../../../../utils/team.utils";
 
 import TextFieldInput from "../TextFieldInput";
 import Member from "./Member";

@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
 import { IEntityOption } from "../../../types/team.type";
-import { TEAM_STATUS_ENUM } from "../../../utils/user.utils";
+import { TEAM_STATUS_ENUM } from "../../../utils/team.utils";
 import UsersAutocompleteInput from "../inputs/user/UsersAutocompleteInput";
 
 type Props = {

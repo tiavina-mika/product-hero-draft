@@ -9,7 +9,7 @@ import { IEntityOption } from "../../../../types/team.type";
 import SelectTeamStatusInput from "./SelectTeamStatusInput";
 import { ISelectOption } from "../../../../types/app.type";
 import MemberAvatar from "./MemberAvatar";
-import { getTeamStatusIcon } from "../../../../utils/user.utils";
+import { getTeamStatusIcon } from "../../../../utils/team.utils";
 
 const classes = {
   button: {

@@ -7,7 +7,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { ReactNode, useState, MouseEvent, Fragment } from "react";
 import { ISelectOption } from "../../../../types/app.type";
-import { teamStatus } from "../../../../utils/user.utils";
+import { teamStatus } from "../../../../utils/team.utils";
 
 type Props = {
   children: ReactNode;

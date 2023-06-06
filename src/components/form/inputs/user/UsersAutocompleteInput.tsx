@@ -20,29 +20,29 @@ import {
 import { ISelectOption } from "../../../../types/app.type";
 
 import { IEntityOption } from "../../../../types/team.type";
-import { TEAM_TYPE_ENUM } from "../../../../utils/user.utils";
+import { addTeamtypeToUserItem, TEAM_TYPE_ENUM } from "../../../../utils/user.utils";
 
 import TextFieldInput from "../TextFieldInput";
 import UserItem from "./UserItem";
 
-const fakes = [
-  {
-    label: "Tiks kun",
-    value: {
-      firstName: "Tiks",
-      lastName: "Kun",
-      role: { name: "Produit - Product Designer" }
-    }
-  },
-  {
-    label: "Tiavina Michael",
-    value: {
-      firstName: "Tiavina",
-      lastName: "Michael",
-      role: { name: "Produit - Product Owner" }
-    }
-  }
-];
+// const fakes = [
+//   {
+//     label: "Tiks kun",
+//     value: {
+//       firstName: "Tiks",
+//       lastName: "Kun",
+//       role: { name: "Produit - Product Designer" }
+//     }
+//   },
+//   {
+//     label: "Tiavina Michael",
+//     value: {
+//       firstName: "Tiavina",
+//       lastName: "Michael",
+//       role: { name: "Produit - Product Owner" }
+//     }
+//   }
+// ];
 
 const classes = {
   autocomplete: {
@@ -69,9 +69,9 @@ const classes = {
   }
 };
 
-type ITeamTypeWithUser = {
-  user: IEntityOption;
-} & ISelectOption;
+// type ITeamTypeWithUser = {
+//   user: IEntityOption;
+// } & ISelectOption;
 
 type Props = {
   value: any;
@@ -155,23 +155,7 @@ const UsersAutocompleteInput = ({
     onChangeTeamType(type.value, user);
 
     // add the selected type to users
-    const newValues = [];
-    for (const prevValue of values) {
-      if (prevValue.value.type === TEAM_TYPE_ENUM.LEADER) {
-        console.log("prevValue", prevValue.value);
-        newValues.push(prevValue);
-      } else if (prevValue.value.objectId === user.value.objectId) {
-        newValues.push({
-          ...user,
-          value: {
-            ...user.value,
-            type: type.value
-          }
-        });
-      } else {
-        newValues.push(prevValue);
-      }
-    }
+    const newValues = addTeamtypeToUserItem(values, user, type.value);
 
     setValues(newValues);
   };

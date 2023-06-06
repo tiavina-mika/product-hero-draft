@@ -5,7 +5,6 @@ import { jsx } from "@emotion/react";
 import { FormControl, FormHelperText } from "@mui/material";
 import { ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
-import { ISelectOption } from "../../../types/app.type";
 
 import { IEntityOption } from "../../../types/team.type";
 import { TEAM_TYPE_ENUM } from "../../../utils/user.utils";

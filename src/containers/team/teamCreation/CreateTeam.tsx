@@ -42,6 +42,7 @@ const CreateTeam = ({ onSave }: Props) => {
         onSubmit={handleSubmit(onSubmitHandler)}
         primaryButtonText="Enregistrer"
         buttonSx={{ fontSize: 16 }}
+        withSpacing
       >
         <TextField
           label="Nom de l'équipe"

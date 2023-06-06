@@ -5,6 +5,7 @@ import { jsx } from "@emotion/react";
 import { Stack, Button, SxProps, Theme, Alert } from "@mui/material";
 import { FormEvent, ReactNode } from "react";
 import { FormProvider } from "react-hook-form";
+import { FORM_FIELDS_SPACING } from "../../utils/constants";
 
 type Props = {
   onSubmit?: (() => void) | ((event: FormEvent<HTMLFormElement>) => void);
@@ -14,6 +15,7 @@ type Props = {
   primaryButtonText?: string;
   error?: string;
   buttonSx?: SxProps<Theme>;
+  withSpacing?: boolean;
 };
 
 const Form = ({
@@ -23,27 +25,39 @@ const Form = ({
   children,
   primaryButtonText,
   loading,
-  buttonSx
+  buttonSx,
+  withSpacing
 }: Props) => {
+  const {
+    formState: { isDirty, isValid }
+  } = form;
+
   return (
     <FormProvider {...form}>
-      <form onSubmit={onSubmit} className="stretchSelf">
+      <form onSubmit={onSubmit} className="flexColumn stretchSelf flex1">
         {error && (
           <Alert severity="error" sx={{ mb: 1.5 }}>
             {error}
           </Alert>
         )}
-        <Stack spacing={3} justifyContent="center">
-          {children}
+        <div className="flexColumn flex1 stretchSelf spaceBetween">
+          <div className="stretchSelf">
+            {withSpacing ? (
+              <Stack spacing={FORM_FIELDS_SPACING}>{children}</Stack>
+            ) : (
+              children
+            )}
+          </div>
           <Button
             type="submit"
             variant="contained"
             className="endSelf"
             sx={buttonSx}
+            disabled={!isDirty || !isValid}
           >
             {loading ? "..." : primaryButtonText}
           </Button>
-        </Stack>
+        </div>
       </form>
     </FormProvider>
   );

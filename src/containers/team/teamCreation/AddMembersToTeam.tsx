@@ -1,3 +1,7 @@
+/** @jsxRuntime classic /
+/* @jsx jsx */
+/** @jsxImportSource @emotion/react */
+import { jsx } from "@emotion/react";
 import PageLayout from "../../../components/layouts/PageLayout";
 import { IMembersTeamInput } from "../../../types/team.type";
 import UsersAutocompleteField from "../../../components/form/fields/UsersAutocompleteField";
@@ -28,6 +32,12 @@ const initialValues = {
   followers: []
 };
 
+const classes = {
+  content: {
+    marginTop: 40
+  }
+};
+
 type Props = {
   onSave: (values: IMembersTeamInput) => void;
 };
@@ -48,6 +58,7 @@ const AddMembersToTeam = ({ onSave }: Props) => {
       title="Qui en fait partie ?"
       description="Je peux renseigner des objectifs permettant d’avoir un impact sur la priorisation de la roadmap sur une période donnée."
       alignment="center"
+      css={classes.content}
     >
       <Form
         form={form}

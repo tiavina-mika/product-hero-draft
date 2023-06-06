@@ -22,7 +22,7 @@ import { ISelectOption } from "../../../../types/app.type";
 import { IEntityOption } from "../../../../types/team.type";
 import {
   addTeamtypeToMembers,
-  TEAM_TYPE_ENUM
+  TEAM_STATUS_ENUM
 } from "../../../../utils/user.utils";
 
 import TextFieldInput from "../TextFieldInput";
@@ -82,7 +82,7 @@ type Props = {
   left?: ReactNode | string;
   right?: ReactNode;
   onChangeList?: (value: IEntityOption[]) => void;
-  onChangeTeamType: (type: string, user: IEntityOption) => void;
+  onChangeTeamStatus: (type: string, user: IEntityOption) => void;
 };
 
 const UsersAutocompleteInput = ({
@@ -94,7 +94,7 @@ const UsersAutocompleteInput = ({
   loading,
   left,
   right,
-  onChangeTeamType,
+  onChangeTeamStatus,
   onChangeList
 }: Props) => {
   const [members, setMembers] = useState<IEntityOption[]>([]);
@@ -150,8 +150,8 @@ const UsersAutocompleteInput = ({
     setFocused(false);
   };
 
-  const handleTeamTypeSelect = (type: ISelectOption, user: IEntityOption) => {
-    onChangeTeamType(type.value, user);
+  const handleTeamStatusSelect = (type: ISelectOption, user: IEntityOption) => {
+    onChangeTeamStatus(type.value, user);
 
     // add the selected type to users
     const newMembers = addTeamtypeToMembers(members, user, type.value);
@@ -168,8 +168,8 @@ const UsersAutocompleteInput = ({
               key={value.label + index}
               option={value}
               onDelete={handleDelete}
-              onTeamTypeSelect={handleTeamTypeSelect}
-              isLeaderSelected={value.value.type === TEAM_TYPE_ENUM.LEADER}
+              onTeamTypeSelect={handleTeamStatusSelect}
+              isLeaderSelected={value.value.type === TEAM_STATUS_ENUM.LEADER}
             />
           ))}
         </Stack>

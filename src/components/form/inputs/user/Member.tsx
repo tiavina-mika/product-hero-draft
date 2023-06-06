@@ -6,10 +6,10 @@ import { cx } from "@emotion/css";
 import { Stack, Typography } from "@mui/material";
 
 import { IEntityOption } from "../../../../types/team.type";
-import SelectTeamTypeInput from "./SelectTeamTypeInput";
+import SelectTeamStatusInput from "./SelectTeamStatusInput";
 import { ISelectOption } from "../../../../types/app.type";
 import MemberAvatar from "./MemberAvatar";
-import { getTeamTypeIcon } from "../../../../utils/user.utils";
+import { getTeamStatusIcon } from "../../../../utils/user.utils";
 
 const classes = {
   button: {
@@ -119,18 +119,18 @@ const Member = ({
     >
       {/* ----------- left ----------- */}
       <div css={classes.left} className="stretchSelf flexCenter">
-        <SelectTeamTypeInput onSelect={handleSelectTeamType}>
+        <SelectTeamStatusInput onSelect={handleSelectTeamType}>
           {option.value.type ? (
             <div className="flexCenter stretchSelf flex1">
               <img
                 alt=""
-                src={"/icons/" + getTeamTypeIcon(option.value.type) + ".svg"}
+                src={"/icons/" + getTeamStatusIcon(option.value.type) + ".svg"}
               />
             </div>
           ) : (
             <MemberAvatar option={option} />
           )}
-        </SelectTeamTypeInput>
+        </SelectTeamStatusInput>
       </div>
       <div
         css={[classes.divider, isLeaderSelected && classes.selectedDivider]}

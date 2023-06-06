@@ -7,13 +7,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { ReactNode, useState, MouseEvent, Fragment } from "react";
 import { ISelectOption } from "../../../../types/app.type";
-import { teamTypes } from "../../../../utils/user.utils";
+import { teamStatus } from "../../../../utils/user.utils";
 
 type Props = {
   children: ReactNode;
   onSelect: (value: ISelectOption) => void;
 };
-const SelectTeamTypeInput = ({ children, onSelect }: Props) => {
+const SelectTeamStatusInput = ({ children, onSelect }: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -52,7 +52,7 @@ const SelectTeamTypeInput = ({ children, onSelect }: Props) => {
           "aria-labelledby": "basic-button"
         }}
       >
-        {teamTypes.map((type: ISelectOption, index: number) => (
+        {teamStatus.map((type: ISelectOption, index: number) => (
           <MenuItem key={type.label + index} onClick={() => handleSelect(type)}>
             <Stack direction="row" spacing={1}>
               <img alt="" src={"/icons/" + type.icon + ".svg"} />
@@ -65,4 +65,4 @@ const SelectTeamTypeInput = ({ children, onSelect }: Props) => {
   );
 };
 
-export default SelectTeamTypeInput;
+export default SelectTeamStatusInput;

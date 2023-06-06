@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
 import { IEntityOption } from "../../../types/team.type";
-import { TEAM_TYPE_ENUM } from "../../../utils/user.utils";
+import { TEAM_STATUS_ENUM } from "../../../utils/user.utils";
 import UsersAutocompleteInput from "../inputs/user/UsersAutocompleteInput";
 
 type Props = {
@@ -42,11 +42,11 @@ const UsersAutocompleteField = ({
     watch
   } = useFormContext();
 
-  const onChangeTeamType = (type: string, user: IEntityOption) => {
+  const onChangeTeamStatus = (type: string, user: IEntityOption) => {
     // the followers field is an array
     // so we need the old values
-    if (type === TEAM_TYPE_ENUM.FOLLOWERS) {
-      const previousFollowers = watch(TEAM_TYPE_ENUM.FOLLOWERS);
+    if (type === TEAM_STATUS_ENUM.FOLLOWERS) {
+      const previousFollowers = watch(TEAM_STATUS_ENUM.FOLLOWERS);
       setValue(type, [user, ...previousFollowers]);
       return;
     }
@@ -79,7 +79,7 @@ const UsersAutocompleteField = ({
             left={left}
             right={right}
             onChangeList={onChangeMembers}
-            onChangeTeamType={onChangeTeamType}
+            onChangeTeamStatus={onChangeTeamStatus}
           />
         )}
       />

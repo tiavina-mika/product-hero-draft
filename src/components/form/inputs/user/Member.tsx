@@ -84,8 +84,7 @@ type Props = {
   onDelete?: (id: string) => void;
   className?: string;
   isInputOption?: boolean;
-  selectedTeamType?: ISelectOption | null;
-  onTeamTypeSelect?: (type: ISelectOption, user: IEntityOption) => void;
+  onTeamStatusSelect?: (type: ISelectOption, user: IEntityOption) => void;
   isLeaderSelected?: boolean;
 };
 
@@ -93,8 +92,7 @@ const Member = ({
   option,
   onDelete,
   className,
-  onTeamTypeSelect,
-  selectedTeamType,
+  onTeamStatusSelect,
   isLeaderSelected = false,
   isInputOption = false,
   ...selectParams
@@ -104,7 +102,7 @@ const Member = ({
   };
 
   const handleSelectTeamType = (type: ISelectOption) => {
-    onTeamTypeSelect?.(type, option);
+    onTeamStatusSelect?.(type, option);
   };
 
   return (

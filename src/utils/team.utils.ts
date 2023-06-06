@@ -39,7 +39,7 @@ export enum TEAM_STATUS_ENUM {
  * @param userValue user select option
  * @param type
  */
-export const addTeamtypeToMembers = (
+export const addTeamStatusToMembers = (
   members: IEntityOption[],
   userValue: IEntityOption,
   type: string

@@ -52,11 +52,14 @@ const SelectTeamStatusInput = ({ children, onSelect }: Props) => {
           "aria-labelledby": "basic-button"
         }}
       >
-        {teamStatus.map((type: ISelectOption, index: number) => (
-          <MenuItem key={type.label + index} onClick={() => handleSelect(type)}>
+        {teamStatus.map((status: ISelectOption, index: number) => (
+          <MenuItem
+            key={status.label + index}
+            onClick={() => handleSelect(status)}
+          >
             <Stack direction="row" spacing={1}>
-              <img alt="" src={"/icons/" + type.icon + ".svg"} />
-              <span>{type.label}</span>
+              <img alt="" src={"/icons/" + status.icon + ".svg"} />
+              <span>{status.label}</span>
             </Stack>
           </MenuItem>
         ))}

@@ -21,7 +21,7 @@ import { ISelectOption } from "../../../../types/app.type";
 
 import { IEntityOption } from "../../../../types/team.type";
 import {
-  addTeamtypeToMembers,
+  addTeamStatusToMembers,
   TEAM_STATUS_ENUM
 } from "../../../../utils/team.utils";
 
@@ -154,7 +154,7 @@ const UsersAutocompleteInput = ({
     onChangeTeamStatus(type.value, user);
 
     // add the selected type to users
-    const newMembers = addTeamtypeToMembers(members, user, type.value);
+    const newMembers = addTeamStatusToMembers(members, user, type.value);
 
     setMembers(newMembers);
   };
@@ -168,7 +168,7 @@ const UsersAutocompleteInput = ({
               key={value.label + index}
               option={value}
               onDelete={handleDelete}
-              onTeamTypeSelect={handleTeamStatusSelect}
+              onTeamStatusSelect={handleTeamStatusSelect}
               isLeaderSelected={value.value.type === TEAM_STATUS_ENUM.LEADER}
             />
           ))}

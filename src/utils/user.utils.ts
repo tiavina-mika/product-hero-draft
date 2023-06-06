@@ -46,7 +46,12 @@ export const addTeamtypeToMembers = (
 ): IEntityOption[] => {
   const newValues = [];
   for (const member of members) {
-    if (member.value.type === TEAM_TYPE_ENUM.LEADER) {
+    // there should always be one leader
+    // change the previous member status "leader" to "follower"
+    if (
+      member.value.type === TEAM_TYPE_ENUM.LEADER &&
+      userValue.value.type === TEAM_TYPE_ENUM.LEADER
+    ) {
       const newPrevValue = {
         ...member,
         value: { ...member.value, type: TEAM_TYPE_ENUM.FOLLOWERS }

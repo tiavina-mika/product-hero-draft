@@ -40,8 +40,9 @@ const classes = {
 
 type Props = {
   onSave: (values: IMembersTeamInput) => void;
+  onBack?: () => void;
 };
-const AddMembersToTeam = ({ onSave }: Props) => {
+const AddMembersToTeam = ({ onSave, onBack }: Props) => {
   const form = useForm<IMembersTeamInput>({
     resolver: zodResolver(membersTeamSchema),
     defaultValues: initialValues
@@ -58,6 +59,7 @@ const AddMembersToTeam = ({ onSave }: Props) => {
       title="Qui en fait partie ?"
       description="Je peux renseigner des objectifs permettant d’avoir un impact sur la priorisation de la roadmap sur une période donnée."
       css={classes.content}
+      onBack={onBack}
     >
       <Form
         form={form}

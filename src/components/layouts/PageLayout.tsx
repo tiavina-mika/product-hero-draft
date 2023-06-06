@@ -4,12 +4,13 @@
 import { jsx } from "@emotion/react";
 import { cx } from "@emotion/css";
 import { Theme } from "@emotion/react";
-import { Stack } from "@mui/material";
+import { IconButton, Stack } from "@mui/material";
 import { ReactNode } from "react";
 import { getAlignment } from "../../utils/utils";
 
 import Description from "../typography/Description";
 import Title from "../typography/Title";
+import TopIcon from "./TopIcon";
 
 const classes = {
   pageLayoutRoot: {
@@ -51,6 +52,7 @@ type Props = {
   titleSpacing?: number;
   contentClassName?: string;
   imageContainerClassName?: string;
+  onBack?: () => void;
 };
 
 const PageLayout = ({
@@ -64,6 +66,7 @@ const PageLayout = ({
   contentClassName,
   imageContainerClassName,
   className,
+  onBack,
   alignment = "left",
   titleSpacing = 3
 }: Props) => {
@@ -77,13 +80,17 @@ const PageLayout = ({
         css={classes.pageLayoutContent}
       >
         <Stack spacing={titleSpacing} css={classes.titleContainer(alignment)}>
+          {onBack && (
+            <IconButton onClick={onBack} sx={{ p: 0 }}>
+              <TopIcon alignment="left" image="/icons/prev-arrow.svg" />
+            </IconButton>
+          )}
           {image && (
-            <div
-              className={cx("flexRow", imageContainerClassName)}
-              css={classes.imageContainer(alignment)}
-            >
-              <img src={image} alt="" />
-            </div>
+            <TopIcon
+              alignment={alignment}
+              image={image}
+              css={imageContainerClassName}
+            />
           )}
           <Title
             text={title}

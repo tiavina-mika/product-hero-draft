@@ -3,17 +3,17 @@ import { IEntityOption } from "../types/team.type";
 
 export const teamStatus: ISelectOption[] = [
   {
-    icon: "minus",
+    icon: "team/follower",
     label: "Follower",
     value: "followers"
   },
   {
-    icon: "minus",
+    icon: "team/leader",
     label: "Leader",
     value: "leader"
   },
   {
-    icon: "minus",
+    icon: "team/owner",
     label: "Owner",
     value: "owner"
   }

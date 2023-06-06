@@ -4,7 +4,7 @@ import AddMembersToTeam from "./teamCreation/AddMembersToTeam";
 import CreateTeam from "./teamCreation/CreateTeam";
 
 const CreateTeamPage = () => {
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2>(2);
 
   const onBack = () => setStep(2);
 

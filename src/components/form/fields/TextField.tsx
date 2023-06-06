@@ -17,13 +17,14 @@ const classes = {
       fontWeight: 400,
       color: theme.palette.grey[800]
     },
-    "& .MuiOutlinedInput-root": {
+    "& .MuiInputBase-root": {
+      height: 50,
       "& fieldset": {
         border: `1px solid ${theme.palette.grey[800]}`,
         borderRadius: 6,
         transition: "all 0.125s ease 0s"
       },
-      "& .MuiOutlinedInput-input": {
+      "& .MuiInputBase-input": {
         color: theme.palette.grey[800],
         "&::placeholder": {
           color: theme.palette.grey[300],

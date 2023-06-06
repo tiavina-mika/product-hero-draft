@@ -1,13 +1,32 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
-import { jsx } from "@emotion/react";
-import { Stack } from "@mui/material";
+import { jsx, Theme } from "@emotion/react";
+import { Stack, Typography } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { ReactNode, useState, MouseEvent, Fragment } from "react";
 import { ISelectOption } from "../../../../types/app.type";
 import { teamStatus } from "../../../../utils/team.utils";
+
+const classes = {
+  menu: (theme: Theme) => ({
+    "& .MuiPaper-root": {
+      borderBottomLeftRadius: 6,
+      borderBottomRightRadius: 6,
+      marginTop: 17,
+      marginLeft: -15
+    },
+    "& .MuiMenu-list": {
+      padding: 0
+    },
+    "& .MuiMenuItem-root": {
+      paddingTop: 12,
+      paddingBottom: 12,
+      border: "1px solid " + theme.palette.grey[100]
+    }
+  })
+};
 
 type Props = {
   children: ReactNode;
@@ -51,15 +70,18 @@ const SelectTeamStatusInput = ({ children, onSelect }: Props) => {
         MenuListProps={{
           "aria-labelledby": "basic-button"
         }}
+        css={classes.menu}
       >
         {teamStatus.map((status: ISelectOption, index: number) => (
           <MenuItem
             key={status.label + index}
             onClick={() => handleSelect(status)}
           >
-            <Stack direction="row" spacing={1}>
-              <img alt="" src={"/icons/" + status.icon + ".svg"} />
-              <span>{status.label}</span>
+            <Stack direction="row" spacing={1.5} alignItems="center">
+              <div className="flexCenter flex1 stretchSelf">
+                <img alt="" src={"/icons/" + status.icon + ".svg"} />
+              </div>
+              <Typography>{status.label}</Typography>
             </Stack>
           </MenuItem>
         ))}

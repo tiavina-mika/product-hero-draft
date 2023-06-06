@@ -43,17 +43,9 @@ const CreateTeam = ({ onSave }: Props) => {
         buttonSx={{ fontSize: 16 }}
         withSpacing
       >
-        <TextField
-          label="Nom de l'équipe"
-          placeholder="Equipe produit"
-          name="name"
-        />
-        <TextField
-          label="E-mail"
-          placeholder="équipeproduit@producthero.com (Facultatif)"
-          name="email"
-        />
-        <TextField label="Alias" placeholder="@Produit" name="alias" />
+        <TextField label="Nom" placeholder="Nommez votre équipe" name="name" />
+        <TextField label="E-mail" placeholder="(Facultatif)" name="email" />
+        <TextField label="Alias" placeholder="Ex : @Finance" name="alias" />
       </Form>
     </PageLayout>
   );

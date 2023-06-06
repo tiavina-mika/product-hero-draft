@@ -58,6 +58,10 @@ const classes = {
       padding: "0px !important",
       border: "1px solid #303030",
       borderRadius: 6
+    },
+    "& .MuiInputBase-input": {
+      paddingLeft: "16px !important",
+      paddingRight: "16px !important"
     }
   },
   bluredAutocomplete: {

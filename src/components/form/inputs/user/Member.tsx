@@ -8,7 +8,7 @@ import { Stack, Typography } from "@mui/material";
 import { IEntityOption } from "../../../../types/team.type";
 import SelectTeamTypeInput from "./SelectTeamTypeInput";
 import { ISelectOption } from "../../../../types/app.type";
-import UserItemAvatar from "./UserItemAvatar";
+import MemberAvatar from "./MemberAvatar";
 import { getTeamTypeIcon } from "../../../../utils/user.utils";
 
 const classes = {

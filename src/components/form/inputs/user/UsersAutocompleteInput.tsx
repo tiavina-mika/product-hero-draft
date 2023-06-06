@@ -72,10 +72,6 @@ const classes = {
   }
 };
 
-// type ITeamTypeWithUser = {
-//   user: IEntityOption;
-// } & ISelectOption;
-
 type Props = {
   value: any;
   label?: string;
@@ -119,11 +115,11 @@ const UsersAutocompleteInput = ({
     onChangeList?.(newValues);
 
     // --------- udpate options --------- //
-    const index = options.findIndex(
+    const index = dynamicOptions.findIndex(
       (option: IEntityOption) => option.value === value.value
     );
-    options.splice(index, 1);
-    setDynamicOptions(options);
+    dynamicOptions.splice(index, 1);
+    setDynamicOptions(dynamicOptions);
   };
 
   const handleDelete = (id: string) => {
@@ -168,7 +164,7 @@ const UsersAutocompleteInput = ({
       {members.length > 0 && (
         <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
           {members.map((value, index) => (
-            <UserItem
+            <Member
               key={value.label + index}
               option={value}
               onDelete={handleDelete}

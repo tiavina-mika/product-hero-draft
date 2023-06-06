@@ -12,6 +12,27 @@ code {
     monospace;
 }
 
+@font-face {
+  font-family: "ProductSans Bold";
+  src: url("../../fonts/ProductSans-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ProductSans Regular";
+  src: url("../../fonts/ProductSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ProductSans Medium";
+  src: url("../../fonts/ProductSans-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .flexRow {
   display: flex;
   flex-direction: row;

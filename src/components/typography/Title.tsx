@@ -5,28 +5,31 @@ import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import { Typography } from "@mui/material";
 
-type Props = {
-  text: string;
-  alignment?: "left" | "center" | "right";
-};
-
 const classes = {
   root: ({ alignment }: any) => (theme: Theme) => ({
-    [theme.breakpoints.up("md")]: {
-      textAlign: "center"
-    },
+    fontFamily: "ProductSans Regular",
     fontWeight: 700,
     fontSize: 22,
-    lineHeight: 1,
+    lineHeight: 1.3,
     letterSpacing: "0.01em",
     color: theme.palette.grey[800],
     textAlign: alignment
   })
 };
 
-const Title = ({ text, alignment }: Props) => {
+type Props = {
+  text: string;
+  alignment?: "left" | "center" | "right";
+  className?: string;
+};
+
+const Title = ({ text, alignment, className }: Props) => {
   return (
-    <Typography variant="h1" css={classes.root({ alignment })}>
+    <Typography
+      variant="h1"
+      className={className}
+      css={classes.root({ alignment })}
+    >
       {text}
     </Typography>
   );

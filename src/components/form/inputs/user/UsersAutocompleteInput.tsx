@@ -21,12 +21,12 @@ import { ISelectOption } from "../../../../types/app.type";
 
 import { IEntityOption } from "../../../../types/team.type";
 import {
-  addTeamtypeToUserItem,
+  addTeamtypeToMembers,
   TEAM_TYPE_ENUM
 } from "../../../../utils/user.utils";
 
 import TextFieldInput from "../TextFieldInput";
-import UserItem from "./UserItem";
+import Member from "./Member";
 
 // const fakes = [
 //   {
@@ -101,7 +101,7 @@ const UsersAutocompleteInput = ({
   onChangeTeamType,
   onChangeList
 }: Props) => {
-  const [userItemsPreview, setUserItemsPreview] = useState<IEntityOption[]>([]);
+  const [members, setMembers] = useState<IEntityOption[]>([]);
   const [dynamicOptions, setDynamicOptions] = useState<IEntityOption[]>([]);
   const [focused, setFocused] = useState<boolean>(false);
   const originalOptions = useMemo(() => [...options], [options]);
@@ -114,8 +114,8 @@ const UsersAutocompleteInput = ({
   const handleChange = (_: SyntheticEvent, value: IEntityOption) => {
     onChange(value);
 
-    const newValues = [value, ...userItemsPreview];
-    setUserItemsPreview(newValues);
+    const newValues = [value, ...members];
+    setMembers(newValues);
     onChangeList?.(newValues);
 
     // --------- udpate options --------- //
@@ -127,14 +127,14 @@ const UsersAutocompleteInput = ({
   };
 
   const handleDelete = (id: string) => {
-    const newValues = userItemsPreview.filter(
+    const newValues = members.filter(
       (value: IEntityOption) => value.value.objectId !== id
     );
-    setUserItemsPreview(newValues);
+    setMembers(newValues);
     onChangeList?.(newValues);
 
     // --------- udpate options --------- //
-    const removedValue = userItemsPreview.find(
+    const removedValue = members.find(
       (value: IEntityOption) => value.value.objectId === id
     );
     if (!removedValue) return;
@@ -158,16 +158,16 @@ const UsersAutocompleteInput = ({
     onChangeTeamType(type.value, user);
 
     // add the selected type to users
-    const newValues = addTeamtypeToUserItem(userItemsPreview, user, type.value);
+    const newMembers = addTeamtypeToMembers(members, user, type.value);
 
-    setUserItemsPreview(newValues);
+    setMembers(newMembers);
   };
 
   return (
     <Stack spacing={1.6}>
-      {userItemsPreview.length > 0 && (
+      {members.length > 0 && (
         <Stack spacing={2} justifyContent="center" sx={{ pl: 0 }}>
-          {userItemsPreview.map((value, index) => (
+          {members.map((value, index) => (
             <UserItem
               key={value.label + index}
               option={value}
@@ -225,7 +225,7 @@ const UsersAutocompleteInput = ({
           ) => {
             return (
               <li {...params} className="flex1">
-                <UserItem option={option} isInputOption />
+                <Member option={option} isInputOption />
               </li>
             );
           }}

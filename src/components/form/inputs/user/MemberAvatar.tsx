@@ -19,11 +19,12 @@ const classes = {
     color: theme.palette.primary.main
   })
 };
+
 type Props = {
   option: IEntityOption;
 };
 
-const UserItemAvatar = ({ option }: Props) => {
+const MemberAvatar = ({ option }: Props) => {
   if ((option.value as any)?.image) {
     return (
       <Avatar
@@ -41,4 +42,4 @@ const UserItemAvatar = ({ option }: Props) => {
   );
 };
 
-export default UserItemAvatar;
+export default MemberAvatar;

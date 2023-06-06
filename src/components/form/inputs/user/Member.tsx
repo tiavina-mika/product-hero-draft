@@ -89,7 +89,7 @@ type Props = {
   isLeaderSelected?: boolean;
 };
 
-const UserItem = ({
+const Member = ({
   option,
   onDelete,
   className,
@@ -128,7 +128,7 @@ const UserItem = ({
               />
             </div>
           ) : (
-            <UserItemAvatar option={option} />
+            <MemberAvatar option={option} />
           )}
         </SelectTeamTypeInput>
       </div>
@@ -163,4 +163,4 @@ const UserItem = ({
   );
 };
 
-export default UserItem;
+export default Member;

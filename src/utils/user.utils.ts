@@ -33,27 +33,37 @@ export enum TEAM_TYPE_ENUM {
   OWNER = "owner"
 }
 
-export const addTeamtypeToUserItem = (memberValues: IEntityOption[], userItem: IEntityOption, type: string): IEntityOption[] => {
+/**
+ *
+ * @param members member select option
+ * @param userValue user select option
+ * @param type
+ */
+export const addTeamtypeToMembers = (
+  members: IEntityOption[],
+  userValue: IEntityOption,
+  type: string
+): IEntityOption[] => {
   const newValues = [];
-  for (const prevValue of memberValues) {
-    if (prevValue.value.type === TEAM_TYPE_ENUM.LEADER) {
+  for (const member of members) {
+    if (member.value.type === TEAM_TYPE_ENUM.LEADER) {
       const newPrevValue = {
-        ...prevValue,
-        value: { ...prevValue.value, type: TEAM_TYPE_ENUM.FOLLOWERS }
+        ...member,
+        value: { ...member.value, type: TEAM_TYPE_ENUM.FOLLOWERS }
       };
       newValues.push(newPrevValue);
-    } else if (prevValue.value.objectId === userItem.value.objectId) {
+    } else if (member.value.objectId === userValue.value.objectId) {
       newValues.push({
-        ...userItem,
+        ...userValue,
         value: {
-          ...userItem.value,
+          ...userValue.value,
           type
         }
       });
     } else {
-      newValues.push(prevValue);
+      newValues.push(member);
     }
   }
 
   return newValues;
-}
+};

@@ -57,7 +57,6 @@ const AddMembersToTeam = ({ onSave }: Props) => {
     <PageLayout
       title="Qui en fait partie ?"
       description="Je peux renseigner des objectifs permettant d’avoir un impact sur la priorisation de la roadmap sur une période donnée."
-      alignment="center"
       css={classes.content}
     >
       <Form

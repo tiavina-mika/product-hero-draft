@@ -1,6 +1,7 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
+import { css } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import {
@@ -9,7 +10,9 @@ import {
   FormHelperText,
   Stack
 } from "@mui/material";
+import { ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
+import TextFieldInput from "../inputs/TextFieldInput";
 
 const classes = {
   root: (theme: Theme) => ({
@@ -33,27 +36,32 @@ const classes = {
         }
       },
       "& .MuiInputLabel-shrink": {
-        backgroundColor: "red"
+        backgroundColor: theme.palette.grey[800]
       },
       "&.Mui-focused fieldset": {
         border: `1px solid ${theme.palette.grey[800]}`
       }
     }
+  }),
+  left: css({
+    padding: "9px 0 !important" // Note: height is not working
   })
 };
 
-type Props = {
+export type CustomTextFieldProps = {
   name: string;
   fullWidth?: boolean;
   errorMessage?: string;
+  left?: ReactNode;
 } & TextFieldProps;
 
 const TextField = ({
   name,
   fullWidth = true,
   errorMessage,
+  left,
   ...inputProps
-}: Props) => {
+}: CustomTextFieldProps) => {
   const {
     control,
     formState: { errors }
@@ -66,13 +74,15 @@ const TextField = ({
       defaultValue=""
       render={({ field }) => (
         <Stack>
-          <MUITextField
+          <TextFieldInput
             {...field}
             {...inputProps}
             css={classes.root}
             variant="outlined"
             fullWidth={fullWidth}
             error={!!errors[name] || !!errorMessage}
+            leftClassName={classes.left}
+            left={left}
           />
           {errors[name] && (
             <FormHelperText error>

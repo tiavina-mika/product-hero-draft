@@ -7,9 +7,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../../components/form/Form";
 import PageLayout from "../../../components/layouts/PageLayout";
 import TextField from "../../../components/form/fields/TextField";
+import WithEmojiTextField from "../../../components/form/inputs/WithEmojiTextField";
+
 import { ITeamsInput } from "../../../types/team.type";
 import { teamSchema } from "../../../validations/team.validation";
-import Card from "../../../components/Card";
 
 const classes = {
   content: {
@@ -22,7 +23,10 @@ type Props = {
 };
 const CreateTeam = ({ onSave }: Props) => {
   const form = useForm<ITeamsInput>({
-    resolver: zodResolver(teamSchema)
+    resolver: zodResolver(teamSchema),
+    defaultValues: {
+      icon: "😊"
+    }
   });
 
   const { handleSubmit } = form;
@@ -37,7 +41,6 @@ const CreateTeam = ({ onSave }: Props) => {
       description="Je peux renseigner des objectifs permettant d’avoir un impact sur la priorisation de la roadmap sur une période donnée."
       css={classes.content}
     >
-      <Card>Coool</Card>
       <Form
         form={form}
         onSubmit={handleSubmit(onSubmitHandler)}
@@ -45,7 +48,12 @@ const CreateTeam = ({ onSave }: Props) => {
         buttonSx={{ fontSize: 16 }}
         withSpacing
       >
-        <TextField label="Nom" placeholder="Nommez votre équipe" name="name" />
+        <WithEmojiTextField
+          label="Nom"
+          placeholder="Nommez votre équipe"
+          name="name"
+        />
+        {/* <TextField label="name" placeholder="(Facultatif)" name="name" /> */}
         <TextField label="E-mail" placeholder="(Facultatif)" name="email" />
         <TextField label="Alias" placeholder="Ex : @Finance" name="alias" />
       </Form>

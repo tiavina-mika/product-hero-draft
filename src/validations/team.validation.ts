@@ -9,7 +9,8 @@ export const entitySchema = z.object({
 export const teamSchema = z.object({
   name: z.string().min(2, { message: "Must be 2 or more characters long" }),
   email: z.string().email({ message: "Invalid email" }),
-  alias: z.string()
+  alias: z.string(),
+  icon: z.string().min(1, { message: "Must be an emoji" })
 });
 
 export const membersTeamSchema = z

@@ -83,12 +83,14 @@ type Props = {
   left?: ReactNode | string;
   right?: ReactNode;
   iconContainerClassName?: string;
+  leftClassName?: string;
 } & TextFieldProps;
 
 const TextFieldInput = ({
   left,
   right,
   iconContainerClassName,
+  leftClassName,
   ...otherProps
 }: Props) => {
   return (
@@ -98,7 +100,7 @@ const TextFieldInput = ({
       InputProps={{
         ...otherProps.InputProps,
         startAdornment: left ? (
-          <InputAdornment position="start">
+          <InputAdornment position="start" className={leftClassName}>
             <div className="flex1 flexCenter">
               {typeof left === "string" ? (
                 <Typography css={classes.leftText}>{left}</Typography>

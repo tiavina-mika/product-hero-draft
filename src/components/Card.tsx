@@ -72,7 +72,9 @@ const Card = ({
         )}
         {/* ----- center ----- */}
         <div className="flexCenter flex1 stretchSelf">
+          {/* text content */}
           {content && <Typography>{content}</Typography>}
+          {/* component content */}
           {children}
         </div>
         {/* ----- right ----- */}

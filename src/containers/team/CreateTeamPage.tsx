@@ -2,10 +2,9 @@ import { useState } from "react";
 import { IMembersTeamInput, ITeamsInput } from "../../types/team.type";
 import AddMembersToTeam from "./teamCreation/AddMembersToTeam";
 import CreateTeam from "./teamCreation/CreateTeam";
-import Card from "../../components/Card";
 
 const CreateTeamPage = () => {
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2>(2);
 
   const onBack = () => setStep(2);
 

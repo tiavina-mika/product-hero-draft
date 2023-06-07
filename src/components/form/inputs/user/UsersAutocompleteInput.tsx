@@ -1,7 +1,7 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
-import { jsx } from "@emotion/react";
+import { jsx, Theme } from "@emotion/react";
 import {
   Autocomplete,
   AutocompleteRenderInputParams,
@@ -48,7 +48,7 @@ import Member from "./Member";
 // ];
 
 const classes = {
-  autocomplete: {
+  autocomplete: (theme: Theme) => ({
     "& .MuiAutocomplete-inputRoot": {
       paddingRight: "0px !important",
       paddingTop: 0,
@@ -56,14 +56,21 @@ const classes = {
     },
     "& .MuiFormControl-root": {
       padding: "0px !important",
-      border: "1px solid #303030",
+      border: "1px solid " + theme.palette.grey[800],
       borderRadius: 6
     },
     "& .MuiInputBase-input": {
       paddingLeft: "16px !important",
       paddingRight: "16px !important"
+    },
+    // use the textField border
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "transparent"
+    },
+    "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "transparent"
     }
-  },
+  }),
   bluredAutocomplete: {
     "& .MuiAutocomplete-input": {
       paddingTop: "13.5px !important",
@@ -230,7 +237,11 @@ const UsersAutocompleteInput = ({
             );
           }}
           PaperComponent={({ children }) => {
-            return <Paper elevation={0}>{children}</Paper>;
+            return (
+              <Paper elevation={0} sx={{ bgcolor: "transparent" }}>
+                {children}
+              </Paper>
+            );
           }}
         />
       </Box>

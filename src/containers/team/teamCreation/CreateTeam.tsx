@@ -9,6 +9,7 @@ import PageLayout from "../../../components/layouts/PageLayout";
 import TextField from "../../../components/form/fields/TextField";
 import { ITeamsInput } from "../../../types/team.type";
 import { teamSchema } from "../../../validations/team.validation";
+import Card from "../../../components/Card";
 
 const classes = {
   content: {
@@ -36,6 +37,7 @@ const CreateTeam = ({ onSave }: Props) => {
       description="Je peux renseigner des objectifs permettant d’avoir un impact sur la priorisation de la roadmap sur une période donnée."
       css={classes.content}
     >
+      <Card>Coool</Card>
       <Form
         form={form}
         onSubmit={handleSubmit(onSubmitHandler)}

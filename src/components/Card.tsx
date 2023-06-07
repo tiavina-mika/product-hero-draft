@@ -4,7 +4,7 @@
 import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
-import { Card as MUICard, CardContent } from "@mui/material";
+import { Card as MUICard, CardContent, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 const classes = {
@@ -36,7 +36,8 @@ const classes = {
 type Props = {
   className?: string;
   rootClassName?: string;
-  children: ReactNode;
+  children?: ReactNode;
+  content?: string;
   left?: ReactNode;
   right?: ReactNode;
   isActive?: boolean;
@@ -46,6 +47,7 @@ const Card = ({
   children,
   className,
   rootClassName,
+  content,
   left,
   right,
   isActive = false
@@ -59,6 +61,7 @@ const Card = ({
         className={cx("flexRow flex1 justifyCenter stretchSelf", className)}
         css={classes.content}
       >
+        {/* ----- left ----- */}
         {left && (
           <div
             className="flexCenter stretchSelf"
@@ -67,7 +70,12 @@ const Card = ({
             {left}
           </div>
         )}
-        <div className="flexCenter flex1 stretchSelf">{children}</div>
+        {/* ----- center ----- */}
+        <div className="flexCenter flex1 stretchSelf">
+          {content && <Typography>{content}</Typography>}
+          {children}
+        </div>
+        {/* ----- right ----- */}
         {right && (
           <div
             className="flexCenter stretchSelf"

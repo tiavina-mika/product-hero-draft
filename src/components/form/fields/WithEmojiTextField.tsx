@@ -2,33 +2,41 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
-import Form from "../../../components/form/Form";
-import PageLayout from "../../../components/layouts/PageLayout";
-import TextField from "../../../components/form/fields/TextField";
-import { ITeamsInput } from "../../../types/team.type";
-import { teamSchema } from "../../../validations/team.validation";
-import Card from "../../../components/Card";
+import { TextFieldProps } from "@mui/material";
+import TextField, { CustomTextFieldProps } from "../fields/TextField";
 
 const classes = {
-  content: {
-    marginTop: 40
+  rootWithEmoji: {
+    "& .MuiInputAdornment-root .MuiInputBase-root": {
+      height: 50,
+      "& fieldset": {
+        border: "none"
+      }
+    },
+    "& .MuiInputAdornment-root .Mui-focused": {
+      "& .MuiOutlinedInput-notchedOutline": {
+        border: "none !important"
+      }
+    }
   }
 };
 
 type Props = {
-  onSave: (values: ITeamsInput) => void;
-};
-const CreateTeam = ({ onSave }: Props) => {
+  iconName?: string;
+} & TextFieldProps &
+  CustomTextFieldProps;
+
+const WithEmojiTextField = ({
+  iconName = "icon",
+  ...mainInputProps
+}: Props) => {
   return (
     <TextField
-      left={<TextField name="icon" />}
-      label="Nom"
-      placeholder="Nommez votre équipe"
-      name="name"
+      {...mainInputProps}
+      css={classes.rootWithEmoji}
+      left={<TextField name={iconName} />}
     />
   );
 };
 
-export default CreateTeam;
+export default WithEmojiTextField;

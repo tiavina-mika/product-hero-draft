@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../../components/form/Form";
 import PageLayout from "../../../components/layouts/PageLayout";
 import TextField from "../../../components/form/fields/TextField";
-import WithEmojiTextField from "../../../components/form/inputs/WithEmojiTextField";
+import WithEmojiTextField from "../../../components/form/fields/WithEmojiTextField";
 
 import { ITeamsInput } from "../../../types/team.type";
 import { teamSchema } from "../../../validations/team.validation";
@@ -53,7 +53,6 @@ const CreateTeam = ({ onSave }: Props) => {
           placeholder="Nommez votre équipe"
           name="name"
         />
-        {/* <TextField label="name" placeholder="(Facultatif)" name="name" /> */}
         <TextField label="E-mail" placeholder="(Facultatif)" name="email" />
         <TextField label="Alias" placeholder="Ex : @Finance" name="alias" />
       </Form>

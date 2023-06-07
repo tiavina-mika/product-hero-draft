@@ -21,11 +21,12 @@ const classes = {
     }
   }
 };
-// MuiInputAdornment-root
+
 type Props = {
   iconName?: string;
 } & TextFieldProps &
   CustomTextFieldProps;
+
 const WithEmojiTextField = ({
   iconName = "icon",
   ...mainInputProps

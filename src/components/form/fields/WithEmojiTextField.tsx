@@ -3,7 +3,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
 import { TextFieldProps } from "@mui/material";
-import TextField, { CustomTextFieldProps } from "../fields/TextField";
+import TextField, { CustomTextFieldProps } from "./TextField";
 
 const classes = {
   rootWithEmoji: {

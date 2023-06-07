@@ -8,15 +8,6 @@ import { Card as MUICard, CardContent } from "@mui/material";
 import { ReactNode } from "react";
 
 const classes = {
-  // root: ({ alignment }: any) => (theme: Theme) => ({
-  //   fontFamily: "ProductSans Regular",
-  //   fontWeight: 400,
-  //   fontSize: 12,
-  //   lineHeight: 1.6,
-  //   letterSpacing: "0.01em",
-  //   color: theme.palette.grey[600],
-  //   textAlign: alignment
-  // })
   root: (theme: Theme) => ({
     border: "1px solid " + theme.palette.grey[100],
     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.05)",
@@ -25,7 +16,6 @@ const classes = {
   }),
   content: {
     padding: "0px !important"
-    // borderRight: '1px solid ' + theme.palette.grey[100],
   },
   left: (theme: Theme) => ({
     paddingLeft: 17,

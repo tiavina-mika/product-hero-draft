@@ -82,14 +82,14 @@ const classes = {
 type Props = {
   left?: ReactNode | string;
   right?: ReactNode;
-  iconContainerClassName?: string;
+  rightClassName?: string;
   leftClassName?: string;
 } & TextFieldProps;
 
 const TextFieldInput = ({
   left,
   right,
-  iconContainerClassName,
+  rightClassName,
   leftClassName,
   ...otherProps
 }: Props) => {
@@ -111,7 +111,7 @@ const TextFieldInput = ({
           </InputAdornment>
         ) : null,
         endAdornment: right ? (
-          <InputAdornment position="end" className={iconContainerClassName}>
+          <InputAdornment position="end" className={rightClassName}>
             <div className="flex1 flexCenter">{right}</div>
           </InputAdornment>
         ) : null

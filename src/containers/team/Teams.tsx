@@ -6,13 +6,18 @@ import { ITeam } from "../../types/team.type";
 type Props = {
   goToTeamCreation: () => void;
   teams: ITeam[];
+  goToTeam: (team: ITeam) => void;
 };
-const Teams = ({ goToTeamCreation, teams }: Props) => {
+const Teams = ({ goToTeamCreation, teams, goToTeam }: Props) => {
   return (
     <>
       <Stack spacing={2} alignSelf="stretch">
         {teams?.map((team: ITeam, index: number) => (
-          <Card key={team.name + index} left={team.icon} onClick={() => {}}>
+          <Card
+            key={team.name + index}
+            left={team.icon}
+            onClick={() => goToTeam(team)}
+          >
             <Stack direction="row" spacing={0.6} alignItems="center">
               <Typography variant="h4">{team.name}</Typography>
               <Typography variant="caption">({team.count} pers.)</Typography>

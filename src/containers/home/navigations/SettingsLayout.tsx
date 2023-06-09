@@ -6,7 +6,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { ISettingsTab } from "../../../types/app.type";
 import { ITeam } from "../../../types/team.type";
-import Teams from "../../team/Teams";
+import TeamsTab from "../../team/TeamsTab";
 
 const PADDING_Y = 9;
 const classes = {
@@ -126,7 +126,7 @@ const SettingsLayout = ({ goToTeamCreation, teams }: Props) => {
       </div>
       <div className="flexColumn flex1 stretchSelf" css={classes.content}>
         {tab === TABS.TEAMS && (
-          <Teams teams={teams} goToTeamCreation={goToTeamCreation} />
+          <TeamsTab teams={teams} goToTeamCreation={goToTeamCreation} />
         )}
       </div>
     </Box>

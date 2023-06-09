@@ -9,7 +9,7 @@ import {
   Theme,
   Typography
 } from "@mui/material";
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 
 const classes = {
   rootWithIcons: (theme: Theme) => ({
@@ -68,7 +68,7 @@ const classes = {
       display: "flex",
       justifyItems: "center",
       alignItems: "center",
-      borderRight: "1px solid #303030"
+      borderRight: "1px solid " + theme.palette.grey[800]
     }
   }),
   leftText: (theme: Theme) => ({
@@ -86,38 +86,39 @@ type Props = {
   leftClassName?: string;
 } & TextFieldProps;
 
-const TextFieldInput = ({
-  left,
-  right,
-  rightClassName,
-  leftClassName,
-  ...otherProps
-}: Props) => {
-  return (
-    <TextField
-      {...otherProps}
-      css={left || right ? classes.rootWithIcons : classes.root}
-      InputProps={{
-        ...otherProps.InputProps,
-        startAdornment: left ? (
-          <InputAdornment position="start" className={leftClassName}>
-            <div className="flex1 flexCenter">
-              {typeof left === "string" ? (
-                <Typography css={classes.leftText}>{left}</Typography>
-              ) : (
-                left
-              )}
-            </div>
-          </InputAdornment>
-        ) : null,
-        endAdornment: right ? (
-          <InputAdornment position="end" className={rightClassName}>
-            <div className="flex1 flexCenter">{right}</div>
-          </InputAdornment>
-        ) : null
-      }}
-    />
-  );
-};
+/**
+ * should use `forwardRef` if using an refactored component with emotion
+ * issue: https://stackoverflow.com/questions/66312566/how-to-type-forwardref-in-separate-select-component
+ */
+const TextFieldInput = forwardRef<HTMLDivElement, Props>(
+  ({ left, right, rightClassName, leftClassName, ...otherProps }, ref) => {
+    return (
+      <TextField
+        ref={ref}
+        {...otherProps}
+        css={left || right ? classes.rootWithIcons : classes.root}
+        InputProps={{
+          ...otherProps.InputProps,
+          startAdornment: left ? (
+            <InputAdornment position="start" className={leftClassName}>
+              <div className="flex1 flexCenter">
+                {typeof left === "string" ? (
+                  <Typography css={classes.leftText}>{left}</Typography>
+                ) : (
+                  left
+                )}
+              </div>
+            </InputAdornment>
+          ) : null,
+          endAdornment: right ? (
+            <InputAdornment position="end" className={rightClassName}>
+              <div className="flex1 flexCenter">{right}</div>
+            </InputAdornment>
+          ) : null
+        }}
+      />
+    );
+  }
+);
 
 export default TextFieldInput;

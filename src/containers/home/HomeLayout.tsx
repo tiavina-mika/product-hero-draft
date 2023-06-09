@@ -6,6 +6,7 @@ import { Box, Typography } from "@mui/material";
 import { ReactNode, useState } from "react";
 import { IHomeTab } from "../../types/app.type";
 import { ITeam } from "../../types/team.type";
+import { HOME_TABS } from "../../utils/constants";
 import SettingsLayout from "./navigations/SettingsLayout";
 
 const classes = {
@@ -65,22 +66,15 @@ const options: IOption[] = [
   }
 ];
 
-enum TABS {
-  SETTINGS = "settings",
-  ROADMAP = "roadmap",
-  BACKLOG = "backlog",
-  USER_ACTIVITY = "userActivity"
-}
-
 type Props = {
+  onTabChange: (tab: IHomeTab) => void;
   goToTeamCreation: () => void;
   teams: ITeam[];
+  tab: IHomeTab;
 };
-const HomeLayout = ({ goToTeamCreation, teams }: Props) => {
-  const [tab, setTab] = useState<IHomeTab>(TABS.USER_ACTIVITY);
-
-  const onTabChange = (value: IHomeTab) => {
-    setTab(value);
+const HomeLayout = ({ tab, onTabChange, goToTeamCreation, teams }: Props) => {
+  const handleTabChange = (value: IHomeTab) => {
+    onTabChange(value);
   };
 
   return (
@@ -88,7 +82,7 @@ const HomeLayout = ({ goToTeamCreation, teams }: Props) => {
       {/* ------ content ------ */}
       <div className="flexColumn flex1 stretchSelf">
         {/* ------ tabs ------ */}
-        {tab === TABS.SETTINGS && (
+        {tab === HOME_TABS.SETTINGS && (
           <SettingsLayout teams={teams} goToTeamCreation={goToTeamCreation} />
         )}
       </div>
@@ -102,7 +96,7 @@ const HomeLayout = ({ goToTeamCreation, teams }: Props) => {
           {options.map((option: IOption, index: number) => (
             <button
               className="transparentButton"
-              onClick={() => onTabChange(option.value)}
+              onClick={() => handleTabChange(option.value)}
               key={option.label + index}
             >
               <div key={option.label + index}>

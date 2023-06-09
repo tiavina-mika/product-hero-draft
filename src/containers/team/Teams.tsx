@@ -15,9 +15,7 @@ const Teams = ({ goToTeamCreation, teams }: Props) => {
           <Card key={team.name + index} left={team.icon} onClick={() => {}}>
             <Stack direction="row" spacing={0.6} alignItems="center">
               <Typography variant="h4">{team.name}</Typography>
-              {team.count && (
-                <Typography variant="caption">({team.count} pers.)</Typography>
-              )}
+              <Typography variant="caption">({team.count} pers.)</Typography>
             </Stack>
           </Card>
         ))}

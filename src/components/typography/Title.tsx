@@ -7,7 +7,6 @@ import { Typography } from "@mui/material";
 
 const classes = {
   root: ({ alignment }: any) => (theme: Theme) => ({
-    fontFamily: "ProductSans Regular",
     fontWeight: 700,
     fontSize: 22,
     lineHeight: 1.3,

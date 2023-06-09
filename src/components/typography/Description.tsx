@@ -7,7 +7,6 @@ import { SxProps, Typography } from "@mui/material";
 
 const classes = {
   root: ({ alignment }: any) => (theme: Theme) => ({
-    fontFamily: "ProductSans Regular",
     fontWeight: 400,
     fontSize: 12,
     lineHeight: 1.6,

@@ -61,7 +61,7 @@ const Team = ({ team }: Props) => {
             <Typography variant="h3">Information</Typography>
           </Stack>
           <Stack spacing={2}>
-            <Card left={team.icon} content={team.name} />
+            <Card isActive left={team.icon} content={team.name} />
             <Card content={team.email} />
             {team.alias && <Card content={team.alias} />}
           </Stack>
@@ -81,6 +81,7 @@ const Team = ({ team }: Props) => {
                 onDelete={handleDelete}
                 isLeaderSelected={user.type === TEAM_STATUS_ENUM.LEADER}
                 type={user.type}
+                isCard
               />
             ))}
           </Stack>

@@ -27,8 +27,8 @@ const classes = {
     backgroundColor: theme.palette.warning.light
   }),
   center: {
-    paddingLeft: 17,
-    paddingRight: 17
+    paddingLeft: 14,
+    paddingRight: 14
   },
   right: (theme: Theme) => ({
     paddingLeft: 17,
@@ -55,6 +55,7 @@ type Props = {
   right?: ReactNode;
   isActive?: boolean;
   onClick?: () => void;
+  contentClassName?: string;
 };
 
 const Card = ({
@@ -65,6 +66,7 @@ const Card = ({
   left,
   right,
   onClick,
+  contentClassName,
   isActive = false
 }: Props) => {
   return (
@@ -87,7 +89,10 @@ const Card = ({
           </div>
         )}
         {/* ----- center ----- */}
-        <div className="flexCenter flex1 stretchSelf" css={classes.center}>
+        <div
+          className={cx("flex1 centerSelf", contentClassName)}
+          css={classes.center}
+        >
           {/* text content */}
           {content && (
             <Typography css={classes.typography} alignSelf="flex-start">

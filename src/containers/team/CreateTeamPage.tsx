@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IMembersTeamInput, ITeam, ITeamsInput } from "../../types/team.type";
+import { countTeamsMember } from "../../utils/team.utils";
 import AddMembersToTeam from "./teamCreation/AddMembersToTeam";
 import CreateTeam from "./teamCreation/CreateTeam";
 
@@ -21,15 +22,14 @@ const CreateTeamPage = ({ goToHome, onSave }: Props) => {
       objectId: uuidv4(),
       ...values
     };
-    // onSave(newValues);
     setFormValues(newValues);
     setStep(2);
   };
 
   const onAddMembersTeam = (values: IMembersTeamInput) => {
-    let team = { ...values };
+    let team = { ...values, count: 0 };
     if (formValues) {
-      team = { ...team, ...formValues };
+      team = { ...team, ...formValues, count: countTeamsMember(formValues) };
     }
     setFormValues(team as ITeam | null);
     onSave(team as ITeam);

@@ -13,21 +13,21 @@ code {
 }
 
 @font-face {
-  font-family: "ProductSans Bold";
+  font-family: "Product Sans Bold";
   src: url("../../fonts/ProductSans-Bold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "ProductSans Regular";
+  font-family: "Product Sans Regular";
   src: url("../../fonts/ProductSans-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "ProductSans Medium";
+  font-family: "Product Sans Medium";
   src: url("../../fonts/ProductSans-Medium.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;

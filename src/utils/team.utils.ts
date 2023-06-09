@@ -1,5 +1,5 @@
 import { ISelectOption } from "../types/app.type";
-import { IEntityOption } from "../types/team.type";
+import { IEntityOption, ITeam } from "../types/team.type";
 
 export const teamStatus: ISelectOption[] = [
   {
@@ -71,4 +71,14 @@ export const addTeamStatusToMembers = (
   }
 
   return newValues;
+};
+
+export const countTeamsMember = (team: ITeam): number => {
+  const followers = team.followers || [];
+  let count = followers.length;
+
+  if (team.leader) count += 1;
+  if (team.owner) count += 1;
+
+  return count;
 };

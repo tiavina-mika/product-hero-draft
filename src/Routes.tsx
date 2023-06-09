@@ -7,7 +7,6 @@ import { PATH_NAMES } from "./utils/constants";
 const Route = () => {
   const [route, setRoute] = useState<string>(PATH_NAMES.home);
   const [teams, setTeams] = useState<ITeam[]>([]);
-  console.log("teams", teams);
 
   const goToTeamCreation = () => setRoute(PATH_NAMES.team.create);
   const goToHome = () => setRoute(PATH_NAMES.home);

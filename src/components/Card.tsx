@@ -1,8 +1,8 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
-import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
+import { cx } from "@emotion/css";
 import { Theme } from "@emotion/react";
 import { Card as MUICard, CardContent, Typography } from "@mui/material";
 import { ReactNode } from "react";
@@ -30,7 +30,16 @@ const classes = {
     paddingLeft: 17,
     paddingRight: 17,
     borderLeft: "1px solid " + theme.palette.grey[100]
-  })
+  }),
+  rightArrow: {
+    border: "none"
+  },
+  typography: {
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontSize: 14,
+    lineHeight: 1
+  }
 };
 
 type Props = {
@@ -41,21 +50,24 @@ type Props = {
   left?: ReactNode;
   right?: ReactNode;
   isActive?: boolean;
+  onClick?: () => void;
 };
 
 const Card = ({
   children,
   className,
-  rootClassName,
   content,
+  rootClassName,
   left,
   right,
+  onClick,
   isActive = false
 }: Props) => {
   return (
     <MUICard
       css={[classes.root, isActive && classes.active]}
       className={cx("flexColumn stretchSelf", rootClassName)}
+      onClick={onClick}
     >
       <CardContent
         className={cx("flexRow flex1 justifyCenter stretchSelf", className)}
@@ -73,7 +85,11 @@ const Card = ({
         {/* ----- center ----- */}
         <div className="flexCenter flex1 stretchSelf">
           {/* text content */}
-          {content && <Typography>{content}</Typography>}
+          {content && (
+            <Typography css={classes.typography} alignSelf="flex-start">
+              {content}
+            </Typography>
+          )}
           {/* component content */}
           {children}
         </div>
@@ -84,6 +100,14 @@ const Card = ({
             css={[classes.right, isActive && classes.active]}
           >
             {right}
+          </div>
+        )}
+        {onClick && (
+          <div
+            className="flexCenter stretchSelf"
+            css={[classes.right, classes.rightArrow]}
+          >
+            <img alt="" src="/icons/input.svg" />
           </div>
         )}
       </CardContent>

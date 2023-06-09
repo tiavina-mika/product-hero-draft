@@ -5,6 +5,7 @@ import { jsx, Theme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { ISettingsTab } from "../../../types/app.type";
+import { ITeam } from "../../../types/team.type";
 import Teams from "../../team/Teams";
 
 const PADDING_Y = 9;
@@ -74,8 +75,9 @@ enum TABS {
 
 type Props = {
   goToTeamCreation: () => void;
-}
-const SettingsLayout = ({ goToTeamCreation }: Props) => {
+  teams: ITeam[];
+};
+const SettingsLayout = ({ goToTeamCreation, teams }: Props) => {
   const [tab, setTab] = useState<ISettingsTab>(TABS.TEAMS);
 
   const onTabChange = (value: ISettingsTab) => {
@@ -120,7 +122,9 @@ const SettingsLayout = ({ goToTeamCreation }: Props) => {
         ))}
       </div>
       <div className="flexCenter flex1 stretchSelf">
-        {tab === TABS.TEAMS && <Teams goToTeamCreation={goToTeamCreation} />}
+        {tab === TABS.TEAMS && (
+          <Teams teams={teams} goToTeamCreation={goToTeamCreation} />
+        )}
       </div>
     </Box>
   );

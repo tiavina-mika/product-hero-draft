@@ -18,7 +18,7 @@ const Route = () => {
   if (route === PATH_NAMES.team.create) {
     return <CreateTeamPage goToHome={goToHome} onSave={onAddTeams} />;
   }
-  return <HomeLayout goToTeamCreation={goToTeamCreation} />;
+  return <HomeLayout goToTeamCreation={goToTeamCreation} teams={teams} />;
 };
 
 export default Route;

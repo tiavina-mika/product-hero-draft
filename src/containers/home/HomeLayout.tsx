@@ -5,6 +5,7 @@ import { jsx, Theme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import { ReactNode, useState } from "react";
 import { IHomeTab } from "../../types/app.type";
+import { ITeam } from "../../types/team.type";
 import SettingsLayout from "./navigations/SettingsLayout";
 
 const classes = {
@@ -73,8 +74,9 @@ enum TABS {
 
 type Props = {
   goToTeamCreation: () => void;
-}
-const HomeLayout = ({ goToTeamCreation }: Props) => {
+  teams: ITeam[];
+};
+const HomeLayout = ({ goToTeamCreation, teams }: Props) => {
   const [tab, setTab] = useState<IHomeTab>(TABS.SETTINGS);
 
   const onTabChange = (value: IHomeTab) => {
@@ -86,7 +88,9 @@ const HomeLayout = ({ goToTeamCreation }: Props) => {
       {/* ------ content ------ */}
       <div className="flexColumn flex1 stretchSelf">
         {/* ------ tabs ------ */}
-        {tab === TABS.SETTINGS && <SettingsLayout goToTeamCreation={goToTeamCreation} />}
+        {tab === TABS.SETTINGS && (
+          <SettingsLayout teams={teams} goToTeamCreation={goToTeamCreation} />
+        )}
       </div>
 
       {/* ------ tabs ------ */}

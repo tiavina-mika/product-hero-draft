@@ -39,7 +39,10 @@ const classes = {
     color: "#fff",
     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.05)",
     borderRadius: 100
-  })
+  }),
+  content: {
+    padding: 12
+  }
 };
 
 interface IOption {
@@ -121,7 +124,7 @@ const SettingsLayout = ({ goToTeamCreation, teams }: Props) => {
           </button>
         ))}
       </div>
-      <div className="flexCenter flex1 stretchSelf">
+      <div className="flexColumn flex1 stretchSelf" css={classes.content}>
         {tab === TABS.TEAMS && (
           <Teams teams={teams} goToTeamCreation={goToTeamCreation} />
         )}

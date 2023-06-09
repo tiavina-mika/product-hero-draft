@@ -41,8 +41,8 @@ const classes = {
 
 type Props = {
   children?: ReactNode;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   alignment?: "left" | "center" | "right";
   image?: string;
   titleClassName?: string;
@@ -92,16 +92,20 @@ const PageLayout = ({
               css={imageContainerClassName}
             />
           )}
-          <Title
-            text={title}
-            alignment={alignment}
-            className={titleClassName}
-          />
-          <Description
-            text={description}
-            alignment={alignment}
-            className={descriptionClassName}
-          />
+          {title && (
+            <Title
+              text={title}
+              alignment={alignment}
+              className={titleClassName}
+            />
+          )}
+          {description && (
+            <Description
+              text={description}
+              alignment={alignment}
+              className={descriptionClassName}
+            />
+          )}
         </Stack>
         {children && (
           <div className={cx("flex1 stretchSelf flexColumn", className)}>

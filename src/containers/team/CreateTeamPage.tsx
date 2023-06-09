@@ -1,24 +1,40 @@
 import { useState } from "react";
-import { IMembersTeamInput, ITeamsInput } from "../../types/team.type";
+import { v4 as uuidv4 } from "uuid";
+import { IMembersTeamInput, ITeam, ITeamsInput } from "../../types/team.type";
 import AddMembersToTeam from "./teamCreation/AddMembersToTeam";
 import CreateTeam from "./teamCreation/CreateTeam";
 
+type IFormValues = Partial<ITeamsInput & IMembersTeamInput>;
 type Props = {
   goToHome: () => void;
-}
-const CreateTeamPage = ({ goToHome }: Props) => {
+  onSave: (team: ITeam) => void;
+};
+const CreateTeamPage = ({ goToHome, onSave }: Props) => {
+  const [formValues, setFormValues] = useState<ITeam | null>(null);
   const [step, setStep] = useState<1 | 2>(1);
 
   const onStepOneBack = () => setStep(2);
   const onBackToHome = () => goToHome();
 
   const onSaveTeam = (values: ITeamsInput) => {
-    console.log("onSaveTeam values", values);
+    const newValues = {
+      objectId: uuidv4(),
+      ...values
+    };
+    // onSave(newValues);
+    setFormValues(newValues);
     setStep(2);
   };
 
   const onAddMembersTeam = (values: IMembersTeamInput) => {
-    console.log("onAddMembersTeam values", values);
+    let team = { ...values };
+    if (formValues) {
+      team = { ...team, ...formValues };
+    }
+    setFormValues(team as ITeam | null);
+    onSave(team as ITeam);
+
+    goToHome();
   };
 
   return (

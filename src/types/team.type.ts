@@ -11,8 +11,10 @@ export interface ITeam extends Pick<IUser, "email"> {
   objectId: string;
   name: string;
   alias: string;
-  members: IUser[];
-  leader: IUser;
+  members?: IUser[];
+  leader?: IUser;
+  followers?: IUser[];
+  owner?: IUser;
 }
 
 export type ITeamsInput = z.infer<typeof teamSchema>;

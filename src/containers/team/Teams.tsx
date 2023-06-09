@@ -12,11 +12,7 @@ const Teams = ({ goToTeamCreation, teams }: Props) => {
     <>
       <Stack spacing={2} alignSelf="stretch">
         {teams?.map((team: ITeam, index: number) => (
-          <Card
-            key={team.name + index}
-            left={team.icon}
-            onClick={() => _goToTeam(team.slug)}
-          >
+          <Card key={team.name + index} left={team.icon} onClick={() => {}}>
             <Stack direction="row" spacing={0.6} alignItems="center">
               <Typography variant="h4">{team.name}</Typography>
               {team.count && (

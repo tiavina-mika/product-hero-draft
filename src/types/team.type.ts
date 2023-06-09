@@ -14,6 +14,7 @@ export interface ITeam extends Pick<IUser, "email"> {
   members?: IUser[];
   leader?: IUser;
   icon?: string;
+  slug?: string;
   followers?: IUser[];
   owner?: IUser;
   count?: number;

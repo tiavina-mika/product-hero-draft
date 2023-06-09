@@ -66,17 +66,41 @@ export const theme = createTheme({
       fontSize: 32,
       lineHeight: 1,
       fontWeight: 500,
-      fontFamily: "Product Sans Medium"
+      fontStyle: "normal",
+      fontFamily: "Product Sans Regular"
+    },
+    h2: {
+      fontSize: 22,
+      lineHeight: 1.3,
+      fontWeight: 400,
+      fontStyle: "normal",
+      fontFamily: "Product Sans Regular"
+    },
+    h3: {
+      fontSize: 14,
+      lineHeight: 1,
+      fontWeight: 700,
+      fontStyle: "normal",
+      fontFamily: "Product Sans Regular"
     },
     h4: {
       fontSize: 14,
+      lineHeight: 1.5,
+      fontWeight: 400,
+      fontStyle: "normal",
+      fontFamily: "Product Sans Regular"
+    },
+    h5: {
+      fontSize: 12,
       lineHeight: 1,
       fontWeight: 400,
-      fontFamily: "Product Sans Medium"
+      fontStyle: "normal",
+      fontFamily: "Product Sans Regular"
     },
     caption: {
       fontSize: 10,
       color: palette.grey[300],
+      fontStyle: "normal",
       fontFamily: "Product Sans Regular"
     }
   }

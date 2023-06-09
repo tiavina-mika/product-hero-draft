@@ -1,11 +1,14 @@
 import { Typography } from "@mui/material";
 import AddIcon from "../../components/AddIcon";
 
-const Teams = () => {
+type Props = {
+  goToTeamCreation: () => void;
+}
+const Teams = ({ goToTeamCreation }: Props) => {
   return (
     <>
       <Typography>Teams</Typography>
-      <AddIcon onClick={() => {}} />
+      <AddIcon onClick={goToTeamCreation} />
     </>
   );
 };

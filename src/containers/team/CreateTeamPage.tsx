@@ -3,10 +3,14 @@ import { IMembersTeamInput, ITeamsInput } from "../../types/team.type";
 import AddMembersToTeam from "./teamCreation/AddMembersToTeam";
 import CreateTeam from "./teamCreation/CreateTeam";
 
-const CreateTeamPage = () => {
-  const [step, setStep] = useState<1 | 2>(2);
+type Props = {
+  goToHome: () => void;
+}
+const CreateTeamPage = ({ goToHome }: Props) => {
+  const [step, setStep] = useState<1 | 2>(1);
 
-  const onBack = () => setStep(2);
+  const onStepOneBack = () => setStep(2);
+  const onBackToHome = () => goToHome();
 
   const onSaveTeam = (values: ITeamsInput) => {
     console.log("onSaveTeam values", values);
@@ -19,9 +23,9 @@ const CreateTeamPage = () => {
 
   return (
     <>
-      {step === 1 && <CreateTeam onSave={onSaveTeam} />}
+      {step === 1 && <CreateTeam onSave={onSaveTeam} onBack={onBackToHome} />}
       {step === 2 && (
-        <AddMembersToTeam onSave={onAddMembersTeam} onBack={onBack} />
+        <AddMembersToTeam onSave={onAddMembersTeam} onBack={onStepOneBack} />
       )}
     </>
   );

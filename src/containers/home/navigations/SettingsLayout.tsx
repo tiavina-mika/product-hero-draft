@@ -72,7 +72,10 @@ enum TABS {
   PROFILES = "profiles"
 }
 
-const SettingsLayout = () => {
+type Props = {
+  goToTeamCreation: () => void;
+}
+const SettingsLayout = ({ goToTeamCreation }: Props) => {
   const [tab, setTab] = useState<ISettingsTab>(TABS.TEAMS);
 
   const onTabChange = (value: ISettingsTab) => {
@@ -117,7 +120,7 @@ const SettingsLayout = () => {
         ))}
       </div>
       <div className="flexCenter flex1 stretchSelf">
-        {tab === TABS.TEAMS && <Teams />}
+        {tab === TABS.TEAMS && <Teams goToTeamCreation={goToTeamCreation} />}
       </div>
     </Box>
   );

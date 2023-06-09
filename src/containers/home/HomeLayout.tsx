@@ -71,7 +71,10 @@ enum TABS {
   USER_ACTIVITY = "userActivity"
 }
 
-const HomeLayout = () => {
+type Props = {
+  goToTeamCreation: () => void;
+}
+const HomeLayout = ({ goToTeamCreation }: Props) => {
   const [tab, setTab] = useState<IHomeTab>(TABS.SETTINGS);
 
   const onTabChange = (value: IHomeTab) => {
@@ -83,7 +86,7 @@ const HomeLayout = () => {
       {/* ------ content ------ */}
       <div className="flexColumn flex1 stretchSelf">
         {/* ------ tabs ------ */}
-        {tab === TABS.SETTINGS && <SettingsLayout />}
+        {tab === TABS.SETTINGS && <SettingsLayout goToTeamCreation={goToTeamCreation} />}
       </div>
 
       {/* ------ tabs ------ */}

@@ -5,12 +5,11 @@ import { jsx, Theme } from "@emotion/react";
 import { cx } from "@emotion/css";
 import { Stack, Typography } from "@mui/material";
 
+import { IEntityOption } from "../../../../types/team.type";
 import SelectTeamStatusInput from "./SelectTeamStatusInput";
 import { ISelectOption } from "../../../../types/app.type";
 import MemberAvatar from "./MemberAvatar";
 import { getTeamStatusIcon } from "../../../../utils/team.utils";
-import { getUserFullName } from "../../../../utils/utils";
-import { IUser } from "../../../../types/user.type";
 
 const classes = {
   button: {
@@ -81,21 +80,19 @@ const classes = {
 };
 
 type Props = {
+  option: IEntityOption;
   onDelete?: (id: string) => void;
   className?: string;
   isInputOption?: boolean;
-  onTeamStatusSelect?: (type: ISelectOption) => void;
+  onTeamStatusSelect?: (type: ISelectOption, user: IEntityOption) => void;
   isLeaderSelected?: boolean;
-  type?: string;
-  team: IUser;
 };
 
 const Member = ({
-  team,
+  option,
   onDelete,
   className,
   onTeamStatusSelect,
-  type,
   isLeaderSelected = false,
   isInputOption = false,
   ...selectParams
@@ -105,7 +102,7 @@ const Member = ({
   };
 
   const handleSelectTeamType = (type: ISelectOption) => {
-    onTeamStatusSelect?.(type);
+    onTeamStatusSelect?.(type, option);
   };
 
   return (
@@ -121,12 +118,15 @@ const Member = ({
       {/* ----------- left ----------- */}
       <div css={classes.left} className="stretchSelf flexCenter">
         <SelectTeamStatusInput onSelect={handleSelectTeamType}>
-          {type ? (
+          {option.value.type ? (
             <div className="flexCenter stretchSelf flex1">
-              <img alt="" src={"/icons/" + getTeamStatusIcon(type) + ".svg"} />
+              <img
+                alt=""
+                src={"/icons/" + getTeamStatusIcon(option.value.type) + ".svg"}
+              />
             </div>
           ) : (
-            <MemberAvatar user={team} />
+            <MemberAvatar option={option} />
           )}
         </SelectTeamStatusInput>
       </div>
@@ -137,11 +137,11 @@ const Member = ({
       <div className="flex1" css={classes.center}>
         <Stack spacing={1}>
           <Typography variant="h3" css={classes.name}>
-            {getUserFullName(team)}
+            {option.label}
           </Typography>
-          {team.role && (
+          {option.value.role && (
             <Typography css={classes.role}>
-              {(team.role as any).name}
+              {(option.value.role as any).name}
             </Typography>
           )}
         </Stack>
@@ -153,7 +153,7 @@ const Member = ({
       <button
         css={[classes.right, classes.button]}
         className="flexCenter stretchSelf"
-        onClick={() => handleDelete(team.objectId)}
+        onClick={() => handleDelete(option.value.objectId)}
       >
         <img alt="minus" src="/icons/minus.svg" />
       </button>

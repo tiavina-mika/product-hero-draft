@@ -26,6 +26,10 @@ const classes = {
     borderColor: theme.palette.warning.main,
     backgroundColor: theme.palette.warning.light
   }),
+  center: {
+    paddingLeft: 17,
+    paddingRight: 17
+  },
   right: (theme: Theme) => ({
     paddingLeft: 17,
     paddingRight: 17,
@@ -83,7 +87,7 @@ const Card = ({
           </div>
         )}
         {/* ----- center ----- */}
-        <div className="flexCenter flex1 stretchSelf">
+        <div className="flexCenter flex1 stretchSelf" css={classes.center}>
           {/* text content */}
           {content && (
             <Typography css={classes.typography} alignSelf="flex-start">

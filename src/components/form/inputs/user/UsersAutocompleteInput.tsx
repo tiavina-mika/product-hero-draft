@@ -177,9 +177,10 @@ const UsersAutocompleteInput = ({
           {members.map((value, index) => (
             <Member
               key={value.label + index}
-              option={value}
+              team={value.value as any}
+              type={value.value.type}
               onDelete={handleDelete}
-              onTeamStatusSelect={handleTeamStatusSelect}
+              onTeamStatusSelect={(type) => handleTeamStatusSelect(type, value)}
               isLeaderSelected={value.value.type === TEAM_STATUS_ENUM.LEADER}
             />
           ))}
@@ -232,7 +233,7 @@ const UsersAutocompleteInput = ({
           ) => {
             return (
               <li {...params} className="flex1">
-                <Member option={option} isInputOption />
+                <Member team={option.value as any} isInputOption />
               </li>
             );
           }}

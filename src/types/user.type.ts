@@ -1,3 +1,8 @@
+export interface IRole {
+  objectId: string;
+  name: string;
+}
+
 export interface IUser {
   objectId: string;
   email: string;
@@ -5,9 +10,6 @@ export interface IUser {
   firstName: string;
   lastName: string;
   members?: IUser[];
-}
-
-export interface IRole {
-  objectId: string;
-  name: string;
+  type?: string;
+  role?: IRole;
 }

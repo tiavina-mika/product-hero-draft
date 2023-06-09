@@ -4,8 +4,11 @@
 import { jsx, Theme } from "@emotion/react";
 import { Avatar } from "@mui/material";
 
-import { IEntityOption } from "../../../../types/team.type";
-import { getUserFullNameAbbreviation } from "../../../../utils/utils";
+import { IUser } from "../../../../types/user.type";
+import {
+  getUserFullName,
+  getUserFullNameAbbreviation
+} from "../../../../utils/utils";
 
 const classes = {
   avatar: (theme: Theme) => ({
@@ -21,23 +24,23 @@ const classes = {
 };
 
 type Props = {
-  option: IEntityOption;
+  user: IUser;
 };
 
-const MemberAvatar = ({ option }: Props) => {
-  if ((option.value as any)?.image) {
+const MemberAvatar = ({ user }: Props) => {
+  if ((user as any)?.image) {
     return (
       <Avatar
         css={classes.avatar}
-        alt={option.label}
-        src={(option.value as any).image}
+        alt={getUserFullName(user)}
+        src={(user as any).image}
       />
     );
   }
 
   return (
     <Avatar css={classes.avatar} className="flexCenter">
-      {getUserFullNameAbbreviation(option.value)}
+      {getUserFullNameAbbreviation(user)}
     </Avatar>
   );
 };

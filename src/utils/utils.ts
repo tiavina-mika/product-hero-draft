@@ -63,6 +63,9 @@ export const capitalizeFirstLetter = (string: string): string => {
 export const getUserFullNameAbbreviation = (
   user: Record<string, any>
 ): string => {
+  if (!user) {
+    return "US";
+  }
   if (!user.lastName && !user.firstName) {
     return "US";
   }

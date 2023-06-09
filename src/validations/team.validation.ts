@@ -51,6 +51,21 @@ export const membersTeamSchema = z
       }
     }
 
+    // -------- if status is selected, use followers as default -------- //
+    for (const member of newValues.members) {
+      const currentFollower = newValues.followers?.find(
+        (follower: IEntityOption) =>
+          follower.value.objectId === member.value.objectId
+      );
+      if (
+        !currentFollower &&
+        newValues.leader?.value.objectId !== member.value.objectId &&
+        newValues.owner?.value.objectId !== member.value.objectId
+      ) {
+        newFollowers.push(member);
+      }
+    }
+
     return {
       ...newValues,
       followers: newFollowers

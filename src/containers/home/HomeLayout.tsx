@@ -77,7 +77,7 @@ type Props = {
   teams: ITeam[];
 };
 const HomeLayout = ({ goToTeamCreation, teams }: Props) => {
-  const [tab, setTab] = useState<IHomeTab>(TABS.SETTINGS);
+  const [tab, setTab] = useState<IHomeTab>(TABS.USER_ACTIVITY);
 
   const onTabChange = (value: IHomeTab) => {
     setTab(value);

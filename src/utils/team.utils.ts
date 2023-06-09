@@ -1,5 +1,6 @@
 import { ISelectOption } from "../types/app.type";
 import { IEntityOption, ITeam } from "../types/team.type";
+import { capitalizeFirstLetter } from "./utils";
 
 export const teamStatus: ISelectOption[] = [
   {
@@ -81,4 +82,17 @@ export const countTeamsMember = (team: ITeam): number => {
   if (team.owner) count += 1;
 
   return count;
+};
+
+export const formatAliasFromName = (name: string): string => {
+  const splittedName = name
+    .split(" ")
+    .map((word: string) => capitalizeFirstLetter(word));
+  const alias = splittedName.join("");
+  return "@" + alias;
+};
+
+export const removeFirstAliasChar = (value: string): string => {
+  const newText = value.replace("@", "");
+  return newText;
 };

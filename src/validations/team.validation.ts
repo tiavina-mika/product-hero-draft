@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { IEntityOption } from "../types/team.type";
+import { removeFirstAliasChar } from "../utils/team.utils";
 
 export const entitySchema = z.object({
   label: z.string(),
@@ -9,7 +10,13 @@ export const entitySchema = z.object({
 export const teamSchema = z.object({
   name: z.string().min(2, { message: "Must be 2 or more characters long" }),
   email: z.string().email({ message: "Invalid email" }),
-  alias: z.string(),
+  alias: z.string().transform((value: string): string => {
+    if (value) {
+      return removeFirstAliasChar(value);
+    }
+
+    return value;
+  }),
   icon: z.string().min(1, { message: "Must be an emoji" })
 });
 

@@ -23,16 +23,19 @@ const classes = {
 
 type Props = {
   iconName?: string;
+  onFieldChange?: (value: string | number) => void;
 } & TextFieldProps &
   CustomTextFieldProps;
 
 const WithEmojiTextField = ({
+  onFieldChange,
   iconName = "icon",
   ...mainInputProps
 }: Props) => {
   return (
     <TextField
       {...mainInputProps}
+      onFieldChange={onFieldChange}
       css={classes.rootWithEmoji}
       left={<TextField name={iconName} />}
     />

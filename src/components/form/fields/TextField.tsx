@@ -5,7 +5,7 @@ import { css } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import { TextFieldProps, FormHelperText, Stack } from "@mui/material";
-import { ReactNode } from "react";
+import { ChangeEvent, ReactNode } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 import TextFieldInput from "../inputs/TextFieldInput";
 
@@ -48,6 +48,7 @@ export type CustomTextFieldProps = {
   fullWidth?: boolean;
   errorMessage?: string;
   left?: ReactNode;
+  onFieldChange?: (value: string | number) => void;
 } & TextFieldProps;
 
 const TextField = ({
@@ -55,6 +56,7 @@ const TextField = ({
   fullWidth = true,
   errorMessage,
   left,
+  onFieldChange,
   ...inputProps
 }: CustomTextFieldProps) => {
   const {
@@ -78,6 +80,12 @@ const TextField = ({
             error={!!errors[name] || !!errorMessage}
             leftClassName={classes.left}
             left={left}
+            onChange={(
+              event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+            ) => {
+              field.onChange(event.target.value);
+              onFieldChange?.(event.target.value);
+            }}
           />
           {errors[name] && (
             <FormHelperText error>

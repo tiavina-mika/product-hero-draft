@@ -11,6 +11,7 @@ import WithEmojiTextField from "../../../components/form/fields/WithEmojiTextFie
 
 import { ITeamsInput } from "../../../types/team.type";
 import { teamSchema } from "../../../validations/team.validation";
+import { formatAliasFromName } from "../../../utils/team.utils";
 
 const classes = {
   content: {
@@ -30,7 +31,13 @@ const CreateTeam = ({ onSave, onBack }: Props) => {
     }
   });
 
-  const { handleSubmit } = form;
+  const { handleSubmit, setValue } = form;
+
+  // change alias field value based on name
+  const onNameChange = (value: string | number) => {
+    const newAlias = formatAliasFromName(value as string);
+    setValue("alias", newAlias, { shouldValidate: true });
+  };
 
   const onSubmitHandler: SubmitHandler<ITeamsInput> = (values) => {
     onSave(values);
@@ -54,6 +61,7 @@ const CreateTeam = ({ onSave, onBack }: Props) => {
           label="Nom"
           placeholder="Nommez votre équipe"
           name="name"
+          onFieldChange={onNameChange}
         />
         <TextField label="E-mail" placeholder="(Facultatif)" name="email" />
         <TextField label="Alias" placeholder="Ex : @Finance" name="alias" />

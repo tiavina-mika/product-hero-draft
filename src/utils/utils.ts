@@ -54,6 +54,9 @@ export const capitalizeFirstLetter = (string: string): string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+/**
+ * transform position to flex value
+ */
 export const getAlignment = (
   alignment: "left" | "center" | "right"
 ): "flex-start" | "flex-end" | "center" => {
@@ -67,6 +70,9 @@ export const getAlignment = (
   return "center";
 };
 
+/**
+ * transform position to flex value
+ */
 export const getVerticalAlignment = (
   alignment: "top" | "center" | "bottom"
 ): "flex-start" | "flex-end" | "center" => {

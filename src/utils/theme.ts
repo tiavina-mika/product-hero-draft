@@ -41,6 +41,12 @@ const palette = {
   }
 };
 
+const defaultTypographyStyles = {
+  lineHeight: 1,
+  fontWeight: 400,
+  fontStyle: "normal",
+  fontFamily: "Product Sans Regular"
+};
 export const theme = createTheme({
   palette,
   components: {
@@ -63,45 +69,42 @@ export const theme = createTheme({
   },
   typography: {
     h1: {
+      ...defaultTypographyStyles,
       fontSize: 32,
-      lineHeight: 1,
-      fontWeight: 500,
-      fontStyle: "normal",
-      fontFamily: "Product Sans Regular"
+      fontWeight: 500
     },
     h2: {
+      ...defaultTypographyStyles,
       fontSize: 22,
-      lineHeight: 1.3,
-      fontWeight: 400,
-      fontStyle: "normal",
-      fontFamily: "Product Sans Regular"
+      lineHeight: 1.3
     },
     h3: {
+      ...defaultTypographyStyles,
       fontSize: 14,
-      lineHeight: 1,
-      fontWeight: 700,
-      fontStyle: "normal",
-      fontFamily: "Product Sans Regular"
+      fontWeight: 700
     },
     h4: {
+      ...defaultTypographyStyles,
       fontSize: 14,
-      lineHeight: 1.5,
-      fontWeight: 400,
-      fontStyle: "normal",
-      fontFamily: "Product Sans Regular"
+      lineHeight: 1.5
     },
     h5: {
-      fontSize: 12,
-      lineHeight: 1,
-      fontWeight: 400,
-      fontStyle: "normal",
-      fontFamily: "Product Sans Regular"
+      ...defaultTypographyStyles,
+      fontSize: 12
+    },
+    h6: {
+      ...defaultTypographyStyles,
+      fontSize: 10
+    },
+    body2: {
+      ...defaultTypographyStyles,
+      fontSize: 10,
+      color: palette.grey[600]
     },
     caption: {
+      ...defaultTypographyStyles,
       fontSize: 10,
-      color: palette.grey[300],
-      fontStyle: "normal",
-      fontFamily: "Product Sans Regular"
+      color: palette.grey[300]
     }
   }
 });

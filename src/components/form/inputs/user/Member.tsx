@@ -7,9 +7,9 @@ import { Stack, Typography } from "@mui/material";
 
 import SelectTeamStatusInput from "./SelectTeamStatusInput";
 import { ISelectOption } from "../../../../types/app.type";
-import MemberAvatar from "./MemberAvatar";
+import UserAvatar from "../../../UserAvatar";
 import { getTeamStatusIcon } from "../../../../utils/team.utils";
-import { getUserFullName } from "../../../../utils/utils";
+import { getUserFullName } from "../../../../utils/user.utils";
 import { IUser } from "../../../../types/user.type";
 import Card from "../../../Card";
 
@@ -78,7 +78,7 @@ const Member = ({
           <img alt="" src={"/icons/" + getTeamStatusIcon(type) + ".svg"} />
         </div>
       ) : (
-        <MemberAvatar user={team} />
+        <UserAvatar user={team} />
       )}
     </SelectTeamStatusInput>
   );

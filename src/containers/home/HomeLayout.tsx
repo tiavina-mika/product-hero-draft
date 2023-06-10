@@ -3,7 +3,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { IHomeTab } from "../../types/app.type";
 import { ITeam } from "../../types/team.type";
 import { HOME_TABS } from "../../utils/constants";
@@ -46,8 +46,8 @@ interface IOption {
 const options: IOption[] = [
   {
     label: "Mon focus",
-    icon: "user-activity",
-    value: "userActivity"
+    icon: "my-focus",
+    value: "myFocus"
   },
   {
     label: "Vues",

@@ -15,4 +15,4 @@ export interface ISelectOption {
 export interface IDashboardGlobalState extends ILayoutError, IUser {}
 
 export type ISettingsTab = "drivers" | "okr" | "teams" | "profiles";
-export type IHomeTab = "backlog" | "roadmap" | "settings" | "userActivity";
+export type IHomeTab = "backlog" | "roadmap" | "settings" | "myFocus";

@@ -44,5 +44,5 @@ export enum HOME_TABS {
   SETTINGS = "settings",
   ROADMAP = "roadmap",
   BACKLOG = "backlog",
-  USER_ACTIVITY = "userActivity"
+  MY_FOCUS = "myFocus"
 }

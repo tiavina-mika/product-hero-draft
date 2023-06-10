@@ -6,7 +6,7 @@ import { ITeam } from "./types/team.type";
 import { HOME_TABS, PATH_NAMES } from "./utils/constants";
 
 const Route = () => {
-  const [homeTab, setHomeTab] = useState<IHomeTab>(HOME_TABS.USER_ACTIVITY);
+  const [homeTab, setHomeTab] = useState<IHomeTab>(HOME_TABS.MY_FOCUS);
   const [route, setRoute] = useState<string>(PATH_NAMES.home);
   const [teams, setTeams] = useState<ITeam[]>([]);
 

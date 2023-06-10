@@ -6,11 +6,12 @@ export interface ILayoutError {
   layoutError: string;
 }
 
-export interface ISelectOption {
+export interface ISelectOption<V = any> {
   label: string;
-  value: any;
+  value: V;
   icon?: ReactNode | string;
 }
+export type ISelectedOptionValue = ISelectOption<string>["value"];
 
 export interface IDashboardGlobalState extends ILayoutError, IUser {}
 

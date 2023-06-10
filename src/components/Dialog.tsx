@@ -9,30 +9,19 @@ import {
   DialogContent,
   DialogProps,
   DialogTitle,
-  Slide
+  Slide,
+  SxProps,
+  Theme as MUITheme
 } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
 import { forwardRef, ReactNode } from "react";
 import { getVerticalAlignment } from "../utils/utils";
 import { useBreakpoint } from "../hooks/useBreakpoint";
+import { cx } from "@emotion/css";
+import { RESPONSIVE_BREAKPOINT } from "../utils/constants";
 
-const classes = {
-  dialogTitle: (theme: Theme) => ({
-    fontFamily: "Product Sans Regular",
-    fontWeight: 700,
-    fontSize: 22,
-    lineHeight: 1.3,
-    letterSpacing: "0.01em",
-    color: theme.palette.grey[800],
-    paddingBottom: 8,
-    paddingLeft: 6
-  }),
-  content: {
-    padding: "0px 6px 18px 6px"
-  }
-};
-
-const getDialogBorderRadius = (alignment: "top" | "center" | "bottom") => {
+type IAlignment = "top" | "center" | "bottom";
+const getDialogBorderRadius = (alignment: IAlignment) => {
   if (alignment === "top") {
     return "0 0 10px 10px";
   }
@@ -42,6 +31,31 @@ const getDialogBorderRadius = (alignment: "top" | "center" | "bottom") => {
   }
 
   return "10px 10px 0 0";
+};
+
+const classes = {
+  root: (alignment: IAlignment, fullWidth = false) => (theme: Theme) => ({
+    "& .MuiDialog-container": {
+      alignItems: getVerticalAlignment(alignment)
+    },
+    "& .MuiDialog-paper": {
+      margin: 0,
+      borderRadius: getDialogBorderRadius(alignment),
+      [theme.breakpoints.down(RESPONSIVE_BREAKPOINT)]: {
+        ...(fullWidth ? { width: "100%" } : {})
+      }
+    }
+  }),
+  dialogTitle: (theme: Theme) => ({
+    fontFamily: "Product Sans Regular",
+    fontWeight: 700,
+    fontSize: 22,
+    lineHeight: 1.3,
+    letterSpacing: "0.01em",
+    color: theme.palette.grey[800],
+    paddingBottom: 8,
+    paddingLeft: 6
+  })
 };
 
 const Transition = forwardRef(function Transition(
@@ -59,17 +73,21 @@ type Props = {
   title?: string;
   open: boolean;
   toggle: () => void;
-  alignment?: "top" | "center" | "bottom";
+  alignment?: IAlignment;
   className?: string;
+  rootClassName?: string;
   maxWidth?: DialogProps["maxWidth"];
+  sxPaper?: SxProps<MUITheme>;
 } & DialogProps;
 const Dialog = ({
+  rootClassName,
   className,
   open,
   toggle,
   children,
   actions,
   title,
+  sxPaper,
   maxWidth = "sm",
   alignment = "bottom",
   ...dialogProps
@@ -85,21 +103,10 @@ const Dialog = ({
       keepMounted
       onClose={toggle}
       aria-describedby="alert-dialog-slide-description"
-      sx={{
-        "& .MuiDialog-container": {
-          alignItems: getVerticalAlignment(alignment)
-        }
-      }}
-      PaperProps={{
-        sx: {
-          m: 0,
-          borderRadius: getDialogBorderRadius(alignment),
-          ...(isSmallScreen && dialogProps.fullWidth ? { width: "100%" } : {})
-        }
-      }}
+      css={classes.root(alignment, dialogProps.fullWidth)}
     >
       {title && <DialogTitle css={classes.dialogTitle}>{title}</DialogTitle>}
-      <DialogContent className="flexColumn stretch" css={classes.content}>
+      <DialogContent className={cx("flexColumn stretch", className)}>
         {children}
       </DialogContent>
       {actions && <DialogActions>{actions}</DialogActions>}

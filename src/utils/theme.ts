@@ -96,6 +96,11 @@ export const theme = createTheme({
       ...defaultTypographyStyles,
       fontSize: 10
     },
+    body1: {
+      ...defaultTypographyStyles,
+      fontSize: 12,
+      color: palette.grey[600]
+    },
     body2: {
       ...defaultTypographyStyles,
       fontSize: 10,

@@ -5,9 +5,11 @@ import { jsx } from "@emotion/react";
 import { IconButton, Stack, Typography } from "@mui/material";
 import { Fragment, ReactNode, useState } from "react";
 import UserAvatar from "../../../components/UserAvatar";
+import ButtonsSwitch from "../../../components/ButtonsSwitch";
 import Dialog from "../../../components/Dialog";
 import { users } from "../../../utils/data/user";
 import { getUserFullName } from "../../../utils/user.utils";
+import { ISelectedOptionValue } from "../../../types/app.type";
 
 const currentUser = users[0];
 const workspace = "Roudoudou Inc.";
@@ -19,8 +21,17 @@ const classes = {
   },
   content: {
     padding: 16
+  },
+  dialog: {
+    "& .MuiDialog-paper": {
+      height: 136
+    }
+  },
+  switchRoot: {
+    width: 294
   }
 };
+
 type Props = {
   children: ReactNode;
 };
@@ -29,8 +40,23 @@ const MyFocusLayout = ({ children }: Props) => {
     false
   );
 
+  const workspaceOptions = [
+    {
+      label: workspace,
+      value: "selectedWorskpace"
+    },
+    {
+      label: "+ Espace de travail",
+      value: "otherWorkspace"
+    }
+  ];
+
   const toggleOpenWorkspaceDialog = () =>
     setOpenWorkspaceDialog(!openWorkspaceDialog);
+
+  const handleSelectWorkspace = (value: ISelectedOptionValue) => {
+    console.log("handleSelectWorkspace value", value);
+  };
 
   return (
     <Fragment>
@@ -78,8 +104,15 @@ const MyFocusLayout = ({ children }: Props) => {
         open={openWorkspaceDialog}
         fullWidth
         maxWidth="xl"
+        css={classes.dialog}
       >
-        <h1>cool</h1>
+        <div className="flexCenter stretchSelf flex1">
+          <ButtonsSwitch
+            onSelect={handleSelectWorkspace}
+            css={classes.switchRoot}
+            options={workspaceOptions}
+          />
+        </div>
       </Dialog>
     </Fragment>
   );

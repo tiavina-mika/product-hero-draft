@@ -8,6 +8,8 @@ import { IHomeTab } from "../../types/app.type";
 import { ITeam } from "../../types/team.type";
 import { HOME_TABS } from "../../utils/constants";
 import SettingsLayout from "./navigations/SettingsLayout";
+import MyFocusLayout from "./navigations/MyFocusLayout";
+import MyFocus from "../myFocus/MyFocus";
 
 const classes = {
   tabs: {
@@ -84,6 +86,12 @@ const HomeLayout = ({ tab, onTabChange, goToTeamCreation, teams }: Props) => {
         {/* ------ tabs ------ */}
         {tab === HOME_TABS.SETTINGS && (
           <SettingsLayout teams={teams} goToTeamCreation={goToTeamCreation} />
+        )}
+        {tab === HOME_TABS.MY_FOCUS && (
+          <MyFocusLayout>
+            {/* simulate React Router outlet component */}
+            <MyFocus />
+          </MyFocusLayout>
         )}
       </div>
 

@@ -67,6 +67,19 @@ export const getAlignment = (
   return "center";
 };
 
+export const getVerticalAlignment = (
+  alignment: "top" | "center" | "bottom"
+): "flex-start" | "flex-end" | "center" => {
+  if (alignment === "top") {
+    return "flex-start";
+  }
+  if (alignment === "bottom") {
+    return "flex-end";
+  }
+
+  return "center";
+};
+
 /**
  * for ulr name
  * my Site => my-site

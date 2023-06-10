@@ -46,3 +46,5 @@ export enum HOME_TABS {
   BACKLOG = "backlog",
   MY_FOCUS = "myFocus"
 }
+
+export const RESPONSIVE_BREAKPOINT = "lg";

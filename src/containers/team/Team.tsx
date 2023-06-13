@@ -2,8 +2,9 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import Card from "../../components/Card";
+import Section from "../../components/Section";
 import Member from "../../components/form/inputs/user/Member";
 import { ITeam } from "../../types/team.type";
 import { IUser } from "../../types/user.type";
@@ -56,23 +57,17 @@ const Team = ({ team }: Props) => {
   return (
     <div className="flexColumn stretchSelf">
       <div className="flexColumn stretchSelf" css={classes.info}>
-        <Stack className="stretchSelf flex1" spacing={3.2}>
-          <Stack>
-            <Typography variant="h3">Information</Typography>
-          </Stack>
+        <Section title="Information">
           <Stack spacing={2}>
             <Card isActive left={team.icon} content={team.name} />
             <Card content={team.email} />
             {team.alias && <Card content={team.alias} />}
           </Stack>
-        </Stack>
+        </Section>
       </div>
 
       <div className="flexColumn stretchSelf" css={classes.member}>
-        <Stack className="stretchSelf flex1" spacing={3.2}>
-          <Stack>
-            <Typography variant="h3">Membre</Typography>
-          </Stack>
+        <Section title="Membre">
           <Stack spacing={2}>
             {formatTeams(team).map((user: IUser, index: number) => (
               <Member
@@ -85,7 +80,7 @@ const Team = ({ team }: Props) => {
               />
             ))}
           </Stack>
-        </Stack>
+        </Section>
       </div>
     </div>
   );

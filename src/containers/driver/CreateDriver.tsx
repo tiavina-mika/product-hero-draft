@@ -63,6 +63,7 @@ const CreateDriver = ({ onSave }: Props) => {
       description="Les drivers servent à prioriser les problématiques, fonctionnalités et User Story."
       css={classes.layout}
       contentClassName={classes.content}
+      textSpacing={1}
       onBack={onBack}
     >
       <Form

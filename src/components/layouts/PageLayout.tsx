@@ -50,6 +50,7 @@ type Props = {
   rootClassName?: string;
   className?: string;
   titleSpacing?: number;
+  textSpacing?: number;
   contentClassName?: string;
   imageContainerClassName?: string;
   onBack?: () => void;
@@ -68,7 +69,8 @@ const PageLayout = ({
   className,
   onBack,
   alignment = "left",
-  titleSpacing = 3
+  titleSpacing = 3,
+  textSpacing = 3
 }: Props) => {
   return (
     <div
@@ -92,20 +94,22 @@ const PageLayout = ({
               css={imageContainerClassName}
             />
           )}
-          {title && (
-            <Title
-              text={title}
-              alignment={alignment}
-              className={titleClassName}
-            />
-          )}
-          {description && (
-            <Description
-              text={description}
-              alignment={alignment}
-              className={descriptionClassName}
-            />
-          )}
+          <Stack spacing={textSpacing} css={classes.titleContainer(alignment)}>
+            {title && (
+              <Title
+                text={title}
+                alignment={alignment}
+                className={titleClassName}
+              />
+            )}
+            {description && (
+              <Description
+                text={description}
+                alignment={alignment}
+                className={descriptionClassName}
+              />
+            )}
+          </Stack>
         </Stack>
         {children && (
           <div className={cx("flex1 stretchSelf flexColumn", className)}>

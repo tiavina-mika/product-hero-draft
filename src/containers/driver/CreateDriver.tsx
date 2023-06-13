@@ -36,7 +36,7 @@ type Props = {
   onSave: (values: IDriver) => void;
   onBack: () => void;
 };
-const CreateDriver = ({ onSave }: Props) => {
+const CreateDriver = ({ onSave, onBack }: Props) => {
   const form = useForm<IDriverInput>({
     resolver: zodResolver(driverSchema),
     defaultValues: {
@@ -45,8 +45,6 @@ const CreateDriver = ({ onSave }: Props) => {
   });
 
   const { handleSubmit } = form;
-
-  const onBack = () => {};
 
   const onSubmitHandler = (values: IDriverInput) => {
     const newValues = {

@@ -10,6 +10,7 @@ import { HOME_TABS } from "../../utils/constants";
 import SettingsLayout from "./navigations/SettingsLayout";
 import MyFocusLayout from "./navigations/MyFocusLayout";
 import MyFocus from "../myFocus/MyFocus";
+import { IDriver } from "../../types/driver.type";
 
 const classes = {
   tabs: {
@@ -71,10 +72,19 @@ const options: IOption[] = [
 type Props = {
   onTabChange: (tab: IHomeTab) => void;
   goToTeamCreation: () => void;
+  goToDriverCreation: () => void;
   teams: ITeam[];
+  drivers: IDriver[];
   tab: IHomeTab;
 };
-const HomeLayout = ({ tab, onTabChange, goToTeamCreation, teams }: Props) => {
+const HomeLayout = ({
+  tab,
+  onTabChange,
+  goToTeamCreation,
+  goToDriverCreation,
+  teams,
+  drivers
+}: Props) => {
   const handleTabChange = (value: IHomeTab) => {
     onTabChange(value);
   };
@@ -85,7 +95,12 @@ const HomeLayout = ({ tab, onTabChange, goToTeamCreation, teams }: Props) => {
       <div className="flexColumn flex1 stretchSelf">
         {/* ------ tabs ------ */}
         {tab === HOME_TABS.SETTINGS && (
-          <SettingsLayout teams={teams} goToTeamCreation={goToTeamCreation} />
+          <SettingsLayout
+            drivers={drivers}
+            teams={teams}
+            goToTeamCreation={goToTeamCreation}
+            goToDriverCreation={goToDriverCreation}
+          />
         )}
         {tab === HOME_TABS.MY_FOCUS && (
           <MyFocusLayout>

@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Form from "../../../components/form/Form";
 import { membersTeamSchema } from "../../../validations/team.validation";
-import { getUserFullName } from "../../../utils/utils";
+import { getUserFullName } from "../../../utils/user.utils";
 import { IUser } from "../../../types/user.type";
 import { users } from "../../../utils/data/user";
 

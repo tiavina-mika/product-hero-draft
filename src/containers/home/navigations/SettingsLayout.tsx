@@ -5,8 +5,10 @@ import { jsx, Theme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { ISettingsTab } from "../../../types/app.type";
+import { IDriver } from "../../../types/driver.type";
 import { ITeam } from "../../../types/team.type";
 import TeamsTab from "../../team/TeamsTab";
+import Drivers from "../../driver/Drivers";
 
 const PADDING_Y = 9;
 const classes = {
@@ -78,9 +80,16 @@ enum TABS {
 
 type Props = {
   goToTeamCreation: () => void;
+  goToDriverCreation: () => void;
   teams: ITeam[];
+  drivers: IDriver[];
 };
-const SettingsLayout = ({ goToTeamCreation, teams }: Props) => {
+const SettingsLayout = ({
+  goToDriverCreation,
+  goToTeamCreation,
+  teams,
+  drivers
+}: Props) => {
   const [tab, setTab] = useState<ISettingsTab>(TABS.TEAMS);
 
   const onTabChange = (value: ISettingsTab) => {
@@ -127,6 +136,9 @@ const SettingsLayout = ({ goToTeamCreation, teams }: Props) => {
       <div className="flexColumn flex1 stretchSelf" css={classes.content}>
         {tab === TABS.TEAMS && (
           <TeamsTab teams={teams} goToTeamCreation={goToTeamCreation} />
+        )}
+        {tab === TABS.DRIVERS && (
+          <Drivers drivers={drivers} goToDriverCreation={goToDriverCreation} />
         )}
       </div>
     </Box>

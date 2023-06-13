@@ -12,6 +12,8 @@ import Form from "../../components/form/Form";
 import PageLayout from "../../components/layouts/PageLayout";
 import TextareaField from "../../components/form/fields/TextareaField";
 import WithEmojiTextField from "../../components/form/fields/WithEmojiTextField";
+import Section from "../../components/Section";
+import { Stack } from "@mui/material";
 
 const classes = {
   content: css({
@@ -70,18 +72,25 @@ const CreateDriver = ({ onSave, onBack }: Props) => {
         primaryButtonText="Enregistrer"
         buttonSx={{ fontSize: 16 }}
       >
-        <WithEmojiTextField
-          label="Nom"
-          placeholder="Ajouter un nouveau driver"
-          name="name"
-          onFocus={() => console.log("focus")}
-          css={classes.nameField}
-        />
-        <TextareaField
-          placeholder="Décrivez la nature de votre driver, ses impacts, etc..."
-          name="description"
-          css={classes.descriptionField}
-        />
+        <Stack spacing={4}>
+          <div>
+            <WithEmojiTextField
+              label="Nom"
+              placeholder="Ajouter un nouveau driver"
+              name="name"
+              onFocus={() => console.log("focus")}
+              css={classes.nameField}
+            />
+            <TextareaField
+              placeholder="Décrivez la nature de votre driver, ses impacts, etc..."
+              name="description"
+              css={classes.descriptionField}
+            />
+          </div>
+          <Section title="À quel(s) produit(s) est-il associé ?">
+            products
+          </Section>
+        </Stack>
       </Form>
     </PageLayout>
   );

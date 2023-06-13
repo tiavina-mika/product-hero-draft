@@ -19,6 +19,7 @@ const classes = {
       color: theme.palette.grey[800]
     },
     "& .MuiInputBase-root": {
+      padding: 10,
       border: `1px solid transparent`,
       "& fieldset, &.Mui-focused fieldset,  .MuiInputBase-input": {
         border: "none"
@@ -39,12 +40,14 @@ export type Props = {
   name: string;
   fullWidth?: boolean;
   errorMessage?: string;
+  className?: string;
 } & TextFieldProps;
 
 const TextareaField = ({
   name,
   fullWidth = true,
   errorMessage,
+  className,
   ...inputProps
 }: Props) => {
   const {
@@ -66,6 +69,7 @@ const TextareaField = ({
             multiline
             rows={4}
             css={classes.root}
+            className={className}
             InputProps={{
               disableUnderline: true
             }}

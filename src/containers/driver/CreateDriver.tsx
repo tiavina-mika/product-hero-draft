@@ -19,6 +19,16 @@ const classes = {
   }),
   layout: {
     marginTop: 40
+  },
+  nameField: {
+    "& fieldset": {
+      borderBottomRightRadius: 0 + "px !important",
+      borderBottomLeftRadius: 0 + "px !important"
+    }
+  },
+  descriptionField: {
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6
   }
 };
 
@@ -60,16 +70,18 @@ const CreateDriver = ({ onSave }: Props) => {
         onSubmit={handleSubmit(onSubmitHandler)}
         primaryButtonText="Enregistrer"
         buttonSx={{ fontSize: 16 }}
-        // withSpacing
       >
         <WithEmojiTextField
           label="Nom"
           placeholder="Ajouter un nouveau driver"
           name="name"
+          onFocus={() => console.log("focus")}
+          css={classes.nameField}
         />
         <TextareaField
           placeholder="Décrivez la nature de votre driver, ses impacts, etc..."
           name="description"
+          css={classes.descriptionField}
         />
       </Form>
     </PageLayout>

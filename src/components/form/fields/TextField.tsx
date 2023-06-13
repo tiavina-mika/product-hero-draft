@@ -44,6 +44,7 @@ const classes = {
 };
 
 export type CustomTextFieldProps = {
+  className?: string;
   name: string;
   fullWidth?: boolean;
   errorMessage?: string;
@@ -57,6 +58,7 @@ const TextField = ({
   errorMessage,
   left,
   onFieldChange,
+  className,
   ...inputProps
 }: CustomTextFieldProps) => {
   const {
@@ -75,6 +77,7 @@ const TextField = ({
             {...field}
             {...inputProps}
             css={classes.root}
+            className={className}
             variant="outlined"
             fullWidth={fullWidth}
             error={!!errors[name] || !!errorMessage}

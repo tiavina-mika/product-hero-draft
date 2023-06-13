@@ -6,7 +6,7 @@ export interface IDriver {
   name: string;
   icon: string;
   description?: string;
-  products: IProduct[];
+  products?: IProduct[];
 }
 
 export type IDriverInput = z.infer<typeof driverSchema>;

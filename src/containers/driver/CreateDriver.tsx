@@ -10,9 +10,8 @@ import { IDriver, IDriverInput } from "../../types/driver.type";
 import { driverSchema } from "../../validations/driver.validation";
 import Form from "../../components/form/Form";
 import PageLayout from "../../components/layouts/PageLayout";
-import TextField from "../../components/form/fields/TextField";
+import TextareaField from "../../components/form/fields/TextareaField";
 import WithEmojiTextField from "../../components/form/fields/WithEmojiTextField";
-import { slugify } from "../../utils/utils";
 
 const classes = {
   content: css({
@@ -42,11 +41,10 @@ const CreateDriver = ({ onSave }: Props) => {
   const onSubmitHandler = (values: IDriverInput) => {
     const newValues = {
       objectId: uuidv4(),
-      slug: slugify(values.name),
       ...values
     };
 
-    onSave(newValues);
+    onSave(newValues as IDriver);
   };
 
   return (
@@ -62,14 +60,14 @@ const CreateDriver = ({ onSave }: Props) => {
         onSubmit={handleSubmit(onSubmitHandler)}
         primaryButtonText="Enregistrer"
         buttonSx={{ fontSize: 16 }}
-        withSpacing
+        // withSpacing
       >
         <WithEmojiTextField
           label="Nom"
           placeholder="Ajouter un nouveau driver"
           name="name"
         />
-        <TextField
+        <TextareaField
           placeholder="Décrivez la nature de votre driver, ses impacts, etc..."
           name="description"
         />

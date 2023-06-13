@@ -14,7 +14,7 @@ import {
 } from "react";
 
 import { IEntityOption } from "../../../types/team.type";
-import { getUserFullNameAbbreviation } from "../../../utils/utils";
+import { getUserFullNameAbbreviation } from "../../../utils/user.utils";
 
 import TextFieldInput from "./TextFieldInput";
 

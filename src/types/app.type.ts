@@ -11,7 +11,7 @@ export interface ISelectOption<V = any> {
   value: V;
   icon?: ReactNode | string;
 }
-export type ISelectedOptionValue = ISelectOption<string>["value"];
+export type ISelectedOptionValue<T = string> = ISelectOption<T>["value"];
 
 export interface IDashboardGlobalState extends ILayoutError, IUser {}
 

@@ -6,14 +6,18 @@ import { css } from "@emotion/css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
+import { Stack } from "@mui/material";
 import { IDriver, IDriverInput } from "../../types/driver.type";
+import { IProduct } from "../../types/product.type";
+import { ISelectOption } from "../../types/app.type";
 import { driverSchema } from "../../validations/driver.validation";
 import Form from "../../components/form/Form";
 import PageLayout from "../../components/layouts/PageLayout";
 import TextareaField from "../../components/form/fields/TextareaField";
+import CardCheckboxField from "../../components/form/fields/CardCheckboxField";
 import WithEmojiTextField from "../../components/form/fields/WithEmojiTextField";
 import Section from "../../components/Section";
-import { Stack } from "@mui/material";
+import { products } from "../../utils/data/product";
 
 const classes = {
   content: css({
@@ -34,15 +38,22 @@ const classes = {
   }
 };
 
+const formatProductOptions = (products: IProduct[]): ISelectOption[] =>
+  products.map((product: IProduct) => ({
+    value: product.objectId,
+    label: product.name,
+    icon: "😊"
+  }));
 type Props = {
-  onSave: (values: IDriver) => void;
+  onSave: (values: IDriverInput) => void;
   onBack: () => void;
 };
 const CreateDriver = ({ onSave, onBack }: Props) => {
   const form = useForm<IDriverInput>({
     resolver: zodResolver(driverSchema),
     defaultValues: {
-      icon: "😊"
+      icon: "😊",
+      products: []
     }
   });
 
@@ -54,7 +65,7 @@ const CreateDriver = ({ onSave, onBack }: Props) => {
       ...values
     };
 
-    onSave(newValues as IDriver);
+    onSave(newValues);
   };
 
   return (
@@ -88,7 +99,10 @@ const CreateDriver = ({ onSave, onBack }: Props) => {
             />
           </div>
           <Section title="À quel(s) produit(s) est-il associé ?">
-            products
+            <CardCheckboxField
+              options={formatProductOptions(products)}
+              name="products"
+            />
           </Section>
         </Stack>
       </Form>

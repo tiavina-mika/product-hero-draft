@@ -44,6 +44,7 @@ const formatProductOptions = (products: IProduct[]): ISelectOption[] =>
     label: product.name,
     icon: "😊"
   }));
+
 type Props = {
   onSave: (values: IDriverInput) => void;
   onBack: () => void;

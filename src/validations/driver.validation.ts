@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { capitalizeFirstLetter } from "../utils/utils";
-// import { selectOptionSchema } from './app.validation';
 
 export const driverSchema = z.object({
   name: z
@@ -12,5 +11,4 @@ export const driverSchema = z.object({
     .string()
     .max(200, { message: "Must be at least 200 characters" }),
   products: z.array(z.string())
-  // products: z.array(selectOptionSchema)
 });

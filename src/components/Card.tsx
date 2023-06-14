@@ -11,7 +11,7 @@ const classes = {
   root: (theme: Theme) => ({
     border: "1px solid " + theme.palette.grey[100],
     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.05)",
-    bordeRadius: 6,
+    borderRadius: 6,
     minHeight: 48
   }),
   content: {
@@ -54,6 +54,7 @@ type Props = {
   left?: ReactNode;
   right?: ReactNode;
   isActive?: boolean;
+  withArrow?: boolean;
   onClick?: () => void;
   contentClassName?: string;
 };
@@ -67,6 +68,7 @@ const Card = ({
   right,
   onClick,
   contentClassName,
+  withArrow = true,
   isActive = false
 }: Props) => {
   return (
@@ -111,7 +113,7 @@ const Card = ({
             {right}
           </div>
         )}
-        {onClick && (
+        {onClick && withArrow && (
           <div
             className="flexCenter stretchSelf"
             css={[classes.right, classes.rightArrow]}

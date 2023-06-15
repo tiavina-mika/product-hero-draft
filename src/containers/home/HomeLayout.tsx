@@ -81,6 +81,7 @@ type Props = {
 };
 const HomeLayout = ({
   tab,
+  settingTab,
   onTabChange,
   goToTeamCreation,
   goToDriverCreation,

@@ -4,7 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import { ReactNode } from "react";
-import { IHomeTab } from "../../types/app.type";
+import { IHomeTab, ISettingsTab } from "../../types/app.type";
 import { ITeam } from "../../types/team.type";
 import { HOME_TABS } from "../../utils/constants";
 import SettingsLayout from "./navigations/SettingsLayout";
@@ -71,17 +71,20 @@ const options: IOption[] = [
 
 type Props = {
   onTabChange: (tab: IHomeTab) => void;
+  onSettingTabChange: (tab: ISettingsTab) => void;
   goToTeamCreation: () => void;
   goToDriverCreation: () => void;
   teams: ITeam[];
   drivers: IDriver[];
   tab: IHomeTab;
+  settingTab: ISettingsTab;
 };
 const HomeLayout = ({
   tab,
   onTabChange,
   goToTeamCreation,
   goToDriverCreation,
+  onSettingTabChange,
   teams,
   drivers
 }: Props) => {
@@ -100,6 +103,8 @@ const HomeLayout = ({
             teams={teams}
             goToTeamCreation={goToTeamCreation}
             goToDriverCreation={goToDriverCreation}
+            onTabChange={onSettingTabChange}
+            tab={settingTab}
           />
         )}
         {tab === HOME_TABS.MY_FOCUS && (

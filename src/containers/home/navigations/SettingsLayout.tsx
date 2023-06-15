@@ -9,6 +9,7 @@ import { IDriver } from "../../../types/driver.type";
 import { ITeam } from "../../../types/team.type";
 import TeamsTab from "../../team/TeamsTab";
 import Drivers from "../../driver/Drivers";
+import { SETTING_TABS } from "../../../utils/constants";
 
 const PADDING_Y = 9;
 const classes = {
@@ -71,29 +72,24 @@ const options: IOption[] = [
   }
 ];
 
-enum TABS {
-  DRIVERS = "drivers",
-  OKR = "okr",
-  TEAMS = "teams",
-  PROFILES = "profiles"
-}
-
 type Props = {
   goToTeamCreation: () => void;
   goToDriverCreation: () => void;
+  onTabChange: (tab: ISettingsTab) => void;
   teams: ITeam[];
   drivers: IDriver[];
+  tab: ISettingsTab;
 };
 const SettingsLayout = ({
   goToDriverCreation,
   goToTeamCreation,
   teams,
-  drivers
+  drivers,
+  tab,
+  onTabChange
 }: Props) => {
-  const [tab, setTab] = useState<ISettingsTab>(TABS.TEAMS);
-
-  const onTabChange = (value: ISettingsTab) => {
-    setTab(value);
+  const handleTabChange = (value: ISettingsTab) => {
+    onTabChange(value);
   };
 
   return (
@@ -120,7 +116,7 @@ const SettingsLayout = ({
           <button
             className="transparentButton flex1"
             key={index}
-            onClick={() => onTabChange(option.value)}
+            onClick={() => handleTabChange(option.value)}
           >
             <Typography
               css={[
@@ -134,11 +130,15 @@ const SettingsLayout = ({
         ))}
       </div>
       <div className="flexColumn flex1 stretchSelf" css={classes.content}>
-        {tab === TABS.TEAMS && (
+        {tab === SETTING_TABS.TEAMS && (
           <TeamsTab teams={teams} goToTeamCreation={goToTeamCreation} />
         )}
-        {tab === TABS.DRIVERS && (
-          <Drivers drivers={drivers} goToDriverCreation={goToDriverCreation} />
+        {tab === SETTING_TABS.DRIVERS && (
+          <Drivers
+            drivers={drivers}
+            goToDriverCreation={goToDriverCreation}
+            goToDriver={() => {}}
+          />
         )}
       </div>
     </Box>

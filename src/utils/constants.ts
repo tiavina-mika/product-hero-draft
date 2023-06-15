@@ -50,4 +50,11 @@ export enum HOME_TABS {
   MY_FOCUS = "myFocus"
 }
 
+export enum SETTING_TABS {
+  DRIVERS = "drivers",
+  OKR = "okr",
+  TEAMS = "teams",
+  PROFILES = "profiles"
+}
+
 export const RESPONSIVE_BREAKPOINT = "lg";

@@ -17,6 +17,7 @@ const Teams = ({ goToTeamCreation, teams, goToTeam }: Props) => {
             key={team.name + index}
             left={team.icon}
             onClick={() => goToTeam(team)}
+            withArrow
           >
             <Stack direction="row" spacing={0.6} alignItems="center">
               <Typography variant="h4">{team.name}</Typography>

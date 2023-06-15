@@ -1,7 +1,17 @@
-import { Stack, Typography } from "@mui/material";
+import { css } from "@emotion/css";
+import { Stack } from "@mui/material";
 import AddIcon from "../../components/AddIcon";
 import Card from "../../components/Card";
 import { IDriver } from "../../types/driver.type";
+
+const classes = {
+  card: css({
+    padding: "16px 0px !important"
+  }),
+  cardDescription: css({
+    maxWidth: 400
+  })
+};
 
 type Props = {
   goToDriverCreation: () => void;
@@ -17,14 +27,14 @@ const Drivers = ({ goToDriverCreation, drivers, goToDriver }: Props) => {
             key={driver.name + index}
             left={driver.icon}
             onClick={() => goToDriver(driver)}
-          >
-            <Stack direction="row" spacing={0.6} alignItems="center">
-              <Typography variant="h4">{driver.name}</Typography>
-              {driver.description && (
-                <Typography variant="body2">{driver.description}</Typography>
-              )}
-            </Stack>
-          </Card>
+            title={driver.name}
+            description={driver.description}
+            rootClassName={classes.card}
+            descriptionClassName={classes.cardDescription}
+            withArrow={false}
+            right={<img alt="" src="/icons/chevron-down.svg" />}
+            withRightDivider={false}
+          />
         ))}
       </Stack>
       <AddIcon onClick={goToDriverCreation} />

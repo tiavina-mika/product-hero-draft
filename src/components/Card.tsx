@@ -4,13 +4,12 @@
 import { jsx } from "@emotion/react";
 import { cx } from "@emotion/css";
 import { Theme } from "@emotion/react";
-import { Card as MUICard, CardContent, Typography } from "@mui/material";
+import { Card as MUICard, CardContent, Stack, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 const classes = {
   root: (theme: Theme) => ({
     border: "1px solid " + theme.palette.grey[100],
-    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.05)",
     borderRadius: 6,
     minHeight: 48
   }),
@@ -30,9 +29,11 @@ const classes = {
     paddingLeft: 14,
     paddingRight: 14
   },
-  right: (theme: Theme) => ({
+  right: {
     paddingLeft: 17,
-    paddingRight: 17,
+    paddingRight: 17
+  },
+  withRightDivider: (theme: Theme) => ({
     borderLeft: "1px solid " + theme.palette.grey[100]
   }),
   rightArrow: {
@@ -43,6 +44,9 @@ const classes = {
     fontWeight: 400,
     fontSize: 14,
     lineHeight: 1
+  },
+  shadow: {
+    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.05)"
   }
 };
 
@@ -51,12 +55,18 @@ type Props = {
   rootClassName?: string;
   children?: ReactNode;
   content?: string;
+  descriptionClassName?: string;
+  titleClassName?: string;
   left?: ReactNode;
   right?: ReactNode;
   isActive?: boolean;
   withArrow?: boolean;
+  withRightDivider?: boolean;
   onClick?: () => void;
   contentClassName?: string;
+  hasShadow?: boolean;
+  description?: string;
+  title?: string;
 };
 
 const Card = ({
@@ -68,14 +78,25 @@ const Card = ({
   right,
   onClick,
   contentClassName,
-  withArrow = true,
-  isActive = false
+  descriptionClassName,
+  titleClassName,
+  description,
+  title,
+  withArrow = false,
+  isActive = false,
+  hasShadow = false,
+  withRightDivider = true
 }: Props) => {
   return (
     <MUICard
-      css={[classes.root, isActive && classes.active]}
+      css={[
+        classes.root,
+        isActive && classes.active,
+        hasShadow && classes.shadow
+      ]}
       className={cx("flexColumn stretchSelf", rootClassName)}
       onClick={onClick}
+      elevation={0}
     >
       <CardContent
         className={cx("flexRow flex1 justifyCenter stretchSelf", className)}
@@ -95,6 +116,21 @@ const Card = ({
           className={cx("flex1 centerSelf", contentClassName)}
           css={classes.center}
         >
+          {/* ------- title & description ------- */}
+          {(title || description) && (
+            <Stack spacing={0.3}>
+              <div className={titleClassName}>
+                {title && <Typography variant="h4">{title}</Typography>}
+              </div>
+              <div className={descriptionClassName}>
+                {description && (
+                  <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+                    {description}
+                  </Typography>
+                )}
+              </div>
+            </Stack>
+          )}
           {/* text content */}
           {content && (
             <Typography css={classes.typography} alignSelf="flex-start">
@@ -108,7 +144,11 @@ const Card = ({
         {right && (
           <div
             className="flexCenter stretchSelf"
-            css={[classes.right, isActive && classes.active]}
+            css={[
+              classes.right,
+              isActive && classes.active,
+              withRightDivider && classes.withRightDivider
+            ]}
           >
             {right}
           </div>

@@ -46,7 +46,7 @@ const formatProductOptions = (products: IProduct[]): ISelectOption[] =>
   }));
 
 type Props = {
-  onSave: (values: IDriverInput) => void;
+  onSave: (values: IDriver) => void;
   onBack: () => void;
 };
 const CreateDriver = ({ onSave, onBack }: Props) => {
@@ -66,7 +66,7 @@ const CreateDriver = ({ onSave, onBack }: Props) => {
       ...values
     };
 
-    onSave(newValues);
+    onSave(newValues as IDriver);
   };
 
   return (

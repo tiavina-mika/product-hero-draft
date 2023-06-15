@@ -27,6 +27,7 @@ const Route = () => {
   const onAddDrivers = (driver: IDriver) => {
     setDrivers((prev: IDriver[]) => [driver, ...prev]);
     onHomeTabChange(HOME_TABS.SETTINGS);
+    setRoute(PATH_NAMES.home);
   };
 
   if (route === PATH_NAMES.team.create) {

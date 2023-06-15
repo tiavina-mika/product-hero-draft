@@ -20,6 +20,9 @@ const Drivers = ({ goToDriverCreation, drivers, goToDriver }: Props) => {
           >
             <Stack direction="row" spacing={0.6} alignItems="center">
               <Typography variant="h4">{driver.name}</Typography>
+              {driver.description && (
+                <Typography variant="body2">{driver.description}</Typography>
+              )}
             </Stack>
           </Card>
         ))}

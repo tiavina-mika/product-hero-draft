@@ -4,6 +4,7 @@
 import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import { Typography } from "@mui/material";
+import { ReactNode } from "react";
 
 const classes = {
   root: ({ alignment }: any) => (theme: Theme) => ({
@@ -17,7 +18,7 @@ const classes = {
 };
 
 type Props = {
-  text: string;
+  text: string | ReactNode;
   alignment?: "left" | "center" | "right";
   className?: string;
 };
@@ -25,7 +26,7 @@ type Props = {
 const Title = ({ text, alignment, className }: Props) => {
   return (
     <Typography
-      variant="h1"
+      variant="h2"
       className={className}
       css={classes.root({ alignment })}
     >

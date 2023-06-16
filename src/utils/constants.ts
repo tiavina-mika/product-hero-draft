@@ -15,7 +15,8 @@ export const PATH_NAMES = {
     addMembers: "add-members"
   },
   driver: {
-    create: "create-driver"
+    create: "create-driver",
+    preview: "driver/preview"
   },
   customer: {
     create: "create-customer"

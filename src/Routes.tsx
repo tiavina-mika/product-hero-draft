@@ -2,6 +2,7 @@ import { useState } from "react";
 import HomeLayout from "./containers/home/HomeLayout";
 import CreateTeamPage from "./containers/team/CreateTeamPage";
 import CreateDriver from "./containers/driver/CreateDriver";
+import Driver from "./containers/driver/Driver";
 import { IHomeTab, ISettingsTab } from "./types/app.type";
 import { ITeam } from "./types/team.type";
 import { IDriver } from "./types/driver.type";
@@ -18,6 +19,7 @@ const Route = () => {
   const [route, setRoute] = useState<string>(PATH_NAMES.home);
   const [teams, setTeams] = useState<ITeam[]>([]);
   const [drivers, setDrivers] = useState<IDriver[]>([]);
+  const [driver, setDriver] = useState<IDriver | null>(null);
 
   const goToTeamCreation = () => setRoute(PATH_NAMES.team.create);
   const goToDriverCreation = () => setRoute(PATH_NAMES.driver.create);
@@ -38,12 +40,30 @@ const Route = () => {
     setRoute(PATH_NAMES.home);
   };
 
+  const handleSelectDriver = (driver: IDriver) => {
+    setDriver(driver);
+    setRoute(PATH_NAMES.driver.preview);
+  };
+
+  const handleGoToDrivers = () => {
+    setDriver(null);
+    setRoute(PATH_NAMES.settingsTabs.drivers);
+  };
+
   if (route === PATH_NAMES.team.create) {
     return <CreateTeamPage goToHome={goToHome} onSave={onAddTeams} />;
   }
 
   if (route === PATH_NAMES.driver.create) {
     return <CreateDriver onSave={onAddDrivers} onBack={goToHome} />;
+  }
+
+  if (route === PATH_NAMES.driver.create) {
+    return <CreateDriver onSave={onAddDrivers} onBack={goToHome} />;
+  }
+
+  if (route === PATH_NAMES.driver.preview) {
+    return <Driver driver={driver} onGoToDrivers={handleGoToDrivers} />;
   }
 
   return (
@@ -56,6 +76,7 @@ const Route = () => {
       goToDriverCreation={goToDriverCreation}
       teams={teams}
       drivers={drivers}
+      onSelectDriver={handleSelectDriver}
     />
   );
 };

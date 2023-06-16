@@ -41,7 +41,7 @@ const classes = {
 
 type Props = {
   children?: ReactNode;
-  title?: string;
+  title?: string | ReactNode;
   description?: string;
   alignment?: "left" | "center" | "right";
   image?: string;

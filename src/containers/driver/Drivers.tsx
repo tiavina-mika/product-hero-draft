@@ -16,9 +16,9 @@ const classes = {
 type Props = {
   goToDriverCreation: () => void;
   drivers: IDriver[];
-  goToDriver: (driver: IDriver) => void;
+  onSelectDriver: (driver: IDriver) => void;
 };
-const Drivers = ({ goToDriverCreation, drivers, goToDriver }: Props) => {
+const Drivers = ({ goToDriverCreation, drivers, onSelectDriver }: Props) => {
   return (
     <>
       <Stack spacing={2} alignSelf="stretch">
@@ -26,7 +26,7 @@ const Drivers = ({ goToDriverCreation, drivers, goToDriver }: Props) => {
           <Card
             key={driver.name + index}
             left={driver.icon}
-            onClick={() => goToDriver(driver)}
+            onClick={() => onSelectDriver(driver)}
             title={driver.name}
             description={driver.description}
             rootClassName={classes.card}

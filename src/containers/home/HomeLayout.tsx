@@ -78,6 +78,7 @@ type Props = {
   drivers: IDriver[];
   tab: IHomeTab;
   settingTab: ISettingsTab;
+  onSelectDriver: (driver: IDriver) => void;
 };
 const HomeLayout = ({
   tab,
@@ -87,7 +88,8 @@ const HomeLayout = ({
   goToDriverCreation,
   onSettingTabChange,
   teams,
-  drivers
+  drivers,
+  onSelectDriver
 }: Props) => {
   const handleTabChange = (value: IHomeTab) => {
     onTabChange(value);
@@ -106,6 +108,7 @@ const HomeLayout = ({
             goToDriverCreation={goToDriverCreation}
             onTabChange={onSettingTabChange}
             tab={settingTab}
+            onSelectDriver={onSelectDriver}
           />
         )}
         {tab === HOME_TABS.MY_FOCUS && (

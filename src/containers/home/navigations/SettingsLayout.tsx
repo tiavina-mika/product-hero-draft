@@ -79,6 +79,7 @@ type Props = {
   teams: ITeam[];
   drivers: IDriver[];
   tab: ISettingsTab;
+  onSelectDriver: (driver: IDriver) => void;
 };
 const SettingsLayout = ({
   goToDriverCreation,
@@ -86,7 +87,8 @@ const SettingsLayout = ({
   teams,
   drivers,
   tab,
-  onTabChange
+  onTabChange,
+  onSelectDriver
 }: Props) => {
   const handleTabChange = (value: ISettingsTab) => {
     onTabChange(value);
@@ -137,7 +139,7 @@ const SettingsLayout = ({
           <Drivers
             drivers={drivers}
             goToDriverCreation={goToDriverCreation}
-            goToDriver={() => {}}
+            onSelectDriver={onSelectDriver}
           />
         )}
       </div>

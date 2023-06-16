@@ -4,6 +4,7 @@
 import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import { SxProps, Typography } from "@mui/material";
+import { ReactNode } from "react";
 
 const classes = {
   root: ({ alignment }: any) => (theme: Theme) => ({
@@ -17,7 +18,7 @@ const classes = {
 };
 
 type Props = {
-  text: string;
+  text: string | ReactNode;
   alignment?: "left" | "center" | "right";
   sx?: SxProps<Theme>;
   className?: string;

@@ -42,7 +42,7 @@ const classes = {
 type Props = {
   children?: ReactNode;
   title?: string | ReactNode;
-  description?: string;
+  description?: string | ReactNode;
   alignment?: "left" | "center" | "right";
   image?: string;
   titleClassName?: string;
@@ -50,10 +50,11 @@ type Props = {
   rootClassName?: string;
   className?: string;
   titleSpacing?: number;
-  textSpacing?: number;
   contentClassName?: string;
+  textSpacing?: number;
   imageContainerClassName?: string;
   onBack?: () => void;
+  onSearch?: () => void;
 };
 
 const PageLayout = ({
@@ -67,10 +68,11 @@ const PageLayout = ({
   contentClassName,
   imageContainerClassName,
   className,
+  textSpacing,
   onBack,
+  onSearch,
   alignment = "left",
-  titleSpacing = 3,
-  textSpacing = 3
+  titleSpacing = 3
 }: Props) => {
   return (
     <div
@@ -81,12 +83,23 @@ const PageLayout = ({
         className={cx("flexCenter stretchSelf", contentClassName)}
         css={classes.pageLayoutContent}
       >
-        <Stack spacing={titleSpacing} css={classes.titleContainer(alignment)}>
-          {onBack && (
-            <IconButton onClick={onBack} sx={{ p: 0 }}>
-              <TopIcon alignment="left" image="/icons/prev-arrow.svg" />
-            </IconButton>
-          )}
+        <Stack
+          className="stretchSelf"
+          spacing={titleSpacing}
+          css={classes.titleContainer(alignment)}
+        >
+          <div className="stretchSelf flexRow spaceBetween">
+            {onBack && (
+              <IconButton onClick={onBack} sx={{ p: 0 }}>
+                <TopIcon alignment="left" image="/icons/prev-arrow.svg" />
+              </IconButton>
+            )}
+            {onSearch && (
+              <IconButton onClick={onSearch} sx={{ p: 0 }}>
+                <TopIcon alignment="right" image="/icons/search.svg" />
+              </IconButton>
+            )}
+          </div>
           {image && (
             <TopIcon
               alignment={alignment}

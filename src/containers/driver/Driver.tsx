@@ -1,35 +1,41 @@
-// import { css } from "@emotion/css";
+/** @jsxRuntime classic /
+/* @jsx jsx */
+/** @jsxImportSource @emotion/react */
+import { jsx } from "@emotion/react";
 import PageLayout from "../../components/layouts/PageLayout";
 import Card from "../../components/Card";
 import Section from "../../components/Section";
 import { IDriver } from "../../types/driver.type";
+import { Fragment } from "react";
+import { Typography } from "@mui/material";
 
-// const classes = {
-//   card: css({
-//     padding: "16px 0px !important"
-//   }),
-//   cardDescription: css({
-//     maxWidth: 400
-//   })
-// };
+const classes = {
+  section: {
+    marginTop: 32
+  }
+};
 
 type Props = {
-  driver: IDriver;
-  goToDrivers: () => void;
+  driver: IDriver | null;
+  onGoToDrivers: () => void;
 };
-const Driver = ({ driver, goToDrivers }: Props) => {
+const Driver = ({ driver, onGoToDrivers }: Props) => {
+  if (!driver) {
+    return <Typography>No driver found</Typography>;
+  }
   return (
     <PageLayout
       title={
-        <>
-          <span>{driver.icon}</span>
-          <span>{driver.name}</span>
-        </>
+        <Fragment>
+          {driver.icon}&ensp;{driver.name}
+        </Fragment>
       }
       textSpacing={1}
-      onBack={goToDrivers}
+      onBack={onGoToDrivers}
+      contentClassName="flex1"
+      alignment="left"
     >
-      <Section title="description">
+      <Section title="description" css={classes.section}>
         <Card content={driver.description} />
       </Section>
     </PageLayout>

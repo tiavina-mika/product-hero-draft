@@ -2,7 +2,7 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Stack, SxProps, Theme, Typography, Card } from "@mui/material";
+import { Stack, Theme, Typography, Card } from "@mui/material";
 import { ISelectedOptionValue, ISelectOption } from "../../../types/app.type";
 
 const classes = {
@@ -19,14 +19,14 @@ const classes = {
   })
 };
 type Props = {
-  onChange: (value: ISelectedOptionValue[]) => void;
+  onChange?: (value: ISelectedOptionValue[]) => void;
   value?: ISelectedOptionValue[];
   options: ISelectOption[];
 };
 
 const CardCheckboxInput = ({ onChange, value = [], options = [] }: Props) => {
   const handleChange = (selectedValue: string): void => {
-    onChange([selectedValue, ...value]);
+    onChange?.([selectedValue, ...value]);
   };
 
   return (

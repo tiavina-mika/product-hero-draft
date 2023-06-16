@@ -8,8 +8,7 @@ import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { Stack } from "@mui/material";
 import { IDriver, IDriverInput } from "../../types/driver.type";
-import { IProduct } from "../../types/product.type";
-import { ISelectOption } from "../../types/app.type";
+import { formatProductOptions } from "../../utils/product.utils";
 import { driverSchema } from "../../validations/driver.validation";
 import Form from "../../components/form/Form";
 import PageLayout from "../../components/layouts/PageLayout";
@@ -37,13 +36,6 @@ const classes = {
     borderBottomRightRadius: 6
   }
 };
-
-const formatProductOptions = (products: IProduct[]): ISelectOption[] =>
-  products.map((product: IProduct) => ({
-    value: product.objectId,
-    label: product.name,
-    icon: "😊"
-  }));
 
 type Props = {
   onSave: (values: IDriver) => void;

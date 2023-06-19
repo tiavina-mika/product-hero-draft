@@ -26,7 +26,6 @@ const CardCheckboxField: FC<Props> = ({
     formState: { errors }
   } = useFormContext();
 
-  console.log("products", errors);
   return (
     <Controller
       control={control}

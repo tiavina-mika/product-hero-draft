@@ -6,6 +6,7 @@ import {
 import { IProduct } from "./product.type";
 
 export interface IDriver {
+  objectId: string;
   name: string;
   icon: string;
   description?: string;

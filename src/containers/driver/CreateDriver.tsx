@@ -58,7 +58,8 @@ const CreateDriver = ({ onSave, onBack }: Props) => {
       ...values
     };
 
-    onSave(newValues as IDriver);
+    // simlulate data to save to the db
+    onSave(newValues as any);
   };
 
   return (

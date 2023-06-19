@@ -40,6 +40,21 @@ const Route = () => {
     setRoute(PATH_NAMES.home);
   };
 
+  const handleEditDriver = (values: IDriver) => {
+    setDrivers((prev: IDriver[]) => {
+      return prev.map((driver: IDriver) => {
+        if (driver.objectId === values.objectId) {
+          return {
+            ...driver,
+            ...values
+          };
+        }
+        return driver;
+      });
+    });
+    setRoute(PATH_NAMES.home);
+  };
+
   const handleSelectDriver = (driver: IDriver) => {
     setDriver(driver);
     setRoute(PATH_NAMES.driver.preview);
@@ -58,12 +73,14 @@ const Route = () => {
     return <CreateDriver onSave={onAddDrivers} onBack={goToHome} />;
   }
 
-  if (route === PATH_NAMES.driver.create) {
-    return <CreateDriver onSave={onAddDrivers} onBack={goToHome} />;
-  }
-
   if (route === PATH_NAMES.driver.preview) {
-    return <EditDriver driver={driver} onGoToDrivers={handleGoToDrivers} />;
+    return (
+      <EditDriver
+        driver={driver}
+        onSave={handleEditDriver}
+        onGoToDrivers={handleGoToDrivers}
+      />
+    );
   }
 
   return (

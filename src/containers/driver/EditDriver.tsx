@@ -43,8 +43,9 @@ const getInitialValues = (driver: IDriver | null) => {
 type Props = {
   driver: IDriver | null;
   onGoToDrivers: () => void;
+  onSave: (values: IDriver) => void;
 };
-const EditDriver = ({ driver, onGoToDrivers }: Props) => {
+const EditDriver = ({ onSave, driver, onGoToDrivers }: Props) => {
   const form = useForm<IEditDriverInput>({
     resolver: zodResolver(editDriverSchema),
     defaultValues: getInitialValues(driver)
@@ -57,7 +58,9 @@ const EditDriver = ({ driver, onGoToDrivers }: Props) => {
   }
 
   const onSubmitHandler = (values: IEditDriverInput) => {
-    console.log("values", values);
+    // simlulate data to save to the db
+    const newValues = { ...driver, ...values };
+    onSave(newValues as any);
   };
 
   return (

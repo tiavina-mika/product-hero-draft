@@ -29,7 +29,7 @@ const Form = ({
   withSpacing
 }: Props) => {
   const {
-    formState: { isDirty, isValid }
+    formState: { isDirty }
   } = form;
 
   return (
@@ -53,7 +53,7 @@ const Form = ({
             variant="contained"
             className="endSelf"
             sx={buttonSx}
-            disabled={!isDirty || !isValid}
+            disabled={!isDirty || form.getFieldState().invalid}
           >
             {loading ? "..." : primaryButtonText}
           </Button>

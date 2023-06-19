@@ -12,3 +12,8 @@ export const driverSchema = z.object({
     .max(200, { message: "Must be at least 200 characters" }),
   products: z.array(z.string())
 });
+
+export const editDriverSchema = driverSchema.pick({
+  description: true,
+  products: true
+});

@@ -2,7 +2,7 @@ import { useState } from "react";
 import HomeLayout from "./containers/home/HomeLayout";
 import CreateTeamPage from "./containers/team/CreateTeamPage";
 import CreateDriver from "./containers/driver/CreateDriver";
-import Driver from "./containers/driver/Driver";
+import EditDriver from "./containers/driver/EditDriver";
 import { IHomeTab, ISettingsTab } from "./types/app.type";
 import { ITeam } from "./types/team.type";
 import { IDriver } from "./types/driver.type";
@@ -63,7 +63,7 @@ const Route = () => {
   }
 
   if (route === PATH_NAMES.driver.preview) {
-    return <Driver driver={driver} onGoToDrivers={handleGoToDrivers} />;
+    return <EditDriver driver={driver} onGoToDrivers={handleGoToDrivers} />;
   }
 
   return (

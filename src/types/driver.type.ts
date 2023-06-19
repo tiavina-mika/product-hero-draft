@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { driverSchema } from "../validations/driver.validation";
+import {
+  driverSchema,
+  editDriverSchema
+} from "../validations/driver.validation";
 import { IProduct } from "./product.type";
 
 export interface IDriver {
@@ -10,3 +13,4 @@ export interface IDriver {
 }
 
 export type IDriverInput = z.infer<typeof driverSchema>;
+export type IEditDriverInput = z.infer<typeof editDriverSchema>;

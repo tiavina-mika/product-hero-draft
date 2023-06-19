@@ -26,7 +26,7 @@ const classes = {
   }
 };
 
-const getProductOptions = (ids: string[]): ISelectOption[] => {
+const getProductOptions = (): ISelectOption[] => {
   const formattedProducts = formatProductOptions(products);
   return formattedProducts;
 };
@@ -80,12 +80,7 @@ const EditDriver = ({ driver, onGoToDrivers }: Props) => {
       >
         <Stack spacing={6}>
           <Section title="Produit associé" css={classes.products}>
-            <CardCheckboxField
-              options={getProductOptions(
-                ((driver.products as unknown) as string[]) || [] // we use a data from form here, no form api or db
-              )}
-              name="products"
-            />
+            <CardCheckboxField options={getProductOptions()} name="products" />
           </Section>
           <Section title="description" css={classes.section}>
             <TextareaField name="description" />

@@ -28,7 +28,10 @@ const Route = () => {
 
   // tabs actions
   const onHomeTabChange = (tab: IHomeTab) => setHomeTab(tab);
-  const onSettingTabChange = (tab: ISettingsTab) => setHomeSettingTab(tab);
+  const onSettingTabChange = (tab: ISettingsTab) => {
+    setHomeSettingTab(tab);
+    setAlert(null);
+  };
 
   const onAddTeams = (team: ITeam) => {
     setTeams((prev: ITeam[]) => [team, ...prev]);

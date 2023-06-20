@@ -3,7 +3,7 @@ import HomeLayout from "./containers/home/HomeLayout";
 import CreateTeamPage from "./containers/team/CreateTeamPage";
 import CreateDriver from "./containers/driver/CreateDriver";
 import EditDriver from "./containers/driver/EditDriver";
-import { IHomeTab, ISettingsTab } from "./types/app.type";
+import { IAlert, IHomeTab, ISettingsTab } from "./types/app.type";
 import { ITeam } from "./types/team.type";
 import { IDriver } from "./types/driver.type";
 
@@ -16,6 +16,7 @@ const Route = () => {
     SETTING_TABS.TEAMS
   );
 
+  const [alert, setAlert] = useState<IAlert>(null);
   const [route, setRoute] = useState<string>(PATH_NAMES.home);
   const [teams, setTeams] = useState<ITeam[]>([]);
   const [drivers, setDrivers] = useState<IDriver[]>([]);
@@ -38,6 +39,7 @@ const Route = () => {
     setDrivers((prev: IDriver[]) => [driver, ...prev]);
     onHomeTabChange(HOME_TABS.SETTINGS);
     setRoute(PATH_NAMES.home);
+    setAlert({ color: "success", type: "driver" });
   };
 
   const handleEditDriver = (values: IDriver) => {
@@ -53,6 +55,7 @@ const Route = () => {
       });
     });
     setRoute(PATH_NAMES.home);
+    setAlert({ color: "success", type: "driver" });
   };
 
   const handleSelectDriver = (driver: IDriver) => {
@@ -94,6 +97,7 @@ const Route = () => {
       teams={teams}
       drivers={drivers}
       onSelectDriver={handleSelectDriver}
+      alert={alert}
     />
   );
 };

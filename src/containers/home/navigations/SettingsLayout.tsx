@@ -4,7 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
-import { ISettingsTab } from "../../../types/app.type";
+import { IAlert, ISettingsTab } from "../../../types/app.type";
 import { IDriver } from "../../../types/driver.type";
 import { ITeam } from "../../../types/team.type";
 import TeamsTab from "../../team/TeamsTab";
@@ -80,6 +80,7 @@ type Props = {
   drivers: IDriver[];
   tab: ISettingsTab;
   onSelectDriver: (driver: IDriver) => void;
+  alert?: IAlert;
 };
 const SettingsLayout = ({
   goToDriverCreation,
@@ -88,7 +89,8 @@ const SettingsLayout = ({
   drivers,
   tab,
   onTabChange,
-  onSelectDriver
+  onSelectDriver,
+  alert
 }: Props) => {
   const handleTabChange = (value: ISettingsTab) => {
     onTabChange(value);
@@ -140,6 +142,7 @@ const SettingsLayout = ({
             drivers={drivers}
             goToDriverCreation={goToDriverCreation}
             onSelectDriver={onSelectDriver}
+            alert={alert}
           />
         )}
       </div>

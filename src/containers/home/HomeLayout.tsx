@@ -4,7 +4,7 @@
 import { jsx, Theme } from "@emotion/react";
 import { Box, Typography, Alert } from "@mui/material";
 import { ReactNode } from "react";
-import { IHomeTab, ISettingsTab } from "../../types/app.type";
+import { IAlert, IHomeTab, ISettingsTab } from "../../types/app.type";
 import { ITeam } from "../../types/team.type";
 import { HOME_TABS } from "../../utils/constants";
 import SettingsLayout from "./navigations/SettingsLayout";
@@ -79,6 +79,7 @@ type Props = {
   tab: IHomeTab;
   settingTab: ISettingsTab;
   onSelectDriver: (driver: IDriver) => void;
+  alert?: IAlert;
 };
 const HomeLayout = ({
   tab,
@@ -89,7 +90,8 @@ const HomeLayout = ({
   onSettingTabChange,
   teams,
   drivers,
-  onSelectDriver
+  onSelectDriver,
+  alert
 }: Props) => {
   const handleTabChange = (value: IHomeTab) => {
     onTabChange(value);
@@ -99,11 +101,6 @@ const HomeLayout = ({
     <Box sx={{ minHeight: "100vh " }} className="flexColumn spaceBetween">
       {/* ------ content ------ */}
       <div className="flexColumn flex1 stretchSelf">
-        <Box className="stretchSelf" p={5}>
-          <Alert variant="filled" severity="success">
-            This is a success alert — check it out!
-          </Alert>
-        </Box>
         {/* ------ tabs ------ */}
         {tab === HOME_TABS.SETTINGS && (
           <SettingsLayout
@@ -114,6 +111,7 @@ const HomeLayout = ({
             onTabChange={onSettingTabChange}
             tab={settingTab}
             onSelectDriver={onSelectDriver}
+            alert={alert}
           />
         )}
         {tab === HOME_TABS.MY_FOCUS && (

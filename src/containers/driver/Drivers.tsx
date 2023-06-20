@@ -1,7 +1,8 @@
 import { css } from "@emotion/css";
-import { Stack } from "@mui/material";
+import { Alert, Box, Stack } from "@mui/material";
 import AddIcon from "../../components/AddIcon";
 import Card from "../../components/Card";
+import { IAlert } from "../../types/app.type";
 import { IDriver } from "../../types/driver.type";
 
 const classes = {
@@ -17,10 +18,23 @@ type Props = {
   goToDriverCreation: () => void;
   drivers: IDriver[];
   onSelectDriver: (driver: IDriver) => void;
+  alert?: IAlert;
 };
-const Drivers = ({ goToDriverCreation, drivers, onSelectDriver }: Props) => {
+const Drivers = ({
+  alert,
+  goToDriverCreation,
+  drivers,
+  onSelectDriver
+}: Props) => {
   return (
-    <>
+    <div className="flexColumn stretchSelf">
+      {alert && alert.type === "driver" && (
+        <Box className="stretchSelf" sx={{ mb: 2 }}>
+          <Alert variant="filled" severity="success">
+            Modification bien prise en compte.
+          </Alert>
+        </Box>
+      )}
       <Stack spacing={2} alignSelf="stretch">
         {drivers?.map((driver: IDriver, index: number) => (
           <Card
@@ -38,7 +52,7 @@ const Drivers = ({ goToDriverCreation, drivers, onSelectDriver }: Props) => {
         ))}
       </Stack>
       <AddIcon onClick={goToDriverCreation} />
-    </>
+    </div>
   );
 };
 

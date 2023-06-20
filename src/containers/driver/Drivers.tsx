@@ -1,7 +1,8 @@
 import { css } from "@emotion/css";
-import { Alert, Box, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import AddIcon from "../../components/AddIcon";
 import Card from "../../components/Card";
+import Alert from "../../components/Alert";
 import { IAlert } from "../../types/app.type";
 import { IDriver } from "../../types/driver.type";
 
@@ -30,9 +31,7 @@ const Drivers = ({
     <div className="flexColumn stretchSelf">
       {alert && alert.type === "driver" && (
         <Box className="stretchSelf" sx={{ mb: 2.05 }}>
-          <Alert variant="filled" severity="success">
-            Modification bien prise en compte.
-          </Alert>
+          <Alert severity="success" />
         </Box>
       )}
       <Stack spacing={2} alignSelf="stretch">

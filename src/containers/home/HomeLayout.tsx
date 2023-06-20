@@ -2,7 +2,7 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Alert } from "@mui/material";
 import { ReactNode } from "react";
 import { IHomeTab, ISettingsTab } from "../../types/app.type";
 import { ITeam } from "../../types/team.type";
@@ -99,6 +99,11 @@ const HomeLayout = ({
     <Box sx={{ minHeight: "100vh " }} className="flexColumn spaceBetween">
       {/* ------ content ------ */}
       <div className="flexColumn flex1 stretchSelf">
+        <Box className="stretchSelf" p={5}>
+          <Alert variant="filled" severity="success">
+            This is a success alert — check it out!
+          </Alert>
+        </Box>
         {/* ------ tabs ------ */}
         {tab === HOME_TABS.SETTINGS && (
           <SettingsLayout

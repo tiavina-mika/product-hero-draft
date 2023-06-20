@@ -65,6 +65,26 @@ export const theme = createTheme({
           border: "none"
         }
       }
+    },
+    MuiAlert: {
+      styleOverrides: {
+        filledSuccess: {
+          background: "#00A368",
+          boxShadow: "0px 0px 8px rgba(31, 31, 31, 0.05)",
+          borderRadius: 6,
+          display: "flex",
+          alignItems: "center"
+        },
+        message: {
+          color: palette.success.light,
+          fontSize: 12,
+          lineHeight: 1,
+          fontWeight: 400
+        },
+        icon: {
+          color: palette.success.light
+        }
+      }
     }
   },
   typography: {

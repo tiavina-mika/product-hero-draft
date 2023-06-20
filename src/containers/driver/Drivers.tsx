@@ -29,7 +29,7 @@ const Drivers = ({
   return (
     <div className="flexColumn stretchSelf">
       {alert && alert.type === "driver" && (
-        <Box className="stretchSelf" sx={{ mb: 2 }}>
+        <Box className="stretchSelf" sx={{ mb: 2.05 }}>
           <Alert variant="filled" severity="success">
             Modification bien prise en compte.
           </Alert>

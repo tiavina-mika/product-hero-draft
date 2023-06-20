@@ -44,7 +44,7 @@ const classes = {
     borderRadius: 100
   }),
   content: {
-    padding: 12
+    padding: 16
   }
 };
 

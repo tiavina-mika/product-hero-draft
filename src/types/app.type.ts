@@ -20,5 +20,5 @@ export type ISettingsTab = "drivers" | "okr" | "teams" | "profiles";
 export type IHomeTab = "backlog" | "roadmap" | "settings" | "myFocus";
 export type IAlert = {
   color: AlertProps["color"];
-  type: "driver" | "team";
+  type: "driver" | "team" | "okr";
 } | null;

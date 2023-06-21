@@ -16,7 +16,13 @@ export type ISelectedOptionValue<T = string> = ISelectOption<T>["value"];
 
 export interface IDashboardGlobalState extends ILayoutError, IUser {}
 
-export type ISettingsTab = "drivers" | "okr" | "teams" | "profiles";
+export type ISettingsTab =
+  | "drivers"
+  | "okr"
+  | "teams"
+  | "profiles"
+  | "general"
+  | "products";
 export type IHomeTab = "backlog" | "roadmap" | "settings" | "myFocus";
 export type IAlert = {
   color: AlertProps["color"];

@@ -2,7 +2,7 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Tab, Tabs, Typography } from "@mui/material";
 import { IAlert, ISettingsTab } from "../../../types/app.type";
 import { IDriver } from "../../../types/driver.type";
 import { ITeam } from "../../../types/team.type";
@@ -11,12 +11,13 @@ import Drivers from "../../driver/Drivers";
 import Okrs from "../../okr/Okrs";
 import { SETTING_TABS } from "../../../utils/constants";
 import { IOkr } from "../../../types/okr.type";
+import { SyntheticEvent } from "react";
 
-const PADDING_Y = 9;
+const PADDING_X = 24;
 const classes = {
   header: {
     height: "calc(104px - 48px)",
-    padding: 24
+    padding: PADDING_X
   },
   pageTitle: {
     fontWeight: 500,
@@ -24,28 +25,44 @@ const classes = {
     lineHeight: 1,
     color: "#000"
   },
-  tabs: (theme: Theme) => ({
-    height: `calc(72px - ${PADDING_Y}px)`,
+  tabsContainer: (theme: Theme) => ({
+    height: "calc(72px - 9px)",
     backgroundColor: "#fff",
-    borderBottom: "1px solid " + theme.palette.grey[600]
-    // overflowX: 'scroll',
+    borderBottom: "1px solid " + theme.palette.grey[100]
+  }),
+  tabs: (theme: Theme) => ({
+    marginLeft: PADDING_X,
+    marginRight: PADDING_X,
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: `calc(100vw - ${PADDING_X * 2}px)`
+    }
   }),
   label: (theme: Theme) => ({
     fontWeight: 400,
     fontSize: 14,
     lineHeight: 1,
     color: theme.palette.grey[600],
-    paddingTop: PADDING_Y,
-    paddingBottom: PADDING_Y
+    textTransform: "initial"
   }),
-  active: (theme: Theme) => ({
+  activeTab: (theme: Theme) => ({
     backgroundColor: theme.palette.primary.main,
-    color: "#fff",
     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.05)",
-    borderRadius: 100
+    padding: 0,
+    borderRadius: 100,
+    color: "#fff !important"
+  }),
+  tab: (theme: Theme) => ({
+    fontWeight: 400,
+    fontSize: 14,
+    lineHeight: 1,
+    textTransform: "initial",
+    color: theme.palette.grey[600]
   }),
   content: {
-    padding: 16
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 24,
+    paddingRight: 24
   }
 };
 
@@ -55,6 +72,10 @@ interface IOption {
 }
 
 const options: IOption[] = [
+  {
+    label: "General",
+    value: "general"
+  },
   {
     label: "Drivers",
     value: "drivers"
@@ -99,7 +120,7 @@ const SettingsLayout = ({
   okrs,
   onSelectOkr
 }: Props) => {
-  const handleTabChange = (value: ISettingsTab) => {
+  const handleTabChange = (_: SyntheticEvent, value: ISettingsTab) => {
     onTabChange(value);
   };
 
@@ -119,26 +140,30 @@ const SettingsLayout = ({
       </Box>
 
       {/* ------ tabs ------ */}
-      <div
-        css={classes.tabs}
-        className="flexRow center justifyCenter stretchSelf"
-      >
-        {options.map((option: IOption, index: number) => (
-          <button
-            className="transparentButton flex1"
-            key={index}
-            onClick={() => handleTabChange(option.value)}
+      {/* ------ tabs ------ */}
+      <div css={classes.tabsContainer} className="stretchSelf">
+        <div css={classes.tabs}>
+          <Tabs
+            value={false}
+            onChange={handleTabChange}
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable-setting-tabs"
+            TabIndicatorProps={{ sx: { display: "none" } }}
           >
-            <Typography
-              css={[
-                classes.label,
-                tab === option.value ? classes.active : null
-              ]}
-            >
-              {option.label}
-            </Typography>
-          </button>
-        ))}
+            {options.map((option: IOption, index: number) => (
+              <Tab
+                key={index}
+                css={[
+                  tab === option.value ? classes.activeTab : null,
+                  classes.tab as any
+                ]} // error when using textTransform
+                label={option.label}
+                value={option.value}
+              />
+            ))}
+          </Tabs>
+        </div>
       </div>
       <div className="flexColumn flex1 stretchSelf" css={classes.content}>
         {tab === SETTING_TABS.TEAMS && (

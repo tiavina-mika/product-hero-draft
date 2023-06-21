@@ -16,8 +16,8 @@ const classes = {
     height: 1,
     backgroundColor: theme.palette.grey[100],
     position: "absolute" as "absolute",
-    left: -LAYOUT_CONTENT_PADDING_X,
-    right: -LAYOUT_CONTENT_PADDING_X,
+    left: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
+    right: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
     top: 96
   })
 };
@@ -40,7 +40,7 @@ const General = () => {
     <div className="stretchSelf">
       <Stack spacing={8.1}>
         <Section title="Mes informations" css={classes.section}>
-          <Card content={data.email} />
+          <Card title={data.email} />
           <div css={classes.divider} />
         </Section>
         <Section title="Plan & Billing" css={classes.section}>

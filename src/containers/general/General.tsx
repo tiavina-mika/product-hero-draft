@@ -30,7 +30,12 @@ const data = {
   }
 };
 const General = () => {
-  const handleGoToBilling = () => console.log("go to billing");
+  // sections
+  const handleGoToInformation = () => console.log("go to information");
+  const handleGoToBillings = () => console.log("go to billings");
+
+  // cards
+  const handleGoToCurrentBilling = () => console.log("go to billing");
   const handleGoToAssistance = () => console.log("go to assistance");
   const handleGoToRating = () => console.log("go to rating");
   const handleGoToPolicy = () => console.log("go to policy");
@@ -39,17 +44,25 @@ const General = () => {
   return (
     <div className="stretchSelf">
       <Stack spacing={8.1}>
-        <Section title="Mes informations" css={classes.section}>
+        <Section
+          title="Mes informations"
+          css={classes.section}
+          onClick={handleGoToInformation}
+        >
           <Card title={data.email} />
           <div css={classes.divider} />
         </Section>
-        <Section title="Plan & Billing" css={classes.section}>
+        <Section
+          title="Plan & Billing"
+          css={classes.section}
+          onClick={handleGoToBillings}
+        >
           <Card
             left={<img alt="billing" src="/icons/money.svg" />}
             title={data.billing.name}
             description={data.billing.features}
             withArrow
-            onClick={handleGoToBilling}
+            onClick={handleGoToCurrentBilling}
           />
           <div css={classes.divider} />
         </Section>

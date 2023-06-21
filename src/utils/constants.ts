@@ -20,7 +20,7 @@ export const PATH_NAMES = {
   },
   okr: {
     create: "create-okr",
-    preview: "okr/preview"
+    edit: "okr/edit"
   },
   customer: {
     create: "create-customer"

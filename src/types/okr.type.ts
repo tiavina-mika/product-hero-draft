@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { okrSchema } from "../validations/okr.validation";
+import { okrSchema, editOkrSchema } from "../validations/okr.validation";
 import { IProduct } from "./product.type";
 import { IDriver } from "./driver.type";
 
@@ -12,3 +12,4 @@ export interface IOkr {
 }
 
 export type IOkrInput = z.infer<typeof okrSchema>;
+export type IEditOkrInput = z.infer<typeof editOkrSchema>;

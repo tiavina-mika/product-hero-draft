@@ -4,6 +4,7 @@ import CreateTeamPage from "./containers/team/CreateTeamPage";
 import CreateDriver from "./containers/driver/CreateDriver";
 import CreateOkr from "./containers/okr/CreateOkr";
 import EditDriver from "./containers/driver/EditDriver";
+import EditOkr from "./containers/okr/EditOkr";
 import { IAlert, IHomeTab, ISettingsTab } from "./types/app.type";
 import { ITeam } from "./types/team.type";
 import { IDriver } from "./types/driver.type";
@@ -96,12 +97,17 @@ const Route = () => {
 
   const handleSelectOkr = (okr: IOkr) => {
     setOkr(okr);
-    setRoute(PATH_NAMES.okr.preview);
+    setRoute(PATH_NAMES.okr.edit);
   };
 
   const handleGoToDrivers = () => {
     setDriver(null);
     setRoute(PATH_NAMES.settingsTabs.drivers);
+  };
+
+  const handleGoToOkrs = () => {
+    setOkr(null);
+    setRoute(PATH_NAMES.settingsTabs.okr);
   };
 
   if (route === PATH_NAMES.team.create) {
@@ -123,6 +129,12 @@ const Route = () => {
         onSave={handleEditDriver}
         onGoToDrivers={handleGoToDrivers}
       />
+    );
+  }
+
+  if (route === PATH_NAMES.okr.edit) {
+    return (
+      <EditOkr okr={okr} onSave={handleEditOkr} onGoToOkrs={handleGoToOkrs} />
     );
   }
 

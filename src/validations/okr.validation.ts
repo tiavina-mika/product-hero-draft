@@ -10,3 +10,8 @@ export const okrSchema = z.object({
   products: z.array(z.string()),
   drivers: z.array(z.string())
 });
+
+export const editOkrSchema = okrSchema.pick({
+  products: true,
+  drivers: true
+});

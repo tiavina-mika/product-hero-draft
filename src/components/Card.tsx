@@ -158,7 +158,7 @@ const Card = ({
             className="flexCenter stretchSelf"
             css={[classes.right, classes.rightArrow]}
           >
-            <img alt="" src="/icons/input.svg" />
+            <img alt="" src="/icons/superior.svg" />
           </div>
         )}
       </CardContent>

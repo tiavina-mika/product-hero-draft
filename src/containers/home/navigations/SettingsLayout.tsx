@@ -10,15 +10,17 @@ import TeamsTab from "../../team/TeamsTab";
 import Drivers from "../../driver/Drivers";
 import General from "../../general/General";
 import Okrs from "../../okr/Okrs";
-import { SETTING_TABS } from "../../../utils/constants";
+import {
+  LAYOUT_CONTENT_PADDING_X,
+  SETTING_TABS
+} from "../../../utils/constants";
 import { IOkr } from "../../../types/okr.type";
 import { SyntheticEvent } from "react";
 
-const PADDING_X = 24;
 const classes = {
   header: {
-    height: "calc(104px - 48px)",
-    padding: PADDING_X
+    height: `calc(104px - ${LAYOUT_CONTENT_PADDING_X * 2}px)`,
+    padding: LAYOUT_CONTENT_PADDING_X
   },
   pageTitle: {
     fontWeight: 500,
@@ -32,10 +34,10 @@ const classes = {
     borderBottom: "1px solid " + theme.palette.grey[100]
   }),
   tabs: (theme: Theme) => ({
-    marginLeft: PADDING_X,
-    marginRight: PADDING_X,
+    marginLeft: LAYOUT_CONTENT_PADDING_X,
+    marginRight: LAYOUT_CONTENT_PADDING_X,
     [theme.breakpoints.down("sm")]: {
-      maxWidth: `calc(100vw - ${PADDING_X * 2}px)`
+      maxWidth: `calc(100vw - ${LAYOUT_CONTENT_PADDING_X * 2}px)`
     }
   }),
   label: (theme: Theme) => ({
@@ -62,8 +64,8 @@ const classes = {
   content: {
     paddingTop: 16,
     paddingBottom: 16,
-    paddingLeft: 24,
-    paddingRight: 24
+    paddingLeft: LAYOUT_CONTENT_PADDING_X,
+    paddingRight: LAYOUT_CONTENT_PADDING_X
   }
 };
 

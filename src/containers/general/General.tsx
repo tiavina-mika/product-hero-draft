@@ -2,12 +2,16 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
+import { Stack } from "@mui/material";
+
 import Section from "../../components/Section";
 import Card from "../../components/Card";
-import { Stack } from "@mui/material";
 import { LAYOUT_CONTENT_PADDING_X } from "../../utils/constants";
 
 const classes = {
+  general: {
+    paddingTop: 6
+  },
   section: {
     // https://github.com/emotion-js/emotion/issues/2444
     position: "relative" as "relative"
@@ -42,7 +46,7 @@ const General = () => {
   const handleGoToVersion = () => console.log("go to version");
 
   return (
-    <div className="stretchSelf">
+    <div className="stretchSelf" css={classes.general}>
       <Stack spacing={8.1}>
         <Section
           title="Mes informations"

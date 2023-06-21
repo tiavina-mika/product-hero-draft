@@ -10,7 +10,7 @@ import { LAYOUT_CONTENT_PADDING_X } from "../../utils/constants";
 
 const classes = {
   general: {
-    paddingTop: 6
+    marginTop: 6
   },
   section: {
     // https://github.com/emotion-js/emotion/issues/2444
@@ -22,7 +22,7 @@ const classes = {
     position: "absolute" as "absolute",
     left: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
     right: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
-    top: 96
+    top: 109
   })
 };
 
@@ -47,7 +47,7 @@ const General = () => {
 
   return (
     <div className="stretchSelf" css={classes.general}>
-      <Stack spacing={8.1}>
+      <Stack spacing={7.4}>
         <Section
           title="Mes informations"
           css={classes.section}

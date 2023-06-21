@@ -3,13 +3,14 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
-import { useState } from "react";
 import { IAlert, ISettingsTab } from "../../../types/app.type";
 import { IDriver } from "../../../types/driver.type";
 import { ITeam } from "../../../types/team.type";
 import TeamsTab from "../../team/TeamsTab";
 import Drivers from "../../driver/Drivers";
+import Okrs from "../../okr/Okrs";
 import { SETTING_TABS } from "../../../utils/constants";
+import { IOkr } from "../../../types/okr.type";
 
 const PADDING_Y = 9;
 const classes = {
@@ -78,9 +79,12 @@ type Props = {
   onTabChange: (tab: ISettingsTab) => void;
   teams: ITeam[];
   drivers: IDriver[];
+  okrs: IOkr[];
   tab: ISettingsTab;
   onSelectDriver: (driver: IDriver) => void;
   alert?: IAlert;
+  goToOkrCreation: () => void;
+  onSelectOkr: (driver: IOkr) => void;
 };
 const SettingsLayout = ({
   goToDriverCreation,
@@ -90,7 +94,10 @@ const SettingsLayout = ({
   tab,
   onTabChange,
   onSelectDriver,
-  alert
+  alert,
+  goToOkrCreation,
+  okrs,
+  onSelectOkr
 }: Props) => {
   const handleTabChange = (value: ISettingsTab) => {
     onTabChange(value);
@@ -142,6 +149,14 @@ const SettingsLayout = ({
             drivers={drivers}
             goToDriverCreation={goToDriverCreation}
             onSelectDriver={onSelectDriver}
+            alert={alert}
+          />
+        )}
+        {tab === SETTING_TABS.OKR && (
+          <Okrs
+            okrs={okrs}
+            goToOkrCreation={goToOkrCreation}
+            onSelectOkr={onSelectOkr}
             alert={alert}
           />
         )}

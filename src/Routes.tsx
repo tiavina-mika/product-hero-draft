@@ -2,10 +2,12 @@ import { useState } from "react";
 import HomeLayout from "./containers/home/HomeLayout";
 import CreateTeamPage from "./containers/team/CreateTeamPage";
 import CreateDriver from "./containers/driver/CreateDriver";
+import CreateOkr from "./containers/okr/CreateOkr";
 import EditDriver from "./containers/driver/EditDriver";
 import { IAlert, IHomeTab, ISettingsTab } from "./types/app.type";
 import { ITeam } from "./types/team.type";
 import { IDriver } from "./types/driver.type";
+import { IOkr } from "./types/okr.type";
 
 import { HOME_TABS, PATH_NAMES, SETTING_TABS } from "./utils/constants";
 
@@ -20,10 +22,13 @@ const Route = () => {
   const [route, setRoute] = useState<string>(PATH_NAMES.home);
   const [teams, setTeams] = useState<ITeam[]>([]);
   const [drivers, setDrivers] = useState<IDriver[]>([]);
+  const [okrs, setOkrs] = useState<IOkr[]>([]);
   const [driver, setDriver] = useState<IDriver | null>(null);
+  const [okr, setOkr] = useState<IOkr | null>(null);
 
   const goToTeamCreation = () => setRoute(PATH_NAMES.team.create);
   const goToDriverCreation = () => setRoute(PATH_NAMES.driver.create);
+  const goToOkrCreation = () => setRoute(PATH_NAMES.okr.create);
   const goToHome = () => setRoute(PATH_NAMES.home);
 
   // tabs actions
@@ -45,6 +50,13 @@ const Route = () => {
     setAlert({ color: "success", type: "driver" });
   };
 
+  const onAddOkrs = (driver: IOkr) => {
+    setDrivers((prev: IOkr[]) => [driver, ...prev]);
+    onHomeTabChange(HOME_TABS.SETTINGS);
+    setRoute(PATH_NAMES.home);
+    setAlert({ color: "success", type: "okr" });
+  };
+
   const handleEditDriver = (values: IDriver) => {
     setDrivers((prev: IDriver[]) => {
       return prev.map((driver: IDriver) => {
@@ -61,9 +73,30 @@ const Route = () => {
     setAlert({ color: "success", type: "driver" });
   };
 
+  const handleEditOkr = (values: IOkr) => {
+    setOkrs((prev: IOkr[]) => {
+      return prev.map((okr: IOkr) => {
+        if (okr.objectId === values.objectId) {
+          return {
+            ...okr,
+            ...values
+          };
+        }
+        return okr;
+      });
+    });
+    setRoute(PATH_NAMES.home);
+    setAlert({ color: "success", type: "driver" });
+  };
+
   const handleSelectDriver = (driver: IDriver) => {
     setDriver(driver);
     setRoute(PATH_NAMES.driver.preview);
+  };
+
+  const handleSelectOkr = (okr: IOkr) => {
+    setOkr(okr);
+    setRoute(PATH_NAMES.okr.preview);
   };
 
   const handleGoToDrivers = () => {
@@ -77,6 +110,10 @@ const Route = () => {
 
   if (route === PATH_NAMES.driver.create) {
     return <CreateDriver onSave={onAddDrivers} onBack={goToHome} />;
+  }
+
+  if (route === PATH_NAMES.okr.create) {
+    return <CreateOkr onSave={onAddOkrs} onBack={goToHome} />;
   }
 
   if (route === PATH_NAMES.driver.preview) {
@@ -97,9 +134,12 @@ const Route = () => {
       onSettingTabChange={onSettingTabChange}
       goToTeamCreation={goToTeamCreation}
       goToDriverCreation={goToDriverCreation}
+      goToOkrCreation={goToOkrCreation}
       teams={teams}
       drivers={drivers}
+      okrs={okrs}
       onSelectDriver={handleSelectDriver}
+      onSelectOkr={handleSelectOkr}
       alert={alert}
     />
   );

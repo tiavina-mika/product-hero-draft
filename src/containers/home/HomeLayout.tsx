@@ -11,6 +11,7 @@ import SettingsLayout from "./navigations/SettingsLayout";
 import MyFocusLayout from "./navigations/MyFocusLayout";
 import MyFocus from "../myFocus/MyFocus";
 import { IDriver } from "../../types/driver.type";
+import { IOkr } from "../../types/okr.type";
 
 const classes = {
   tabs: {
@@ -74,11 +75,14 @@ type Props = {
   onSettingTabChange: (tab: ISettingsTab) => void;
   goToTeamCreation: () => void;
   goToDriverCreation: () => void;
+  goToOkrCreation: () => void;
   teams: ITeam[];
+  okrs: IOkr[];
   drivers: IDriver[];
   tab: IHomeTab;
   settingTab: ISettingsTab;
   onSelectDriver: (driver: IDriver) => void;
+  onSelectOkr: (driver: IOkr) => void;
   alert?: IAlert;
 };
 const HomeLayout = ({
@@ -91,7 +95,10 @@ const HomeLayout = ({
   teams,
   drivers,
   onSelectDriver,
-  alert
+  alert,
+  goToOkrCreation,
+  okrs,
+  onSelectOkr
 }: Props) => {
   const handleTabChange = (value: IHomeTab) => {
     onTabChange(value);
@@ -106,11 +113,14 @@ const HomeLayout = ({
           <SettingsLayout
             drivers={drivers}
             teams={teams}
+            okrs={okrs}
             goToTeamCreation={goToTeamCreation}
             goToDriverCreation={goToDriverCreation}
+            goToOkrCreation={goToOkrCreation}
             onTabChange={onSettingTabChange}
             tab={settingTab}
             onSelectDriver={onSelectDriver}
+            onSelectOkr={onSelectOkr}
             alert={alert}
           />
         )}

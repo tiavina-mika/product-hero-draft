@@ -18,6 +18,10 @@ export const PATH_NAMES = {
     create: "create-driver",
     preview: "driver/preview"
   },
+  okr: {
+    create: "create-okr",
+    preview: "okr/preview"
+  },
   customer: {
     create: "create-customer"
   },

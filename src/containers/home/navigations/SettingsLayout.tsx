@@ -8,6 +8,7 @@ import { IDriver } from "../../../types/driver.type";
 import { ITeam } from "../../../types/team.type";
 import TeamsTab from "../../team/TeamsTab";
 import Drivers from "../../driver/Drivers";
+import General from "../../general/General";
 import Okrs from "../../okr/Okrs";
 import { SETTING_TABS } from "../../../utils/constants";
 import { IOkr } from "../../../types/okr.type";
@@ -166,6 +167,7 @@ const SettingsLayout = ({
         </div>
       </div>
       <div className="flexColumn flex1 stretchSelf" css={classes.content}>
+        {tab === SETTING_TABS.GENERAL && <General />}
         {tab === SETTING_TABS.TEAMS && (
           <TeamsTab teams={teams} goToTeamCreation={goToTeamCreation} />
         )}

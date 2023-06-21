@@ -16,7 +16,7 @@ const Route = () => {
   // tabs
   const [homeTab, setHomeTab] = useState<IHomeTab>(HOME_TABS.MY_FOCUS);
   const [homeSettingTab, setHomeSettingTab] = useState<ISettingsTab>(
-    SETTING_TABS.TEAMS
+    SETTING_TABS.GENERAL
   );
 
   const [alert, setAlert] = useState<IAlert>(null);

@@ -56,7 +56,9 @@ export enum HOME_TABS {
 }
 
 export enum SETTING_TABS {
+  GENERAL = "general",
   DRIVERS = "drivers",
+  PRODUCTS = "products",
   OKR = "okr",
   TEAMS = "teams",
   PROFILES = "profiles"

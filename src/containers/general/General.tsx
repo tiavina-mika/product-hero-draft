@@ -30,6 +30,12 @@ const data = {
   }
 };
 const General = () => {
+  const handleGoToBilling = () => console.log("go to billing");
+  const handleGoToAssistance = () => console.log("go to assistance");
+  const handleGoToRating = () => console.log("go to rating");
+  const handleGoToPolicy = () => console.log("go to policy");
+  const handleGoToVersion = () => console.log("go to version");
+
   return (
     <div className="stretchSelf">
       <Stack spacing={8.1}>
@@ -43,6 +49,7 @@ const General = () => {
             title={data.billing.name}
             description={data.billing.features}
             withArrow
+            onClick={handleGoToBilling}
           />
           <div css={classes.divider} />
         </Section>
@@ -51,25 +58,29 @@ const General = () => {
             left={<img alt="assistance" src="/icons/message.svg" />}
             title="Contacter l'assistance"
             withArrow
+            onClick={handleGoToAssistance}
           />
           <div css={classes.divider} />
         </Section>
         <Section title="Plus" css={classes.section}>
-          <Stack>
+          <Stack spacing={2}>
             <Card
               left={<img alt="assistance" src="/icons/star.svg" />}
               title="Évaluer l'application"
               withArrow
+              onClick={handleGoToRating}
             />
             <Card
               left={<img alt="policy" src="/icons/eye.svg" />}
               title="Politique de confidentialité"
               withArrow
+              onClick={handleGoToPolicy}
             />
             <Card
               left={<img alt="policy" src="/icons/eye.svg" />}
               title="Version"
               withArrow
+              onClick={handleGoToVersion}
             />
           </Stack>
         </Section>

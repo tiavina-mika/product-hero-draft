@@ -1,3 +1,8 @@
+
+/** @jsxRuntime classic /
+/* @jsx jsx */
+/** @jsxImportSource @emotion/react */
+import { jsx } from "@emotion/react";
 import { css } from "@emotion/css";
 import { Box, Stack } from "@mui/material";
 import AddIcon from "../../components/AddIcon";

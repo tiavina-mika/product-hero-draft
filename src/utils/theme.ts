@@ -63,12 +63,14 @@ export const theme = createTheme({
           fontStyle: "normal",
           fontSize: 16,
           textTransform: "initial",
-          backgroundColor: palette.primary.main,
-          boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",
           padding: "12px 24px",
           borderRadius: 60,
-          color: "white",
           border: "none"
+        },
+        contained: {
+          backgroundColor: palette.primary.main,
+          color: "white",
+          boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)"
         }
       }
     },

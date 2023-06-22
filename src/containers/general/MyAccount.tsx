@@ -1,11 +1,12 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
-import { jsx } from "@emotion/react";
+import { jsx, Theme } from "@emotion/react";
 import { Box, Button, Stack, Typography } from "@mui/material";
 
 import PageLayout from "../../components/layouts/PageLayout";
 import Card from "../../components/Card";
+import { css } from "@emotion/css";
 
 const currentUser = {
   email: "tiavinamika@entreprise.com",
@@ -14,6 +15,15 @@ const currentUser = {
   role: "Administrateur"
 };
 
+const classes = {
+  changePasswordButton: (theme: Theme) => ({
+    color: theme.palette.grey[800]
+  }),
+  passwordRight: css({
+    paddingLeft: 6,
+    paddingRight: 6
+  })
+};
 type Props = {
   onBack: () => void;
 };
@@ -36,10 +46,18 @@ const MyAccount = ({ onBack }: Props) => {
           <Card
             label="Mot de passe"
             right={
-              <Button type="button" onClick={handleClickPassword}>
-                Modifier
+              <Button
+                variant="text"
+                type="button"
+                sx={{ px: 0 }}
+                onClick={handleClickPassword}
+              >
+                <Typography css={classes.changePasswordButton}>
+                  Modifier
+                </Typography>
               </Button>
             }
+            rightClassName={classes.passwordRight}
           >
             <Typography>••••••••••</Typography>
           </Card>

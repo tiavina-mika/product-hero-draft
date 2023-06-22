@@ -74,6 +74,7 @@ type Props = {
   withRightDivider?: boolean;
   onClick?: () => void;
   contentClassName?: string;
+  rightClassName?: string;
   hasShadow?: boolean;
   description?: string;
   title?: string;
@@ -90,6 +91,7 @@ const Card = ({
   onClick,
   contentClassName,
   descriptionClassName,
+  rightClassName,
   titleClassName,
   description,
   title,
@@ -169,7 +171,7 @@ const Card = ({
         {/* ----- right ----- */}
         {right && (
           <div
-            className="flexCenter stretchSelf"
+            className={cx("flexCenter stretchSelf", rightClassName)}
             css={[
               classes.right,
               isActive && classes.active,

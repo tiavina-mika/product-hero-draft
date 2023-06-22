@@ -53,7 +53,7 @@ const General = () => {
           css={classes.section}
           onClick={handleGoToInformation}
         >
-          <Card title={data.email} />
+          <Card label="E-mail" title={data.email} />
           <div css={classes.divider} />
         </Section>
         <Section

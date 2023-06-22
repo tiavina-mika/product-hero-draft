@@ -13,9 +13,19 @@ const classes = {
     borderRadius: 6,
     minHeight: 48
   }),
+  rootWithLabel: {
+    overflow: "initial"
+  },
   content: {
     padding: "0px !important"
   },
+  labelContainer: {
+    top: -5,
+    left: 10
+  },
+  label: (theme: Theme) => ({
+    color: theme.palette.grey[800]
+  }),
   left: (theme: Theme) => ({
     paddingLeft: 17,
     paddingRight: 17,
@@ -67,6 +77,7 @@ type Props = {
   hasShadow?: boolean;
   description?: string;
   title?: string;
+  label?: string;
 };
 
 const Card = ({
@@ -82,6 +93,7 @@ const Card = ({
   titleClassName,
   description,
   title,
+  label,
   withArrow = false,
   isActive = false,
   hasShadow = false,
@@ -92,12 +104,20 @@ const Card = ({
       css={[
         classes.root,
         isActive && classes.active,
-        hasShadow && classes.shadow
+        hasShadow && classes.shadow,
+        label && classes.rootWithLabel
       ]}
-      className={cx("flexColumn stretchSelf", rootClassName)}
+      className={cx("flexColumn stretchSelf positionRelative", rootClassName)}
       onClick={onClick}
       elevation={0}
     >
+      {label && (
+        <div css={classes.labelContainer} className="positionAbsolute">
+          <Typography css={classes.label} variant="body2">
+            {label}
+          </Typography>
+        </div>
+      )}
       <CardContent
         className={cx("flexRow flex1 justifyCenter stretchSelf", className)}
         css={classes.content}

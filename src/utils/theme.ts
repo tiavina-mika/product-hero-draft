@@ -47,6 +47,12 @@ const defaultTypographyStyles = {
   fontStyle: "normal",
   fontFamily: "Product Sans Regular"
 };
+
+const titleTypographyStyles = {
+  ...defaultTypographyStyles,
+  color: palette.grey[800]
+};
+
 export const theme = createTheme({
   palette,
   components: {
@@ -89,31 +95,31 @@ export const theme = createTheme({
   },
   typography: {
     h1: {
-      ...defaultTypographyStyles,
+      ...titleTypographyStyles,
       fontSize: 32,
       fontWeight: 500
     },
     h2: {
-      ...defaultTypographyStyles,
+      ...titleTypographyStyles,
       fontSize: 22,
       lineHeight: 1.3
     },
     h3: {
-      ...defaultTypographyStyles,
+      ...titleTypographyStyles,
       fontSize: 14,
       fontWeight: 700
     },
     h4: {
-      ...defaultTypographyStyles,
+      ...titleTypographyStyles,
       fontSize: 14,
       lineHeight: 1.5
     },
     h5: {
-      ...defaultTypographyStyles,
+      ...titleTypographyStyles,
       fontSize: 12
     },
     h6: {
-      ...defaultTypographyStyles,
+      ...titleTypographyStyles,
       fontSize: 10
     },
     body1: {

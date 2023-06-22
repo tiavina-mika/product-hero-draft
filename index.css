@@ -149,6 +149,9 @@ code {
 .positionRelative {
   position: relative;
 }
+.positionAbsolute {
+  position: absolute;
+}
 .red {
   background-color: red;
 }

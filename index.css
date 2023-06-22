@@ -152,6 +152,10 @@ code {
 .positionAbsolute {
   position: absolute;
 }
+.cursorPointer {
+  cursor: pointer;
+}
+
 .red {
   background-color: red;
 }

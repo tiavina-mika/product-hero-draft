@@ -2,7 +2,7 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx, Theme } from "@emotion/react";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 import Section from "../../components/Section";
 import Card from "../../components/Card";
@@ -26,7 +26,7 @@ const classes = {
     position: "absolute" as "absolute",
     left: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
     right: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
-    top: 109
+    bottom: -33
   })
 };
 
@@ -49,6 +49,7 @@ const General = () => {
   const handleGoToPolicy = () => console.log("go to policy");
   const handleGoToVersion = () => console.log("go to version");
 
+  const handleLogout = () => console.log("logout");
   return (
     <div className="stretchSelf" css={classes.general}>
       <Stack spacing={7.4}>
@@ -105,11 +106,19 @@ const General = () => {
             <Card
               left={<img alt="policy" src="/icons/eye.svg" />}
               title="Version"
-              withArrow
               onClick={handleGoToVersion}
+              right={<img alt="assistance" src="/icons/chevron-down.svg" />}
+              withRightDivider={false}
             />
           </Stack>
+          <div css={classes.divider} />
         </Section>
+        {/* ---------- Deconnection ---------- */}
+        <Card onClick={handleLogout} hasShadow contentClassName="flexCenter">
+          <Typography variant="h4" color="error.main">
+            Deconnexion
+          </Typography>
+        </Card>
       </Stack>
     </div>
   );

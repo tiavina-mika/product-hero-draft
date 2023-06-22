@@ -107,7 +107,11 @@ const Card = ({
         hasShadow && classes.shadow,
         label && classes.rootWithLabel
       ]}
-      className={cx("flexColumn stretchSelf positionRelative", rootClassName)}
+      className={cx(
+        "flexColumn stretchSelf positionRelative",
+        rootClassName,
+        onClick ? "cursorPointer" : ""
+      )}
       onClick={onClick}
       elevation={0}
     >

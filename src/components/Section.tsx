@@ -20,7 +20,9 @@ const Section = ({ title, children, className, onClick }: Props) => {
       spacing={2.8}
     >
       <div className="flexRow spaceBetween center">
-        <Typography variant="h3">{title}</Typography>
+        <Typography variant="h3" sx={{ fontFamily: "Product Sans Bold" }}>
+          {title}
+        </Typography>
         {onClick && (
           <IconButton onClick={onClick}>
             <img alt="" src="/icons/superior.svg" />

@@ -7,11 +7,15 @@ import { Stack } from "@mui/material";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { LAYOUT_CONTENT_PADDING_X } from "../../utils/constants";
+import { css } from "@emotion/css";
 
 const classes = {
   general: {
     marginTop: 6
   },
+  billingCard: css({
+    minHeight: 68
+  }),
   section: {
     // https://github.com/emotion-js/emotion/issues/2444
     position: "relative" as "relative"
@@ -48,6 +52,7 @@ const General = () => {
   return (
     <div className="stretchSelf" css={classes.general}>
       <Stack spacing={7.4}>
+        {/* ---------- Mes informations ---------- */}
         <Section
           title="Mes informations"
           css={classes.section}
@@ -56,6 +61,7 @@ const General = () => {
           <Card label="E-mail" title={data.email} />
           <div css={classes.divider} />
         </Section>
+        {/* ---------- Plan & Billing ---------- */}
         <Section
           title="Plan & Billing"
           css={classes.section}
@@ -67,9 +73,11 @@ const General = () => {
             description={data.billing.features}
             withArrow
             onClick={handleGoToCurrentBilling}
+            rootClassName={classes.billingCard}
           />
           <div css={classes.divider} />
         </Section>
+        {/* ---------- Assistance ---------- */}
         <Section title="Assistance" css={classes.section}>
           <Card
             left={<img alt="assistance" src="/icons/message.svg" />}
@@ -79,6 +87,7 @@ const General = () => {
           />
           <div css={classes.divider} />
         </Section>
+        {/* ---------- Plus ---------- */}
         <Section title="Plus" css={classes.section}>
           <Stack spacing={2}>
             <Card

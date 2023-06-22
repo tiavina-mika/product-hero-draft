@@ -138,13 +138,13 @@ const Card = ({
         >
           {/* ------- title & description ------- */}
           {(title || description) && (
-            <Stack spacing={0.3}>
+            <Stack spacing={0.22}>
               <div className={titleClassName}>
                 {title && <Typography variant="h4">{title}</Typography>}
               </div>
               <div className={descriptionClassName}>
                 {description && (
-                  <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+                  <Typography variant="body1" sx={{ lineHeight: 0.8 }}>
                     {description}
                   </Typography>
                 )}

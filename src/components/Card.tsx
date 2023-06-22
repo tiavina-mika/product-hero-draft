@@ -115,6 +115,7 @@ const Card = ({
       onClick={onClick}
       elevation={0}
     >
+      {/* ---------- label ---------- */}
       {label && (
         <div css={classes.labelContainer} className="positionAbsolute">
           <Typography css={classes.label} variant="body2">
@@ -122,6 +123,7 @@ const Card = ({
           </Typography>
         </div>
       )}
+      {/* ---------- body ---------- */}
       <CardContent
         className={cx("flexRow flex1 justifyCenter stretchSelf", className)}
         css={classes.content}

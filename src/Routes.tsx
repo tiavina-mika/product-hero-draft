@@ -4,6 +4,7 @@ import CreateTeamPage from "./containers/team/CreateTeamPage";
 import CreateDriver from "./containers/driver/CreateDriver";
 import CreateOkr from "./containers/okr/CreateOkr";
 import EditDriver from "./containers/driver/EditDriver";
+import MyAccount from "./containers/general/MyAccount";
 import EditOkr from "./containers/okr/EditOkr";
 import { IAlert, IHomeTab, ISettingsTab } from "./types/app.type";
 import { ITeam } from "./types/team.type";
@@ -31,6 +32,14 @@ const Route = () => {
   const goToDriverCreation = () => setRoute(PATH_NAMES.driver.create);
   const goToOkrCreation = () => setRoute(PATH_NAMES.okr.create);
   const goToHome = () => setRoute(PATH_NAMES.home);
+  const goToMyAccount = () => {
+    setRoute(PATH_NAMES.general.myAccount);
+    // setHomeSettingTab(SETTING_TABS.GENERAL);
+  };
+  const goToBackFromMyAccount = () => {
+    setRoute(PATH_NAMES.home);
+    // setHomeSettingTab(SETTING_TABS.GENERAL);
+  };
 
   // tabs actions
   const onHomeTabChange = (tab: IHomeTab) => setHomeTab(tab);
@@ -110,6 +119,10 @@ const Route = () => {
     setRoute(PATH_NAMES.settingsTabs.okr);
   };
 
+  if (route === PATH_NAMES.general.myAccount) {
+    return <MyAccount onBack={goToBackFromMyAccount} />;
+  }
+
   if (route === PATH_NAMES.team.create) {
     return <CreateTeamPage goToHome={goToHome} onSave={onAddTeams} />;
   }
@@ -153,6 +166,7 @@ const Route = () => {
       onSelectDriver={handleSelectDriver}
       onSelectOkr={handleSelectOkr}
       alert={alert}
+      goToMyAccount={goToMyAccount}
     />
   );
 };

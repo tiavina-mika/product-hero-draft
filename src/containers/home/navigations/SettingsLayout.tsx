@@ -109,6 +109,7 @@ type Props = {
   alert?: IAlert;
   goToOkrCreation: () => void;
   onSelectOkr: (driver: IOkr) => void;
+  goToMyAccount?: () => void;
 };
 const SettingsLayout = ({
   goToDriverCreation,
@@ -121,7 +122,8 @@ const SettingsLayout = ({
   alert,
   goToOkrCreation,
   okrs,
-  onSelectOkr
+  onSelectOkr,
+  goToMyAccount
 }: Props) => {
   const handleTabChange = (_: SyntheticEvent, value: ISettingsTab) => {
     onTabChange(value);
@@ -169,7 +171,9 @@ const SettingsLayout = ({
         </div>
       </div>
       <div className="flexColumn flex1 stretchSelf" css={classes.content}>
-        {tab === SETTING_TABS.GENERAL && <General />}
+        {tab === SETTING_TABS.GENERAL && (
+          <General goToMyAccount={goToMyAccount} />
+        )}
         {tab === SETTING_TABS.TEAMS && (
           <TeamsTab teams={teams} goToTeamCreation={goToTeamCreation} />
         )}

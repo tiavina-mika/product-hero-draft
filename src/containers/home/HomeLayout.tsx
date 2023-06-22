@@ -84,6 +84,7 @@ type Props = {
   onSelectDriver: (driver: IDriver) => void;
   onSelectOkr: (driver: IOkr) => void;
   alert?: IAlert;
+  goToMyAccount?: () => void;
 };
 const HomeLayout = ({
   tab,
@@ -98,7 +99,8 @@ const HomeLayout = ({
   alert,
   goToOkrCreation,
   okrs,
-  onSelectOkr
+  onSelectOkr,
+  goToMyAccount
 }: Props) => {
   const handleTabChange = (value: IHomeTab) => {
     onTabChange(value);
@@ -122,6 +124,7 @@ const HomeLayout = ({
             onSelectDriver={onSelectDriver}
             onSelectOkr={onSelectOkr}
             alert={alert}
+            goToMyAccount={goToMyAccount}
           />
         )}
         {tab === HOME_TABS.MY_FOCUS && (

@@ -37,9 +37,13 @@ const data = {
     features: "1 rôle + 3 utilisateurs"
   }
 };
-const General = () => {
+
+type Props = {
+  goToMyAccount: () => void;
+};
+const General = ({ goToMyAccount }: Props) => {
   // sections
-  const handleGoToInformation = () => console.log("go to information");
+  const handleGoToInformation = () => goToMyAccount();
   const handleGoToBillings = () => console.log("go to billings");
 
   // cards

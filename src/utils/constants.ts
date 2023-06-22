@@ -45,6 +45,10 @@ export const PATH_NAMES = {
     teams: "teams",
     profile: "profile",
     drivers: "drivers"
+  },
+  general: {
+    root: "root",
+    myAccount: "myAccount"
   }
 };
 

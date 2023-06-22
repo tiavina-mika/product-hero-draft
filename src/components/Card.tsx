@@ -75,6 +75,7 @@ type Props = {
   onClick?: () => void;
   contentClassName?: string;
   rightClassName?: string;
+  titleTextClassName?: string;
   hasShadow?: boolean;
   description?: string;
   title?: string;
@@ -94,6 +95,7 @@ const Card = ({
   rightClassName,
   titleClassName,
   description,
+  titleTextClassName,
   title,
   label,
   withArrow = false,
@@ -148,7 +150,11 @@ const Card = ({
           {(title || description) && (
             <Stack spacing={0.22}>
               <div className={titleClassName}>
-                {title && <Typography variant="h4">{title}</Typography>}
+                {title && (
+                  <Typography variant="h4" className={titleTextClassName}>
+                    {title}
+                  </Typography>
+                )}
               </div>
               <div className={descriptionClassName}>
                 {description && (

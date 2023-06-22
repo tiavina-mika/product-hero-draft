@@ -24,6 +24,7 @@ const classes = {
     paddingRight: 6
   })
 };
+
 type Props = {
   onBack: () => void;
 };
@@ -61,7 +62,11 @@ const MyAccount = ({ onBack }: Props) => {
           >
             <Typography>••••••••••</Typography>
           </Card>
-          <Card label="Role" title={currentUser.role} />
+          <Card
+            label="Role"
+            title={currentUser.role}
+            titleTextClassName="h4Grey600"
+          />
         </Stack>
       </Box>
     </PageLayout>

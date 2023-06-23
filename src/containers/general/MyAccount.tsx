@@ -7,12 +7,17 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import PageLayout from "../../components/layouts/PageLayout";
 import Card from "../../components/Card";
 import { css } from "@emotion/css";
+import UploadAvatar from "../../components/UploadAvatar";
 
 const currentUser = {
+  objectId: 'xxx',
   email: "tiavinamika@entreprise.com",
   lastName: "Ralainirina",
   firstName: "Tiavina",
-  role: "Administrateur"
+  role: {
+    objectId: 'rolexxxx',
+    name: 'Administrateur'
+  }
 };
 
 const classes = {
@@ -37,36 +42,42 @@ const MyAccount = ({ onBack }: Props) => {
       textSpacing={1}
       onBack={onBack}
       contentClassName="flex1"
+      withHeaderDivider
     >
-      <Box sx={{ mt: 3 }} className="flex1 stretchSelf">
+      <Box className="flex1 stretchSelf" sx={{ mt: 5.8 }}>
         <Stack spacing={3}>
-          {/* ---------- Mes informations ---------- */}
-          <Card label="Nom" title={currentUser.lastName} />
-          <Card label="Prénom" title={currentUser.firstName} />
-          <Card label="E-mail" title={currentUser.email} />
-          <Card
-            label="Mot de passe"
-            right={
-              <Button
-                variant="text"
-                type="button"
-                sx={{ px: 0 }}
-                onClick={handleClickPassword}
+          <UploadAvatar user={currentUser} />
+          <Box className="flex1 stretchSelf">
+            <Stack spacing={3}>
+              {/* ---------- Mes informations ---------- */}
+              <Card label="Nom" title={currentUser.lastName} />
+              <Card label="Prénom" title={currentUser.firstName} />
+              <Card label="E-mail" title={currentUser.email} />
+              <Card
+                label="Mot de passe"
+                right={
+                  <Button
+                    variant="text"
+                    type="button"
+                    sx={{ px: 0 }}
+                    onClick={handleClickPassword}
+                  >
+                    <Typography css={classes.changePasswordButton}>
+                      Modifier
+                    </Typography>
+                  </Button>
+                }
+                rightClassName={classes.passwordRight}
               >
-                <Typography css={classes.changePasswordButton}>
-                  Modifier
-                </Typography>
-              </Button>
-            }
-            rightClassName={classes.passwordRight}
-          >
-            <Typography>••••••••••</Typography>
-          </Card>
-          <Card
-            label="Role"
-            title={currentUser.role}
-            titleTextClassName="h4Grey600"
-          />
+                <Typography>••••••••••</Typography>
+              </Card>
+              <Card
+                label="Role"
+                title={currentUser.role.name}
+                titleTextClassName="h4Grey600"
+              />
+            </Stack>
+          </Box>
         </Stack>
       </Box>
     </PageLayout>

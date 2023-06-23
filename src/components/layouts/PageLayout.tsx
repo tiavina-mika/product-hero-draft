@@ -11,6 +11,7 @@ import { getAlignment } from "../../utils/utils";
 import Description from "../typography/Description";
 import Title from "../typography/Title";
 import TopIcon from "./TopIcon";
+import { LAYOUT_CONTENT_PADDING_X } from "../../utils/constants";
 
 const classes = {
   pageLayoutRoot: {
@@ -36,6 +37,15 @@ const classes = {
       width: "100%"
     },
     justifyContent: getAlignment(alignment)
+  }),
+  divider: (theme: Theme) => ({
+    height: 1,
+    backgroundColor: theme.palette.grey[100],
+    position: "absolute" as "absolute",
+    left: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
+    right: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
+    top: 34,
+    
   })
 };
 
@@ -55,6 +65,7 @@ type Props = {
   imageContainerClassName?: string;
   onBack?: () => void;
   onSearch?: () => void;
+  withHeaderDivider?: boolean;
 };
 
 const PageLayout = ({
@@ -71,6 +82,7 @@ const PageLayout = ({
   textSpacing,
   onBack,
   onSearch,
+  withHeaderDivider = false,
   alignment = "left",
   titleSpacing = 3
 }: Props) => {
@@ -107,21 +119,26 @@ const PageLayout = ({
               css={imageContainerClassName}
             />
           )}
-          <Stack spacing={textSpacing} css={classes.titleContainer(alignment)}>
+          <Stack className="stretchSelf flexColumn positionRelative" spacing={textSpacing} css={classes.titleContainer(alignment)}>
             {title && (
-              <Title
-                text={title}
-                alignment={alignment}
-                className={titleClassName}
-              />
+              <div className="stretchSelf">
+                <Title
+                  text={title}
+                  alignment={alignment}
+                  className={titleClassName}
+                />
+              </div>
             )}
             {description && (
-              <Description
-                text={description}
-                alignment={alignment}
-                className={descriptionClassName}
-              />
+              <div className="stretchSelf">
+                <Description
+                  text={description}
+                  alignment={alignment}
+                  className={descriptionClassName}
+                />
+              </div>
             )}
+           {withHeaderDivider && <div css={classes.divider} />}
           </Stack>
         </Stack>
         {children && (

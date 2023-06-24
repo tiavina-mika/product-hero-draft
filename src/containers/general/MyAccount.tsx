@@ -11,6 +11,16 @@ import UploadAvatar from "../../components/UploadAvatar";
 import Section from "../../components/Section";
 import { useState } from "react";
 import DialogSingleInputForm from "../../components/form/DialogSingleInputForm";
+import {
+  ILastNameInput,
+  IFirstNameInput,
+  IEmailInput
+} from "../../types/user.type";
+import {
+  emailSchema,
+  firstNameSchema,
+  lastNameSchema
+} from "../../validations/user.validation";
 
 const currentUser = {
   objectId: "xxx",
@@ -33,13 +43,6 @@ const classes = {
   })
 };
 
-// const inputs = [
-//   {
-//     name: "lastName",
-//     label: "Nom",
-//     title: currentUser.lastName
-//   }
-// ]
 type IInputs = "firstName" | "lastName" | "email";
 type Props = {
   onBack: () => void;
@@ -51,6 +54,18 @@ const MyAccount = ({ onBack }: Props) => {
 
   const handleOpenDialog = (name: IInputs) => setOpenFormDialog(name);
   const closeDialog = () => setOpenFormDialog(null);
+
+  const handleSaveLastName = <ILastNameInput>(values: ILastNameInput) => {
+    console.log("handleSaveLastName values", values);
+  };
+
+  const handleSaveFirstName = <IFirstNameInput>(values: IFirstNameInput) => {
+    console.log("handleSaveFirstName values", values);
+  };
+
+  const handleSaveEmail = <IEmailInput>(values: IEmailInput) => {
+    console.log("handleSaveEmail values", values);
+  };
 
   return (
     <PageLayout
@@ -66,14 +81,21 @@ const MyAccount = ({ onBack }: Props) => {
           <Box className="flex1 stretchSelf">
             <Stack spacing={4}>
               <Stack spacing={3}>
-                {/* ---------- Mes informations ---------- */}
                 <Card
                   onClick={() => handleOpenDialog("lastName")}
                   label="Nom"
                   title={currentUser.lastName}
                 />
-                <Card label="Prénom" title={currentUser.firstName} />
-                <Card label="E-mail" title={currentUser.email} />
+                <Card
+                  onClick={() => handleOpenDialog("firstName")}
+                  label="Prénom"
+                  title={currentUser.firstName}
+                />
+                <Card
+                  onClick={() => handleOpenDialog("email")}
+                  label="E-mail"
+                  title={currentUser.email}
+                />
                 <Card
                   label="Mot de passe"
                   right={
@@ -124,10 +146,35 @@ const MyAccount = ({ onBack }: Props) => {
           </Box>
         </Stack>
       </Box>
+      {/* ----------------------------- */}
+      {/* ----------- Forms ----------- */}
+      {/* ----------------------------- */}
       <DialogSingleInputForm
         title="Modifier le nom"
         open={openFormDialog === "lastName"}
         onClose={closeDialog}
+        name="lastName"
+        onSubmit={handleSaveLastName}
+        schema={lastNameSchema}
+        defaultValue={currentUser.lastName}
+      />
+      <DialogSingleInputForm
+        title="Modifier le prénom"
+        open={openFormDialog === "firstName"}
+        onClose={closeDialog}
+        name="firstName"
+        onSubmit={handleSaveFirstName}
+        schema={firstNameSchema}
+        defaultValue={currentUser.firstName}
+      />
+      <DialogSingleInputForm
+        title="Modifier l'email"
+        open={openFormDialog === "email"}
+        onClose={closeDialog}
+        name="email"
+        onSubmit={handleSaveEmail}
+        schema={emailSchema}
+        defaultValue={currentUser.email}
       />
     </PageLayout>
   );

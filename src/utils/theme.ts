@@ -94,6 +94,14 @@ export const theme = createTheme({
         }
       }
     },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          paddingTop: 32,
+          paddingBottom: 32
+        }
+      }
+    },
     MuiDialogTitle: {
       styleOverrides: {
         root: {
@@ -124,6 +132,14 @@ export const theme = createTheme({
           lineHeight: 1.5,
           letterSpacing: "0.01em",
           color: palette.grey[600]
+        }
+      }
+    },
+    MuiDialogActions: {
+      styleOverrides: {
+        root: {
+          paddingLeft: 32,
+          paddingRight: 32
         }
       }
     }

@@ -56,7 +56,6 @@ const classes = {
     paddingRight: 32
   },
   closeButtonContainer: {
-    marginTop: 32,
     marginBottom: 2,
     paddingLeft: 32,
     paddingRight: 32

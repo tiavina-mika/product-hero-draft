@@ -1,3 +1,10 @@
+import { z } from "zod";
+import {
+  lastNameSchema,
+  firstNameSchema,
+  emailSchema
+} from "../validations/user.validation";
+
 export interface IRole {
   objectId: string;
   name: string;
@@ -13,3 +20,7 @@ export interface IUser {
   type?: string;
   role?: IRole;
 }
+
+export type ILastNameInput = z.infer<typeof lastNameSchema>;
+export type IFirstNameInput = z.infer<typeof firstNameSchema>;
+export type IEmailInput = z.infer<typeof emailSchema>;

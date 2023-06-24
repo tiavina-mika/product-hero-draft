@@ -4,6 +4,7 @@
 import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import {
+  Button,
   Dialog as MUIDialog,
   DialogActions,
   DialogContent,
@@ -78,6 +79,8 @@ type Props = {
   rootClassName?: string;
   maxWidth?: DialogProps["maxWidth"];
   sxPaper?: SxProps<MUITheme>;
+  formId?: string;
+  loading?: boolean;
 } & DialogProps;
 const Dialog = ({
   rootClassName,
@@ -88,6 +91,8 @@ const Dialog = ({
   actions,
   title,
   sxPaper,
+  formId,
+  loading,
   maxWidth = "sm",
   alignment = "bottom",
   ...dialogProps
@@ -110,6 +115,13 @@ const Dialog = ({
         {children}
       </DialogContent>
       {actions && <DialogActions>{actions}</DialogActions>}
+      {formId && (
+        <DialogActions>
+          <Button type="submit" variant="contained" fullWidth form={formId}>
+            {loading ? "..." : "Enregistrer"}
+          </Button>
+        </DialogActions>
+      )}
     </MUIDialog>
   );
 };

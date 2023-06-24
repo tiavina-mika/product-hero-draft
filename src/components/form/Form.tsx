@@ -16,9 +16,11 @@ type Props = {
   error?: string;
   buttonSx?: SxProps<Theme>;
   withSpacing?: boolean;
+  formId?: string;
 };
 
 const Form = ({
+  formId,
   onSubmit,
   form,
   error,
@@ -34,7 +36,11 @@ const Form = ({
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={onSubmit} className="flexColumn stretchSelf flex1">
+      <form
+        id={formId}
+        onSubmit={onSubmit}
+        className="flexColumn stretchSelf flex1"
+      >
         {error && (
           <Alert severity="error" sx={{ mb: 1.5 }}>
             {error}
@@ -48,15 +54,17 @@ const Form = ({
               children
             )}
           </div>
-          <Button
-            type="submit"
-            variant="contained"
-            className="endSelf"
-            sx={buttonSx}
-            disabled={!isDirty || form.getFieldState().invalid}
-          >
-            {loading ? "..." : primaryButtonText}
-          </Button>
+          {!formId && (
+            <Button
+              type="submit"
+              variant="contained"
+              className="endSelf"
+              sx={buttonSx}
+              disabled={!isDirty || form.getFieldState().invalid}
+            >
+              {loading ? "..." : primaryButtonText}
+            </Button>
+          )}
         </div>
       </form>
     </FormProvider>

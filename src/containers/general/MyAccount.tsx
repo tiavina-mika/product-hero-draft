@@ -9,15 +9,16 @@ import Card from "../../components/Card";
 import { css } from "@emotion/css";
 import UploadAvatar from "../../components/UploadAvatar";
 import Section from "../../components/Section";
+import { useState } from "react";
 
 const currentUser = {
-  objectId: 'xxx',
+  objectId: "xxx",
   email: "tiavinamika@entreprise.com",
   lastName: "Ralainirina",
   firstName: "Tiavina",
   role: {
-    objectId: 'rolexxxx',
-    name: 'Administrateur'
+    objectId: "rolexxxx",
+    name: "Administrateur"
   }
 };
 
@@ -31,10 +32,18 @@ const classes = {
   })
 };
 
+// const inputs = [
+//   {
+//     name: "lastName",
+//     label: "Nom",
+//     title: currentUser.lastName
+//   }
+// ]
 type Props = {
   onBack: () => void;
 };
 const MyAccount = ({ onBack }: Props) => {
+  // const [openFormDialog, setOpenFormDialog] = useState('')
   const handleClickPassword = () => console.log("change password");
   const handleDisableNotification = () => console.log("disable Notification");
 
@@ -47,64 +56,64 @@ const MyAccount = ({ onBack }: Props) => {
       withHeaderDivider
     >
       <Box className="flex1 stretchSelf" sx={{ mt: 5.8 }}>
-          <Stack spacing={3}>
-            <UploadAvatar user={currentUser} />
-            <Box className="flex1 stretchSelf">
-              <Stack spacing={4}>
-                <Stack spacing={3}>
-                  {/* ---------- Mes informations ---------- */}
-                  <Card label="Nom" title={currentUser.lastName} />
-                  <Card label="Prénom" title={currentUser.firstName} />
-                  <Card label="E-mail" title={currentUser.email} />
-                  <Card
-                    label="Mot de passe"
-                    right={
-                      <Button
-                        variant="text"
-                        type="button"
-                        sx={{ px: 0 }}
-                        onClick={handleClickPassword}
-                      >
-                        <Typography css={classes.changePasswordButton}>
-                          Modifier
-                        </Typography>
-                      </Button>
-                    }
-                    rightClassName={classes.passwordRight}
-                  >
-                    <Typography>••••••••••</Typography>
-                  </Card>
-                  <Card
-                    label="Role"
-                    title={currentUser.role.name}
-                    titleTextClassName="h4Grey600"
-                  />
-                </Stack>
-                <div>
-                  <Section title="Notifications">
-                    <Stack spacing={2}>
-                        <Card
-                          left={<img alt="disable" src="/icons/disabled.svg" />}
-                          title="Ne pas déranger"
-                          description="Désactivé"
-                          withArrow
-                          withRightDivider={false}
-                          onClick={handleDisableNotification}
-                        />
-                        <Card
-                          left={<img alt="push" src="/icons/disabled.svg" />}
-                          title="Push"
-                          description="Activer les notifications"
-                          withArrow
-                          withRightDivider={false}
-                          onClick={handleDisableNotification}
-                        />
-                    </Stack>
-                  </Section>
-                </div>
+        <Stack spacing={3}>
+          <UploadAvatar user={currentUser} />
+          <Box className="flex1 stretchSelf">
+            <Stack spacing={4}>
+              <Stack spacing={3}>
+                {/* ---------- Mes informations ---------- */}
+                <Card label="Nom" title={currentUser.lastName} />
+                <Card label="Prénom" title={currentUser.firstName} />
+                <Card label="E-mail" title={currentUser.email} />
+                <Card
+                  label="Mot de passe"
+                  right={
+                    <Button
+                      variant="text"
+                      type="button"
+                      sx={{ px: 0 }}
+                      onClick={handleClickPassword}
+                    >
+                      <Typography css={classes.changePasswordButton}>
+                        Modifier
+                      </Typography>
+                    </Button>
+                  }
+                  rightClassName={classes.passwordRight}
+                >
+                  <Typography>••••••••••</Typography>
+                </Card>
+                <Card
+                  label="Role"
+                  title={currentUser.role.name}
+                  titleTextClassName="h4Grey600"
+                />
               </Stack>
-            </Box>
-          </Stack>
+              <div>
+                <Section title="Notifications">
+                  <Stack spacing={2}>
+                    <Card
+                      left={<img alt="disable" src="/icons/disabled.svg" />}
+                      title="Ne pas déranger"
+                      description="Désactivé"
+                      withArrow
+                      withRightDivider={false}
+                      onClick={handleDisableNotification}
+                    />
+                    <Card
+                      left={<img alt="push" src="/icons/disabled.svg" />}
+                      title="Push"
+                      description="Activer les notifications"
+                      withArrow
+                      withRightDivider={false}
+                      onClick={handleDisableNotification}
+                    />
+                  </Stack>
+                </Section>
+              </div>
+            </Stack>
+          </Box>
+        </Stack>
       </Box>
     </PageLayout>
   );

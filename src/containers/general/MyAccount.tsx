@@ -10,6 +10,7 @@ import { css } from "@emotion/css";
 import UploadAvatar from "../../components/UploadAvatar";
 import Section from "../../components/Section";
 import { useState } from "react";
+import DialogSingleInputForm from "../../components/form/DialogSingleInputForm";
 
 const currentUser = {
   objectId: "xxx",
@@ -39,13 +40,17 @@ const classes = {
 //     title: currentUser.lastName
 //   }
 // ]
+type IInputs = "firstName" | "lastName" | "email";
 type Props = {
   onBack: () => void;
 };
 const MyAccount = ({ onBack }: Props) => {
-  // const [openFormDialog, setOpenFormDialog] = useState('')
+  const [openFormDialog, setOpenFormDialog] = useState<IInputs | null>(null);
   const handleClickPassword = () => console.log("change password");
   const handleDisableNotification = () => console.log("disable Notification");
+
+  const handleOpenDialog = (name: IInputs) => setOpenFormDialog(name);
+  const closeDialog = () => setOpenFormDialog(null);
 
   return (
     <PageLayout
@@ -62,7 +67,11 @@ const MyAccount = ({ onBack }: Props) => {
             <Stack spacing={4}>
               <Stack spacing={3}>
                 {/* ---------- Mes informations ---------- */}
-                <Card label="Nom" title={currentUser.lastName} />
+                <Card
+                  onClick={() => handleOpenDialog("lastName")}
+                  label="Nom"
+                  title={currentUser.lastName}
+                />
                 <Card label="Prénom" title={currentUser.firstName} />
                 <Card label="E-mail" title={currentUser.email} />
                 <Card
@@ -115,6 +124,11 @@ const MyAccount = ({ onBack }: Props) => {
           </Box>
         </Stack>
       </Box>
+      <DialogSingleInputForm
+        title="Modifier le nom"
+        open={openFormDialog === "lastName"}
+        onClose={closeDialog}
+      />
     </PageLayout>
   );
 };

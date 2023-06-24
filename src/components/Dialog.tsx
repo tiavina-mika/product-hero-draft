@@ -4,15 +4,19 @@
 import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import {
+  Box,
   Button,
   Dialog as MUIDialog,
   DialogActions,
   DialogContent,
+  DialogContentText,
   DialogProps,
   DialogTitle,
+  IconButton,
   Slide,
   SxProps,
-  Theme as MUITheme
+  Theme as MUITheme,
+  Typography
 } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
 import { forwardRef, ReactNode } from "react";
@@ -47,16 +51,16 @@ const classes = {
       }
     }
   }),
-  dialogTitle: (theme: Theme) => ({
-    fontFamily: "Product Sans Regular",
-    fontWeight: 700,
-    fontSize: 22,
-    lineHeight: 1.3,
-    letterSpacing: "0.01em",
-    color: theme.palette.grey[800],
-    paddingBottom: 8,
-    paddingLeft: 6
-  })
+  titleContainer: {
+    paddingLeft: 32,
+    paddingRight: 32
+  },
+  closeButtonContainer: {
+    marginTop: 32,
+    marginBottom: 2,
+    paddingLeft: 32,
+    paddingRight: 32
+  }
 };
 
 const Transition = forwardRef(function Transition(
@@ -73,26 +77,29 @@ type Props = {
   actions?: ReactNode;
   title?: string;
   open: boolean;
-  toggle: () => void;
+  onClose: () => void;
   alignment?: IAlignment;
   className?: string;
   rootClassName?: string;
   maxWidth?: DialogProps["maxWidth"];
   sxPaper?: SxProps<MUITheme>;
   formId?: string;
+  description?: string;
   loading?: boolean;
 } & DialogProps;
+
 const Dialog = ({
   rootClassName,
   className,
   open,
-  toggle,
+  onClose,
   children,
   actions,
   title,
   sxPaper,
   formId,
   loading,
+  description,
   maxWidth = "sm",
   alignment = "bottom",
   ...dialogProps
@@ -106,12 +113,26 @@ const Dialog = ({
       open={open}
       TransitionComponent={Transition}
       keepMounted
-      onClose={toggle}
+      onClose={onClose}
       aria-describedby="alert-dialog-slide-description"
       css={classes.root(alignment, dialogProps.fullWidth)}
     >
-      {title && <DialogTitle css={classes.dialogTitle}>{title}</DialogTitle>}
+      <div className="flexRow justifyEnd" css={classes.closeButtonContainer}>
+        <IconButton aria-label="close" onClick={onClose} className="endSelf">
+          <img alt="close" src="/icons/close.svg" />
+        </IconButton>
+      </div>
+      {title && (
+        <div css={classes.titleContainer}>
+          <DialogTitle>{title}</DialogTitle>
+        </div>
+      )}
       <DialogContent className={cx("flexColumn stretch", className)}>
+        {description && (
+          <DialogContentText id="alert-dialog-slide-description">
+            {description}
+          </DialogContentText>
+        )}
         {children}
       </DialogContent>
       {actions && <DialogActions>{actions}</DialogActions>}

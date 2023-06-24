@@ -93,6 +93,39 @@ export const theme = createTheme({
           color: palette.success.light
         }
       }
+    },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Product Sans Bold",
+          fontWeight: 700,
+          fontSize: 22,
+          lineHeight: 1.3,
+          letterSpacing: "0.01em",
+          color: palette.grey[800],
+          padding: 0
+        }
+      }
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          paddingLeft: 32,
+          paddingRight: 32
+        }
+      }
+    },
+    MuiDialogContentText: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Product Sans Regular",
+          fontWeight: 400,
+          fontSize: 12,
+          lineHeight: 1.5,
+          letterSpacing: "0.01em",
+          color: palette.grey[600]
+        }
+      }
     }
   },
   typography: {

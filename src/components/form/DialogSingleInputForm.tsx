@@ -2,12 +2,24 @@ import Dialog from "../Dialog";
 
 type Props = {
   open: boolean;
-  toggle: () => void;
+  onClose: () => void;
   title: string;
+  description?: string;
 };
-const DialogSingleInputForm = ({ title, open, toggle }: Props) => {
+const DialogSingleInputForm = ({
+  description,
+  title,
+  open,
+  onClose
+}: Props) => {
   return (
-    <Dialog open={open} toggle={toggle} title={title}>
+    <Dialog
+      fullWidth
+      description={description}
+      open={open}
+      onClose={onClose}
+      title={title}
+    >
       <h1>cool</h1>
     </Dialog>
   );

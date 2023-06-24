@@ -13,6 +13,9 @@ const classes = {
     borderRadius: 6,
     minHeight: 48
   }),
+  rootWithDescription: {
+    minHeight: 68
+  },
   rootWithLabel: {
     overflow: "initial"
   },
@@ -109,7 +112,8 @@ const Card = ({
         classes.root,
         isActive && classes.active,
         hasShadow && classes.shadow,
-        label && classes.rootWithLabel
+        label && classes.rootWithLabel,
+        description && classes.rootWithDescription
       ]}
       className={cx(
         "flexColumn stretchSelf positionRelative",

@@ -7,15 +7,11 @@ import { Stack, Typography } from "@mui/material";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { LAYOUT_CONTENT_PADDING_X } from "../../utils/constants";
-import { css } from "@emotion/css";
 
 const classes = {
   general: {
     marginTop: 6
   },
-  billingCard: css({
-    minHeight: 68
-  }),
   section: {
     // https://github.com/emotion-js/emotion/issues/2444
     position: "relative" as "relative"
@@ -79,7 +75,6 @@ const General = ({ goToMyAccount }: Props) => {
               description={data.billing.features}
               withArrow
               onClick={handleGoToCurrentBilling}
-              rootClassName={classes.billingCard}
             />
             <div css={classes.divider} />
           </Section>

@@ -55,15 +55,21 @@ const MyAccount = ({ onBack }: Props) => {
   const handleOpenDialog = (name: IInputs) => setOpenFormDialog(name);
   const closeDialog = () => setOpenFormDialog(null);
 
-  const handleSaveLastName = <ILastNameInput>(values: ILastNameInput) => {
+  const handleSaveLastName = <ILastNameInput extends unknown>(
+    values: ILastNameInput
+  ) => {
     console.log("handleSaveLastName values", values);
   };
 
-  const handleSaveFirstName = <IFirstNameInput>(values: IFirstNameInput) => {
+  const handleSaveFirstName = <IFirstNameInput extends unknown>(
+    values: IFirstNameInput
+  ) => {
     console.log("handleSaveFirstName values", values);
   };
 
-  const handleSaveEmail = <IEmailInput>(values: IEmailInput) => {
+  const handleSaveEmail = <IEmailInput extends unknown>(
+    values: IEmailInput
+  ) => {
     console.log("handleSaveEmail values", values);
   };
 

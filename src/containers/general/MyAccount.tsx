@@ -11,16 +11,13 @@ import UploadAvatar from "../../components/UploadAvatar";
 import Section from "../../components/Section";
 import { useState } from "react";
 import DialogSingleInputForm from "../../components/form/DialogSingleInputForm";
-import {
-  ILastNameInput,
-  IFirstNameInput,
-  IEmailInput
-} from "../../types/user.type";
+import ChangePasswordDialog from "./ChangePasswordDialog";
 import {
   emailSchema,
   firstNameSchema,
   lastNameSchema
 } from "../../validations/user.validation";
+import { IChangePasswordInput } from "../../types/user.type";
 
 const currentUser = {
   objectId: "xxx",
@@ -34,9 +31,14 @@ const currentUser = {
 };
 
 const classes = {
-  changePasswordButton: (theme: Theme) => ({
+  changePasswordButtonText: (theme: Theme) => ({
     color: theme.palette.grey[800]
   }),
+  changePasswordButton: {
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
+  },
   passwordRight: css({
     paddingLeft: 6,
     paddingRight: 6
@@ -49,7 +51,10 @@ type Props = {
 };
 const MyAccount = ({ onBack }: Props) => {
   const [openFormDialog, setOpenFormDialog] = useState<IInputs | null>(null);
-  const handleClickPassword = () => console.log("change password");
+  const [openChangePasswordDialog, setOpenChangePasswordDialog] = useState<
+    boolean
+  >(false);
+
   const handleDisableNotification = () => console.log("disable Notification");
 
   const handleOpenDialog = (name: IInputs) => setOpenFormDialog(name);
@@ -72,6 +77,13 @@ const MyAccount = ({ onBack }: Props) => {
   ) => {
     console.log("handleSaveEmail values", values);
   };
+
+  const handleChangePassword = (values: IChangePasswordInput) => {
+    console.log("handleSaveEmail values", values);
+  };
+
+  const toggleChangePasswordDialog = () =>
+    setOpenChangePasswordDialog(!openChangePasswordDialog);
 
   return (
     <PageLayout
@@ -109,9 +121,10 @@ const MyAccount = ({ onBack }: Props) => {
                       variant="text"
                       type="button"
                       sx={{ px: 0 }}
-                      onClick={handleClickPassword}
+                      css={classes.changePasswordButton}
+                      onClick={toggleChangePasswordDialog}
                     >
-                      <Typography css={classes.changePasswordButton}>
+                      <Typography css={classes.changePasswordButtonText}>
                         Modifier
                       </Typography>
                     </Button>
@@ -181,6 +194,11 @@ const MyAccount = ({ onBack }: Props) => {
         onSubmit={handleSaveEmail}
         schema={emailSchema}
         defaultValue={currentUser.email}
+      />
+      <ChangePasswordDialog
+        open={openChangePasswordDialog}
+        onClose={toggleChangePasswordDialog}
+        onConfirm={handleChangePassword}
       />
     </PageLayout>
   );

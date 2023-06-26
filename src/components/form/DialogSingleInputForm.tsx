@@ -33,7 +33,7 @@ const DialogSingleInputForm = ({
 
   const { handleSubmit } = form;
 
-  const _onSubmit = <T>(values: T): void => {
+  const _onSubmit = <T extends unknown>(values: T): void => {
     onSubmit(values);
     onClose();
   };

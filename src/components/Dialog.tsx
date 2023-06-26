@@ -55,6 +55,9 @@ const classes = {
     paddingLeft: 32,
     paddingRight: 32
   },
+  titleContainerWithDescription: {
+    marginBottom: 17
+  },
   closeButtonContainer: {
     marginBottom: 2,
     paddingLeft: 32,
@@ -122,7 +125,12 @@ const Dialog = ({
         </IconButton>
       </div>
       {title && (
-        <div css={classes.titleContainer}>
+        <div
+          css={[
+            classes.titleContainer,
+            !description && classes.titleContainerWithDescription
+          ]}
+        >
           <DialogTitle>{title}</DialogTitle>
         </div>
       )}

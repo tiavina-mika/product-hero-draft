@@ -4,7 +4,6 @@
 import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import {
-  Box,
   Button,
   Dialog as MUIDialog,
   DialogActions,
@@ -15,8 +14,7 @@ import {
   IconButton,
   Slide,
   SxProps,
-  Theme as MUITheme,
-  Typography
+  Theme as MUITheme
 } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
 import { forwardRef, ReactNode } from "react";

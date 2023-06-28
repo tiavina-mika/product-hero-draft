@@ -22,10 +22,6 @@ export const changePasswordSchema = z
   .object({
     currentPassword: passwordFieldSchema,
     newPassword: passwordFieldSchema,
-    // newPasswordConfirmation: string().min(
-    //   1,
-    //   i18n.t('form.error.required', { field: i18n.t('user:passwordConfirmation') }),
-    // ),
     newPasswordConfirmation: passwordConfirmationSchema
   })
   // compare the password and confirm password fields

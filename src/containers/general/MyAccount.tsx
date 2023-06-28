@@ -151,7 +151,7 @@ const MyAccount = ({ onBack }: Props) => {
                       onClick={handleDisableNotification}
                     />
                     <Card
-                      left={<img alt="push" src="/icons/disabled.svg" />}
+                      left={<img alt="push" src="/icons/record.svg" />}
                       title="Push"
                       description="Activer les notifications"
                       withArrow

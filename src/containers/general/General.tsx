@@ -104,7 +104,7 @@ const General = ({ goToMyAccount }: Props) => {
                 onClick={handleGoToPolicy}
               />
               <Card
-                left={<img alt="policy" src="/icons/eye.svg" />}
+                left={<img alt="policy" src="/icons/phone.svg" />}
                 title="Version"
                 onClick={handleGoToVersion}
                 right={<img alt="assistance" src="/icons/chevron-down.svg" />}

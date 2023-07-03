@@ -80,8 +80,16 @@ const options: IOption[] = [
     value: "general"
   },
   {
+    label: "Produits",
+    value: "products"
+  },
+  {
     label: "Drivers",
     value: "drivers"
+  },
+  {
+    label: "Workflow",
+    value: "workflow"
   },
   {
     label: "OKR",
@@ -94,6 +102,10 @@ const options: IOption[] = [
   {
     label: "Profils",
     value: "profiles"
+  },
+  {
+    label: "Utilisateurs",
+    value: "users"
   }
 ];
 

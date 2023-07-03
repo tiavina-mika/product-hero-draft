@@ -22,6 +22,8 @@ export type ISettingsTab =
   | "teams"
   | "profiles"
   | "general"
+  | "users"
+  | "workflow"
   | "products";
 export type IHomeTab = "backlog" | "roadmap" | "settings" | "myFocus";
 export type IAlert = {

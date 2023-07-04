@@ -17,7 +17,7 @@ const options = [
 ];
 type Props = {
   open: boolean;
-  onClose: () => boolean;
+  onClose: () => void;
 };
 const EntitySelectionDialog = ({ open, onClose }: Props) => {
   const handleSelectWorkspace = () => {};

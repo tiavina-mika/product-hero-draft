@@ -7,6 +7,7 @@ import ButtonsSwitch from "../../components/ButtonsSwitch";
 import { Grid, Stack, Typography } from "@mui/material";
 import { ISelectOption } from "../../types/app.type";
 import Card from "../../components/Card";
+import { css } from "@emotion/css";
 
 const options = [
   {
@@ -42,6 +43,11 @@ const selectOptions = [
   }
 ];
 
+const classes = {
+  card: css({
+    minHeight: 80
+  })
+};
 type Props = {
   open: boolean;
   onClose: () => void;
@@ -63,13 +69,16 @@ const EntitySelectionDialog = ({ open, onClose }: Props) => {
           onSelect={handleSelectWorkspace}
           options={options}
           className="stretchSelf"
-          // buttonActiveClassname={classes.activeButton}
           color="default"
         />
         <Grid container spacing={2}>
           {selectOptions.map((option: ISelectOption, index: number) => (
             <Grid item xs={6} key={option.value + index}>
-              <Card className="flexCenter" hasShadow>
+              <Card
+                className={classes.card}
+                contentClassName="flexCenter"
+                hasShadow
+              >
                 <Stack spacing={0.5}>
                   <div className="flexCenter">
                     <img

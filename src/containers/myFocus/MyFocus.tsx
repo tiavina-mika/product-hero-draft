@@ -5,6 +5,10 @@ import { jsx } from "@emotion/react";
 import { Theme } from "@emotion/react";
 import { css } from "@emotion/css";
 import { Typography } from "@mui/material";
+import AddIcon from "../../components/AddIcon";
+import EntitySelectionDialog from "./EntitySelectionDialog";
+
+import { useState } from "react";
 
 const classes = {
   // title
@@ -112,6 +116,13 @@ const classes = {
 };
 
 const MyFocus = () => {
+  const [openEntitySelectionDialog, setOpenEntitySelectionDialog] = useState<
+    boolean
+  >(false);
+
+  const toggleOpenEntitySelectionDialog = () =>
+    setOpenEntitySelectionDialog(!openEntitySelectionDialog);
+
   return (
     <div className="flexColumn stretchSelf flex1">
       {/* ------------ title ------------ */}
@@ -287,6 +298,8 @@ const MyFocus = () => {
           </div>
         </div>
       </div>
+      <EntitySelectionDialog open onClose={toggleOpenEntitySelectionDialog} />
+      <AddIcon onClick={toggleOpenEntitySelectionDialog} />
     </div>
   );
 };

@@ -27,6 +27,7 @@ const EntitySelectionDialog = ({ open, onClose }: Props) => {
       open={open}
       fullWidth
       maxWidth="xl"
+      withCloseButton={false}
       // css={classes.dialog}
     >
       <div className="flexCenter stretchSelf flex1">

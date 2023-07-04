@@ -86,6 +86,7 @@ type Props = {
   formId?: string;
   description?: string;
   loading?: boolean;
+  withCloseButton?: boolean;
 } & DialogProps;
 
 const Dialog = ({
@@ -100,6 +101,7 @@ const Dialog = ({
   formId,
   loading,
   description,
+  withCloseButton = true,
   maxWidth = "sm",
   alignment = "bottom",
   ...dialogProps
@@ -117,11 +119,13 @@ const Dialog = ({
       aria-describedby="alert-dialog-slide-description"
       css={classes.root(alignment, dialogProps.fullWidth)}
     >
-      <div className="flexRow justifyEnd" css={classes.closeButtonContainer}>
-        <IconButton aria-label="close" onClick={onClose} className="endSelf">
-          <img alt="close" src="/icons/close.svg" />
-        </IconButton>
-      </div>
+      {withCloseButton && (
+        <div className="flexRow justifyEnd" css={classes.closeButtonContainer}>
+          <IconButton aria-label="close" onClick={onClose} className="endSelf">
+            <img alt="close" src="/icons/close.svg" />
+          </IconButton>
+        </div>
+      )}
       {title && (
         <div
           css={[

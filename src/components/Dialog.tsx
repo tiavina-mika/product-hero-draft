@@ -134,6 +134,7 @@ const Dialog = ({
           <DialogTitle>{title}</DialogTitle>
         </div>
       )}
+
       <DialogContent className={cx("flexColumn stretch", className)}>
         {description && (
           <DialogContentText id="alert-dialog-slide-description">

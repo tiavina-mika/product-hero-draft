@@ -94,13 +94,13 @@ const MyFocusLayout = ({ children }: Props) => {
             </Stack>
           </div>
         </div>
-        <div css={classes.content}>
+        <div css={classes.content} className="stretchSelf">
           {/* simulate React Router outlet component */}
           {children}
         </div>
       </div>
       <Dialog
-        toggle={toggleOpenWorkspaceDialog}
+        onClose={toggleOpenWorkspaceDialog}
         open={openWorkspaceDialog}
         fullWidth
         maxWidth="xl"

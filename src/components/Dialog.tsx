@@ -80,7 +80,6 @@ type Props = {
   onClose: () => void;
   alignment?: IAlignment;
   className?: string;
-  rootClassName?: string;
   maxWidth?: DialogProps["maxWidth"];
   sxPaper?: SxProps<MUITheme>;
   formId?: string;
@@ -90,7 +89,6 @@ type Props = {
 } & DialogProps;
 
 const Dialog = ({
-  rootClassName,
   className,
   open,
   onClose,

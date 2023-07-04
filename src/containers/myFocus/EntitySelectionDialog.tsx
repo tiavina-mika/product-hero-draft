@@ -4,6 +4,7 @@
 import { jsx } from "@emotion/react";
 import Dialog from "../../components/Dialog";
 import ButtonsSwitch from "../../components/ButtonsSwitch";
+import { css } from "@emotion/css";
 
 const options = [
   {
@@ -11,10 +12,16 @@ const options = [
     value: "roudoudou"
   },
   {
-    label: "+produit",
+    label: "+Produit",
     value: "product"
   }
 ];
+
+const classes = {
+  activeButton: css({
+    backgroundColor: "#fff"
+  })
+};
 type Props = {
   open: boolean;
   onClose: () => void;
@@ -33,8 +40,10 @@ const EntitySelectionDialog = ({ open, onClose }: Props) => {
       <div className="flexCenter stretchSelf flex1">
         <ButtonsSwitch
           onSelect={handleSelectWorkspace}
-          // css={classes.switchRoot}
           options={options}
+          className="stretchSelf"
+          // buttonActiveClassname={classes.activeButton}
+          color="default"
         />
       </div>
     </Dialog>

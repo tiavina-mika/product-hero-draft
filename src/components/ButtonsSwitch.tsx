@@ -8,28 +8,7 @@ import { Typography } from "@mui/material";
 import { useState } from "react";
 import { ISelectOption, ISelectedOptionValue } from "../types/app.type";
 
-const classes = {
-  root: (theme: Theme) => ({
-    borderRadius: 100,
-    backgroundColor: theme.palette.grey[100],
-    padding: 4,
-    height: 40
-  }),
-  activeButton: (theme: Theme) => ({
-    backgroundColor: theme.palette.primary.main
-  }),
-  inactiveButton: {
-    cursor: "pointer"
-  },
-  defaultButton: {
-    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.05)",
-    borderRadius: 100,
-    border: "none"
-  },
-  activeLabel: {
-    color: "#fff"
-  }
-};
+type IColor = "primary" | "default";
 
 type Props = {
   className?: string;
@@ -37,13 +16,39 @@ type Props = {
   labelActiveClassname?: string;
   options: ISelectOption[];
   onSelect: (value: ISelectedOptionValue) => void;
+  color?: IColor;
 };
+
+const classes = {
+  root: (theme: Theme) => ({
+    borderRadius: 100,
+    backgroundColor: theme.palette.grey[100],
+    padding: 4,
+    height: 40
+  }),
+  activeButton: (color: IColor) => (theme: Theme) => ({
+    backgroundColor: color === "default" ? "#fff" : theme.palette.primary.main
+  }),
+  intactiveButton: {
+    cursor: "pointer"
+  },
+  defaultButton: {
+    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.05)",
+    borderRadius: 100,
+    border: "none"
+  },
+  activeLabel: (color: IColor) => (theme: Theme) => ({
+    color: color === "primary" ? "#fff" : theme.palette.primary.main
+  })
+};
+
 const ButtonsSwitch = ({
   className,
   options,
   onSelect,
   buttonActiveClassname,
-  labelActiveClassname
+  labelActiveClassname,
+  color = "primary"
 }: Props) => {
   const [checkedOption, setCheckedOption] = useState<ISelectedOptionValue>(
     options[0].value
@@ -61,15 +66,17 @@ const ButtonsSwitch = ({
           css={[
             classes.defaultButton,
             option.value === checkedOption
-              ? classes.activeButton
-              : classes.inactiveButton
+              ? classes.activeButton(color)
+              : classes.intactiveButton
           ]}
           className={cx("flex1 stretchSelf", buttonActiveClassname)}
           onClick={() => handleCheck(option.value)}
         >
           <Typography
-            variant="body2"
-            css={option.value === checkedOption ? classes.activeLabel : null}
+            variant="body1"
+            css={
+              option.value === checkedOption ? classes.activeLabel(color) : null
+            }
             className={labelActiveClassname}
           >
             {option.label}

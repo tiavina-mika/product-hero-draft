@@ -6,6 +6,7 @@ import { Theme } from "@emotion/react";
 import { css } from "@emotion/css";
 import { Typography } from "@mui/material";
 import AddIcon from "../../components/AddIcon";
+import Slider from "../../components/form/inputs/Slider";
 import EntitySelectionDialog from "./EntitySelectionDialog";
 
 import { useState } from "react";
@@ -125,6 +126,7 @@ const MyFocus = () => {
 
   return (
     <div className="flexColumn stretchSelf flex1">
+      <Slider />
       {/* ------------ title ------------ */}
       <div css={classes.title} className="flexColumn stretchSelf">
         <Typography variant="h1" css={classes.titleText}>

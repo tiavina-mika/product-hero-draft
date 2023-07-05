@@ -145,6 +145,21 @@ export const theme = createTheme({
     }
   },
   typography: {
+    fontFamily: [
+      "Product Sans Regular",
+      "Product Sans Medium",
+      "Product Sans Bold",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"'
+    ].join(","),
     h1: {
       ...titleTypographyStyles,
       fontSize: 32,

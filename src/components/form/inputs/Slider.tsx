@@ -11,17 +11,19 @@ type IRootClass = {
   thumbSize?: number;
   withLabel?: boolean;
   thumbIcon?: string;
+  color?: string;
 };
 
 const classes = {
   root: ({
     thumbIcon,
+    color,
     height = 8,
     thumbSize = 24,
     withLabel = false
   }: IRootClass) => (theme: Theme) => {
     const values: Record<string, any> = {
-      color: theme.palette.info.main,
+      color: color || theme.palette.info.main,
       height,
       "& .MuiSlider-track": {
         border: "none"
@@ -80,6 +82,7 @@ const classes = {
 
 type Props = {
   className?: string;
+  color?: string;
   value: number | number[];
   onChange: (value: number | number[]) => void;
 } & IRootClass &
@@ -90,9 +93,10 @@ const Slider = ({
   value,
   onChange,
   height,
-  withLabel,
+  withLabel = true,
   thumbSize,
   thumbIcon,
+  color,
   ...props
 }: Props) => {
   const handleSliderChange = (_: Event, newValue: number | number[]) => {
@@ -111,7 +115,8 @@ const Slider = ({
         thumbSize,
         height,
         withLabel,
-        thumbIcon
+        thumbIcon,
+        color
       })}
     />
   );

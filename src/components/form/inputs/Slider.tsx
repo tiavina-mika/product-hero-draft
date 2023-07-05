@@ -4,17 +4,22 @@
 import { jsx, Theme } from "@emotion/react";
 
 import * as React from "react";
-import MUISlider from "@mui/material/Slider";
+import MUISlider, { SliderProps } from "@mui/material/Slider";
 
 type IRootClass = {
   height?: number;
   thumbSize?: number;
   withLabel?: boolean;
+  thumbIcon?: string;
 };
+
 const classes = {
-  root: ({ height = 8, thumbSize = 24, withLabel = false }: IRootClass) => (
-    theme: Theme
-  ) => {
+  root: ({
+    thumbIcon,
+    height = 8,
+    thumbSize = 24,
+    withLabel = false
+  }: IRootClass) => (theme: Theme) => {
     const values: Record<string, any> = {
       color: theme.palette.info.main,
       height,
@@ -24,10 +29,11 @@ const classes = {
       "& .MuiSlider-thumb": {
         height: thumbSize,
         width: thumbSize,
-        backgroundColor: "#fff",
-        backgroundImage: `url("/icons/cloud.svg")`,
-        backgroundPosition: "50% 30%",
-        backgroundRepeat: "no-repeat",
+        background: thumbIcon
+          ? `#fff url("${thumbIcon}") no-repeat 50% 30%`
+          : "#fff",
+        // backgroundPosition: "50% 30%",
+        // backgroundRepeat: "no-repeat",
         border: "1px solid currentColor",
         "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
           boxShadow: "inherit"
@@ -72,13 +78,41 @@ const classes = {
   }
 };
 
-const Slider = () => {
+type Props = {
+  className?: string;
+  value: number | number[];
+  onChange: (value: number | number[]) => void;
+} & IRootClass &
+  Omit<SliderProps, "onChange">; // use our ownn onChange
+
+const Slider = ({
+  className,
+  value,
+  onChange,
+  height,
+  withLabel,
+  thumbSize,
+  thumbIcon,
+  ...props
+}: Props) => {
+  const handleSliderChange = (_: Event, newValue: number | number[]) => {
+    onChange(newValue);
+  };
+
   return (
     <MUISlider
+      {...props}
+      className={className}
       valueLabelDisplay="auto"
       aria-label="pretto slider"
-      defaultValue={20}
-      css={classes.root({})}
+      value={value}
+      onChange={handleSliderChange}
+      css={classes.root({
+        thumbSize,
+        height,
+        withLabel,
+        thumbIcon
+      })}
     />
   );
 };

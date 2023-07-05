@@ -298,7 +298,10 @@ const MyFocus = () => {
           </div>
         </div>
       </div>
-      <EntitySelectionDialog open onClose={toggleOpenEntitySelectionDialog} />
+      <EntitySelectionDialog
+        open={openEntitySelectionDialog}
+        onClose={toggleOpenEntitySelectionDialog}
+      />
       <AddIcon onClick={toggleOpenEntitySelectionDialog} />
     </div>
   );

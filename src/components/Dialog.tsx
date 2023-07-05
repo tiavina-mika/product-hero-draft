@@ -86,6 +86,7 @@ type Props = {
   description?: string;
   loading?: boolean;
   withCloseButton?: boolean;
+  closeButtonPosition?: "end" | "start";
 } & DialogProps;
 
 const Dialog = ({
@@ -102,6 +103,7 @@ const Dialog = ({
   withCloseButton = true,
   maxWidth = "sm",
   alignment = "bottom",
+  closeButtonPosition = "end",
   ...dialogProps
 }: Props) => {
   const isSmallScreen = useBreakpoint();
@@ -118,7 +120,13 @@ const Dialog = ({
       css={classes.root(alignment, dialogProps.fullWidth)}
     >
       {withCloseButton && (
-        <div className="flexRow justifyEnd" css={classes.closeButtonContainer}>
+        <div
+          className={cx(
+            "flexRow",
+            closeButtonPosition === "end" ? "justifyEnd" : "justifyStart"
+          )}
+          css={classes.closeButtonContainer}
+        >
           <IconButton aria-label="close" onClick={onClose} className="endSelf">
             <img alt="close" src="/icons/close.svg" />
           </IconButton>

@@ -7,9 +7,10 @@ import ButtonsSwitch from "../../components/ButtonsSwitch";
 import { Stack, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
-import { ISelectOption } from "../../types/app.type";
+import { IEntitySelectOption, IEntityType } from "../../types/ennity.type";
 import Card from "../../components/Card";
 import { css } from "@emotion/css";
+import { useState } from "react";
 
 const options = [
   {
@@ -22,7 +23,7 @@ const options = [
   }
 ];
 
-const selectOptions = [
+const selectOptions: IEntitySelectOption[] = [
   {
     icon: "problematic",
     label: "Problematique",
@@ -60,7 +61,18 @@ type Props = {
   onClose: () => void;
 };
 const EntitySelectionDialog = ({ open, onClose }: Props) => {
+  const [
+    selectedEntityType,
+    setSelectedEntityType
+  ] = useState<IEntityType | null>(null);
+
   const handleSelectWorkspace = () => {};
+  const closeSelectEntityTypeDialog = () => setSelectedEntityType(null);
+
+  const handleSelectEntityType = (type: IEntityType) => {
+    setSelectedEntityType(type);
+    onClose();
+  };
 
   return (
     <Dialog
@@ -70,7 +82,6 @@ const EntitySelectionDialog = ({ open, onClose }: Props) => {
       maxWidth="xl"
       withCloseButton={false}
       css={classes.dialog}
-      // css={classes.dialog}
     >
       <Stack spacing={2} className="flexCenter stretchSelf flex1">
         <ButtonsSwitch
@@ -81,9 +92,10 @@ const EntitySelectionDialog = ({ open, onClose }: Props) => {
         />
         <div className="stretchSelf flex1">
           <Grid container spacing={2} className="stretchSelf flex1">
-            {selectOptions.map((option: ISelectOption, index: number) => (
+            {selectOptions.map((option: IEntitySelectOption, index: number) => (
               <Grid xs={6} key={option.value + index}>
                 <Card
+                  onClick={() => handleSelectEntityType(option.value)}
                   className={classes.card}
                   contentClassName="flexCenter"
                   hasShadow
@@ -103,6 +115,16 @@ const EntitySelectionDialog = ({ open, onClose }: Props) => {
           </Grid>
         </div>
       </Stack>
+      <Dialog
+        onClose={closeSelectEntityTypeDialog}
+        open={selectedEntityType === "problematic"}
+        fullWidth
+        maxWidth="xl"
+        withCloseButton
+        closeButtonPosition="start"
+      >
+        xx
+      </Dialog>
     </Dialog>
   );
 };

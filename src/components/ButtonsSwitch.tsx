@@ -29,7 +29,7 @@ const classes = {
   activeButton: (color: IColor) => (theme: Theme) => ({
     backgroundColor: color === "default" ? "#fff" : theme.palette.primary.main
   }),
-  intactiveButton: {
+  inactiveButton: {
     cursor: "pointer"
   },
   defaultButton: {

@@ -3,10 +3,8 @@
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
 import Slider from "../inputs/Slider";
-import { getSliderColorByPercent } from "../../../utils/app.utils";
 
 import { useState } from "react";
-import { useTheme } from "@mui/material";
 
 /**
  * just simulate the field
@@ -14,7 +12,6 @@ import { useTheme } from "@mui/material";
  */
 const DriverSliderField = () => {
   const [value, setValue] = useState<number | number[]>(20);
-  const theme = useTheme();
 
   const onChange = (newValue: number | number[]) => {
     setValue(newValue);
@@ -27,7 +24,6 @@ const DriverSliderField = () => {
         value={value}
         onChange={onChange}
         withLabel={false}
-        color={getSliderColorByPercent(value as number, theme.palette) as any}
       />
     </div>
   );

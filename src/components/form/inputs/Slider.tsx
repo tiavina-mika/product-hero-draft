@@ -1,10 +1,11 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
-import { jsx, Theme } from "@emotion/react";
+import { jsx, Theme, useTheme } from "@emotion/react";
 
 import * as React from "react";
 import MUISlider, { SliderProps } from "@mui/material/Slider";
+import { getSliderColorByPercent } from "../../../utils/app.utils";
 
 type IRootClass = {
   height?: number;
@@ -99,6 +100,8 @@ const Slider = ({
   color,
   ...props
 }: Props) => {
+  const theme = useTheme();
+
   const handleSliderChange = (_: Event, newValue: number | number[]) => {
     onChange(newValue);
   };
@@ -116,7 +119,7 @@ const Slider = ({
         height,
         withLabel,
         thumbIcon,
-        color
+        color: color || getSliderColorByPercent(value as number, theme.palette)
       })}
     />
   );

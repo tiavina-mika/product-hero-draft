@@ -3,6 +3,12 @@ import { Theme } from "@emotion/react";
 const paletteColors = ["success", "info", "warning", "error"];
 const paletteColorThemes = ["light", "main", "dark"];
 
+/**
+ * the slider color change depending of the value (percentage)
+ * @param value 0 to 100
+ * @param palette mui theme palette colors (success, info, error, warning), each of it has light, main and dark
+ * @returns
+ */
 export const getSliderColorByPercent = (
   value: number,
   palette: Theme["palette"]

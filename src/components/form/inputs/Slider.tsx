@@ -46,7 +46,7 @@ const classes = {
         }
       },
       "& .MuiSlider-rail": {
-        opactity: 1,
+        opacity: 1,
         backgroundColor: theme.palette.grey[100]
       }
     };

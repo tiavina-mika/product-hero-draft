@@ -4,11 +4,10 @@
 import { jsx } from "@emotion/react";
 import { cx } from "@emotion/css";
 import { Theme } from "@emotion/react";
-import { IconButton, Stack } from "@mui/material";
+import { IconButton, Stack, Typography } from "@mui/material";
 import { ReactNode } from "react";
 import { getAlignment } from "../../utils/utils";
 
-import Description from "../typography/Description";
 import Title from "../typography/Title";
 import TopIcon from "./TopIcon";
 import { LAYOUT_CONTENT_PADDING_X } from "../../utils/constants";
@@ -32,6 +31,11 @@ const classes = {
   titleContainer: (alignment: "left" | "center" | "right") => ({
     alignItems: getAlignment(alignment)
   }),
+  description: ({ alignment }: any) => ({
+    lineHeight: 1.6,
+    letterSpacing: "0.01em",
+    textAlign: alignment
+  }),
   imageContainer: (alignment: "left" | "center" | "right") => ({
     "& img": {
       width: "100%"
@@ -44,8 +48,7 @@ const classes = {
     position: "absolute" as "absolute",
     left: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
     right: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
-    top: 34,
-    
+    top: 34
   })
 };
 
@@ -119,7 +122,11 @@ const PageLayout = ({
               css={imageContainerClassName}
             />
           )}
-          <Stack className="stretchSelf flexColumn positionRelative" spacing={textSpacing} css={classes.titleContainer(alignment)}>
+          <Stack
+            className="stretchSelf flexColumn positionRelative"
+            spacing={textSpacing}
+            css={classes.titleContainer(alignment)}
+          >
             {title && (
               <div className="stretchSelf">
                 <Title
@@ -131,14 +138,16 @@ const PageLayout = ({
             )}
             {description && (
               <div className="stretchSelf">
-                <Description
-                  text={description}
-                  alignment={alignment}
+                <Typography
+                  variant="h4"
+                  css={classes.description({ alignment })}
                   className={descriptionClassName}
-                />
+                >
+                  {description}
+                </Typography>
               </div>
             )}
-           {withHeaderDivider && <div css={classes.divider} />}
+            {withHeaderDivider && <div css={classes.divider} />}
           </Stack>
         </Stack>
         {children && (

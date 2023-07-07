@@ -3,6 +3,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/css";
 import { jsx, Theme } from "@emotion/react";
+import { Button } from "@mui/material";
 import PageLayout from "../../components/layouts/PageLayout";
 import Section from "../../components/Section";
 
@@ -11,7 +12,7 @@ import EntitySelection from "./EntitySelection";
 
 const classes = {
   layout: css({
-    paddingTop: 74
+    marginTop: 74
   }),
   section: {
     marginTop: 56
@@ -47,11 +48,9 @@ const EntityCreationSuccess = () => {
         </span>
       }
       rootClassName={classes.layout}
-      // contentClassName={classes.content}
       textSpacing={1}
       titleSpacing={1.5}
       alignment="center"
-      // onBack={onBack}
     >
       <Section
         alignment="center"
@@ -61,6 +60,9 @@ const EntityCreationSuccess = () => {
       >
         <div className="stretchSelf flex1">
           <EntitySelection onSelect={handleSelectEntityType} />
+        </div>
+        <div className="flexRow justifyEnd">
+          <Button variant="contained">Mon focus</Button>
         </div>
       </Section>
     </PageLayout>

@@ -12,6 +12,7 @@ const classes = {
     justifyContent: !alignment ? "flex-start" : getAlignment(alignment)
   })
 };
+
 type Props = {
   title: string;
   children: ReactNode;
@@ -20,6 +21,7 @@ type Props = {
   onClick?: () => void;
   alignment?: "left" | "center" | "right";
 };
+
 const Section = ({
   alignment = "left",
   title,

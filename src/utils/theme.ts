@@ -168,7 +168,8 @@ export const theme = createTheme({
     h2: {
       ...titleTypographyStyles,
       fontSize: 22,
-      lineHeight: 1.3
+      lineHeight: 1.3,
+      letterSpacing: "0.01em"
     },
     h3: {
       ...titleTypographyStyles,

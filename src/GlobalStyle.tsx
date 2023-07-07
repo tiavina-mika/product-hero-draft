@@ -168,6 +168,10 @@ const getGlobalStyles = (theme: Theme & MUITheme) => {
       cursor: pointer;
     }
 
+    .fw700 {
+      font-weight: 700;
+    }
+
     .red {
       background-color: red;
     }

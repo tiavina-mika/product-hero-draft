@@ -2,17 +2,11 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Theme } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 const classes = {
-  root: ({ alignment }: any) => (theme: Theme) => ({
-    fontWeight: 700,
-    fontSize: 22,
-    lineHeight: 1.3,
-    letterSpacing: "0.01em",
-    color: theme.palette.grey[800],
+  root: ({ alignment }: any) => ({
     textAlign: alignment
   })
 };

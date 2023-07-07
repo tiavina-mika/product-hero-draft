@@ -8,7 +8,6 @@ import { IconButton, Stack, Typography } from "@mui/material";
 import { ReactNode } from "react";
 import { getAlignment } from "../../utils/utils";
 
-import Title from "../typography/Title";
 import TopIcon from "./TopIcon";
 import { LAYOUT_CONTENT_PADDING_X } from "../../utils/constants";
 
@@ -30,6 +29,9 @@ const classes = {
   }),
   titleContainer: (alignment: "left" | "center" | "right") => ({
     alignItems: getAlignment(alignment)
+  }),
+  title: ({ alignment }: any) => ({
+    textAlign: alignment
   }),
   description: ({ alignment }: any) => ({
     lineHeight: 1.6,
@@ -129,11 +131,13 @@ const PageLayout = ({
           >
             {title && (
               <div className="stretchSelf">
-                <Title
-                  text={title}
-                  alignment={alignment}
-                  className={titleClassName}
-                />
+                <Typography
+                  variant="h2"
+                  className={cx(titleClassName, "fw700")}
+                  css={classes.title({ alignment })}
+                >
+                  {title}
+                </Typography>
               </div>
             )}
             {description && (

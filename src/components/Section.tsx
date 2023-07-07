@@ -21,7 +21,7 @@ type Props = {
   alignment?: "left" | "center" | "right";
 };
 const Section = ({
-  alignment,
+  alignment = "left",
   title,
   children,
   className,

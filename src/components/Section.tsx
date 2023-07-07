@@ -5,23 +5,45 @@ import { cx } from "@emotion/css";
 import { jsx } from "@emotion/react";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { ReactNode } from "react";
+import { getAlignment } from "../utils/utils";
 
+const classes = {
+  titleContainer: (alignment: "left" | "center" | "right") => ({
+    justifyContent: !alignment ? "flex-start" : getAlignment(alignment)
+  })
+};
 type Props = {
   title: string;
   children: ReactNode;
   className?: string;
+  titleClassName?: string;
   onClick?: () => void;
+  alignment?: "left" | "center" | "right";
 };
-const Section = ({ title, children, className, onClick }: Props) => {
+const Section = ({
+  alignment,
+  title,
+  children,
+  className,
+  onClick,
+  titleClassName
+}: Props) => {
   return (
     <Stack
       component="section"
       className={cx("stretchSelf flex1", className)}
       spacing={2.2}
     >
-      <div className="flexRow spaceBetween center">
+      <div
+        className={cx("flexRow center", onClick && "spaceBetween")}
+        css={classes.titleContainer(alignment)}
+      >
         {/* ----- title ----- */}
-        <Typography variant="h3" sx={{ fontFamily: "Product Sans Bold" }}>
+        <Typography
+          className={titleClassName}
+          variant="h3"
+          sx={{ fontFamily: "Product Sans Bold" }}
+        >
           {title}
         </Typography>
         {/* ----- right icon ----- */}

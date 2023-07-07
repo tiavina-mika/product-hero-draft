@@ -6,7 +6,7 @@ import { Theme } from "@emotion/react";
 import { css } from "@emotion/css";
 import { Typography } from "@mui/material";
 import AddIcon from "../../components/AddIcon";
-import Slider from "../../components/form/inputs/Slider";
+import DriverSliderField from "../../components/form/fields/DriverSliderField";
 import EntitySelectionDialog from "./EntitySelectionDialog";
 
 import { useState } from "react";
@@ -126,11 +126,8 @@ const MyFocus = () => {
 
   return (
     <div className="flexColumn stretchSelf flex1">
-      <Slider
-        thumbIcon="/icons/cloud.svg"
-        value={10}
-        onChange={(v) => console.log("v", v)}
-      />
+      {/* just for test */}
+      <DriverSliderField />
       {/* ------------ title ------------ */}
       <div css={classes.title} className="flexColumn stretchSelf">
         <Typography variant="h1" css={classes.titleText}>

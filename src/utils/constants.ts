@@ -49,6 +49,11 @@ export const PATH_NAMES = {
   general: {
     root: "root",
     myAccount: "myAccount"
+  },
+  entity: {
+    problematic: {
+      summary: "problematic-summary"
+    }
   }
 };
 

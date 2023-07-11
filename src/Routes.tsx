@@ -11,7 +11,7 @@ import { ITeam } from "./types/team.type";
 import { IDriver } from "./types/driver.type";
 import { IOkr } from "./types/okr.type";
 
-import EntityCreationSuccess from "./containers/myFocus/EntityCreationSuccess";
+// import EntityCreationSuccess from "./containers/myFocus/EntityCreationSuccess";
 
 import { HOME_TABS, PATH_NAMES, SETTING_TABS } from "./utils/constants";
 
@@ -153,7 +153,7 @@ const Route = () => {
     );
   }
 
-  return <EntityCreationSuccess />;
+  // return <EntityCreationSuccess />;
 
   return (
     <HomeLayout

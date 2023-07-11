@@ -8,9 +8,10 @@ import SectionCard from "../../../components/sections/SectionCard";
 import SectionCardContentItem from "../../../components/sections/SectionCardContentItem";
 
 const entity = {
+  description: "Nous constatons une réduction du nombre d’inscription.",
   drivers: [
-    { driver: { objectId: "d01", name: "Acquisition" } },
-    { driver: { objectId: "d02", name: "Expérience Client" } }
+    { driver: { objectId: "d01", name: "Acquisition" }, impact: 80 },
+    { driver: { objectId: "d02", name: "Expérience Client" }, impact: 80 }
   ],
   results: [
     { objectId: "r01", name: "FTB Croissance 20%" },
@@ -37,9 +38,7 @@ const ProbllematicSummary = () => {
         {/* description */}
         <SectionCard
           title="Problème"
-          description={
-            "“Nous constatons une réduction du nombre d’inscription.”"
-          }
+          description={`“${entity.description}.”`}
         />
         {/* drivers */}
         <SectionCard title="Drivers">

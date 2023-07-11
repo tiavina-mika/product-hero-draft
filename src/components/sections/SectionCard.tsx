@@ -33,6 +33,7 @@ type Props = {
   className?: string;
   titleClassName?: string;
   description?: string;
+  spacing?: number;
 };
 
 const SectionCard = ({
@@ -40,7 +41,8 @@ const SectionCard = ({
   children,
   className,
   description,
-  titleClassName
+  titleClassName,
+  spacing = 1.7
 }: Props) => {
   return (
     <Card
@@ -64,7 +66,7 @@ const SectionCard = ({
             </div>
           )}
         </Stack>
-        {children && <div>{children}</div>}
+        {children && <Stack spacing={spacing}>{children}</Stack>}
       </Stack>
     </Card>
   );

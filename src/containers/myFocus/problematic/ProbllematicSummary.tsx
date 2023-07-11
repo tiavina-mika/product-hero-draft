@@ -17,7 +17,8 @@ const entity = {
     { objectId: "r01", name: "FTB Croissance 20%" },
     { objectId: "r02", name: "PS +20 sur les nouveaux clients" },
     { objectId: "r03", name: "Automatiser le parcours à 80%" }
-  ]
+  ],
+  endDate: "17 Mai 2024"
 };
 
 const ProbllematicSummary = () => {
@@ -57,6 +58,13 @@ const ProbllematicSummary = () => {
               key={result.objectId + index}
             />
           ))}
+        </SectionCard>
+        {/* endDate */}
+        <SectionCard title="Deadline">
+          <SectionCardContentItem
+            icon="/icons/calendar.svg"
+            title={entity.endDate}
+          />
         </SectionCard>
       </Stack>
     </PageLayout>

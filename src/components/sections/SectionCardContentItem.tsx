@@ -27,7 +27,7 @@ const SectionCardContentItem = ({
   titleClassName
 }: Props) => {
   return (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={1.2} alignItems="center">
       {/* ----- title ----- */}
       {icon && (
         <div>

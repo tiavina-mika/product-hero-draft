@@ -4,6 +4,7 @@
 import { css } from "@emotion/css";
 import { jsx, Theme } from "@emotion/react";
 import PageLayout from "../../../components/layouts/PageLayout";
+import SectionCard from "../../../components/SectionCard";
 
 const classes = {
   layout: css({
@@ -35,7 +36,11 @@ const ProbllematicSummary = () => {
       titleSpacing={1.5}
       onBack={handleBack}
     >
-      <h1>cool</h1>
+      {/* <h1>cool</h1> */}
+      <SectionCard
+        title="Problème"
+        description={"“Nous constatons une réduction du nombre d’inscription.”"}
+      />
     </PageLayout>
   );
 };

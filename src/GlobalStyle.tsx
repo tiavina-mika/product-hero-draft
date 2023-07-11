@@ -172,6 +172,28 @@ const getGlobalStyles = (theme: Theme & MUITheme) => {
       font-weight: 700;
     }
 
+    .textUpperCase {
+      text-transform: uppercase;
+    }
+    .grey50 {
+      color: ${theme.palette.grey[50]};
+    }
+    .grey100 {
+      color: ${theme.palette.grey[100]};
+    }
+    .grey300 {
+      color: ${theme.palette.grey[300]};
+    }
+    .grey600 {
+      color: ${theme.palette.grey[600]};
+    }
+    .grey800 {
+      color: ${theme.palette.grey[800]};
+    }
+    .grey900 {
+      color: ${theme.palette.grey[900]};
+    }
+
     .red {
       background-color: red;
     }

@@ -3,8 +3,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/css";
 import { jsx, Theme } from "@emotion/react";
+import { Stack } from "@mui/material";
 import PageLayout from "../../../components/layouts/PageLayout";
-import SectionCard from "../../../components/SectionCard";
+import SectionCard from "../../../components/sections/SectionCard";
+import SectionCardContentItem from "../../../components/sections/SectionCardContentItem";
 
 const classes = {
   layout: css({
@@ -36,11 +38,17 @@ const ProbllematicSummary = () => {
       titleSpacing={1.5}
       onBack={handleBack}
     >
-      {/* <h1>cool</h1> */}
-      <SectionCard
-        title="Problème"
-        description={"“Nous constatons une réduction du nombre d’inscription.”"}
-      />
+      <Stack spacing={3}>
+        <SectionCard
+          title="Problème"
+          description={
+            "“Nous constatons une réduction du nombre d’inscription.”"
+          }
+        />
+        <SectionCard title="Driver">
+          <SectionCardContentItem title="Acquisition" />
+        </SectionCard>
+      </Stack>
     </PageLayout>
   );
 };

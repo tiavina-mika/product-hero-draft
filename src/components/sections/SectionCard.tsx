@@ -5,7 +5,7 @@ import { css, cx } from "@emotion/css";
 import { jsx, Theme } from "@emotion/react";
 import { Stack, Typography } from "@mui/material";
 import { ReactNode } from "react";
-import Card from "./Card";
+import Card from "../Card";
 
 const classes = {
   card: css({

@@ -3,10 +3,12 @@
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
 import { Stack, Typography } from "@mui/material";
+import { Fragment } from "react";
 import PageLayout from "../../../components/layouts/PageLayout";
 import SectionCard from "../../../components/sections/SectionCard";
 import SectionCardContentItem from "../../../components/sections/SectionCardContentItem";
 import UserAvatar from "../../../components/UserAvatar";
+import AvatarWithIcon from "../../../components/user/AvatarWithIcon";
 import { getTrustLevel } from "../../../utils/entity.utils";
 
 const entity = {
@@ -23,13 +25,13 @@ const entity = {
   ],
   endDate: "17 Mai 2024",
   trustLevel: 80,
-  members: [
-    {
-      objectId: "u01",
-      firstName: "Tiks",
-      lastName: "Kun",
-      email: "user01@gmail.com"
-    },
+  leader: {
+    objectId: "u01",
+    firstName: "Tiks",
+    lastName: "Kun",
+    email: "user01@gmail.com"
+  },
+  followers: [
     {
       objectId: "u02",
       firstName: "Tiavina",
@@ -88,11 +90,15 @@ const ProbllematicSummary = () => {
         {/* members */}
         <SectionCard title="Membres concernés">
           <Stack direction="row" spacing={2}>
-            {entity.members.map((member, index) => (
-              <UserAvatar
-                size={56}
-                key={member.objectId + index}
-                user={member}
+            {entity.leader && (
+              <AvatarWithIcon user={entity.leader} emoji="👑" />
+            )}
+            {entity.owner && <AvatarWithIcon user={entity.owner} emoji="👑" />}
+            {entity.followers.map((follower, index) => (
+              <AvatarWithIcon
+                key={follower.objectId + index}
+                user={follower}
+                emoji="🗣"
               />
             ))}
           </Stack>

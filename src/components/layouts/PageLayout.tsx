@@ -18,19 +18,18 @@ const classes = {
   pageLayoutContent: (theme: Theme) => ({
     paddingBottom: 30,
     paddingTop: 30,
-    paddingLeft: 32,
-    paddingRight: 32,
+    paddingLeft: LAYOUT_CONTENT_PADDING_X,
+    paddingRight: LAYOUT_CONTENT_PADDING_X,
+    flex: 1,
     [theme.breakpoints.up("md")]: {
-      width: 400
-    },
-    [theme.breakpoints.down("sm")]: {
-      flex: 1
+      maxWidth: 600
     }
   }),
   titleContainer: (alignment: "left" | "center" | "right") => ({
     alignItems: getAlignment(alignment)
   }),
   title: ({ alignment }: any) => ({
+    fontWeight: 700,
     textAlign: alignment
   }),
   description: ({ alignment }: any) => ({
@@ -47,7 +46,7 @@ const classes = {
   divider: (theme: Theme) => ({
     height: 1,
     backgroundColor: theme.palette.grey[100],
-    position: "absolute" as "absolute",
+    position: "absolute" as const,
     left: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
     right: -LAYOUT_CONTENT_PADDING_X /* this override the parent pagging */,
     top: 34
@@ -58,6 +57,7 @@ type Props = {
   children?: ReactNode;
   title?: string | ReactNode;
   description?: string | ReactNode;
+  info?: string;
   alignment?: "left" | "center" | "right";
   image?: string;
   titleClassName?: string;
@@ -77,6 +77,7 @@ const PageLayout = ({
   children,
   title,
   description,
+  info,
   image,
   descriptionClassName,
   titleClassName,
@@ -84,7 +85,7 @@ const PageLayout = ({
   contentClassName,
   imageContainerClassName,
   className,
-  textSpacing,
+  textSpacing = 4.3,
   onBack,
   onSearch,
   withHeaderDivider = false,
@@ -105,7 +106,6 @@ const PageLayout = ({
           spacing={titleSpacing}
           css={classes.titleContainer(alignment)}
         >
-          {/* actions */}
           <div className="stretchSelf flexRow spaceBetween">
             {onBack && (
               <IconButton onClick={onBack} sx={{ p: 0 }}>
@@ -118,7 +118,6 @@ const PageLayout = ({
               </IconButton>
             )}
           </div>
-          {/* image */}
           {image && (
             <TopIcon
               alignment={alignment}
@@ -126,7 +125,6 @@ const PageLayout = ({
               css={imageContainerClassName}
             />
           )}
-          {/* title & description */}
           <Stack
             className="stretchSelf flexColumn positionRelative"
             spacing={textSpacing}
@@ -154,10 +152,16 @@ const PageLayout = ({
                 </Typography>
               </div>
             )}
+            {info && (
+              <div className="stretchSelf">
+                <Typography variant="body1" sx={{ textAlign: alignment }}>
+                  {info}
+                </Typography>
+              </div>
+            )}
             {withHeaderDivider && <div css={classes.divider} />}
           </Stack>
         </Stack>
-        {/* content */}
         {children && (
           <div className={cx("flex1 stretchSelf flexColumn", className)}>
             {children}

@@ -58,9 +58,10 @@ const classes = {
     paddingBottom: 24
   }),
   content: {
-    marginTop: 32
+    marginTop: 27
   }
 };
+
 const ProbllematicSummary = () => {
   const handleBack = () => {
     console.log("onBack");
@@ -75,10 +76,11 @@ const ProbllematicSummary = () => {
   return (
     <PageLayout
       title="Votre problématique"
-      description="Vous pourrez la modifier à tout moment directement dans votre espace Mon Focus."
+      info="Vous pourrez la modifier à tout moment directement dans votre espace Mon Focus."
       rootClassName="positionRelative"
       contentClassName={classes.root}
       css={classes.content}
+      // descriptionClassName={pageDescription}
       textSpacing={1}
       titleSpacing={1.5}
       onBack={handleBack}

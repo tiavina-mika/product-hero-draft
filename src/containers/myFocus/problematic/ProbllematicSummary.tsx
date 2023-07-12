@@ -117,7 +117,10 @@ const ProbllematicSummary = () => {
             icon="/icons/calendar.svg"
             title={trustLevelOption?.title || ""}
             action={
-              <Typography color={`${trustLevelOption?.color}.main`}>
+              <Typography
+                color={`${trustLevelOption?.color}.main`}
+                sx={{ fontSize: 14, lineHeight: 1 }}
+              >
                 {entity.trustLevel}
               </Typography>
             }

@@ -54,9 +54,12 @@ const classes = {
     bottom: 0,
     left: "100%"
   },
-  pageContent: css({
+  root: css({
     paddingBottom: 24
-  })
+  }),
+  content: {
+    marginTop: 32
+  }
 };
 const ProbllematicSummary = () => {
   const handleBack = () => {
@@ -74,7 +77,8 @@ const ProbllematicSummary = () => {
       title="Votre problématique"
       description="Vous pourrez la modifier à tout moment directement dans votre espace Mon Focus."
       rootClassName="positionRelative"
-      contentClassName={classes.pageContent}
+      contentClassName={classes.root}
+      css={classes.content}
       textSpacing={1}
       titleSpacing={1.5}
       onBack={handleBack}

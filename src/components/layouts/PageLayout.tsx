@@ -105,6 +105,7 @@ const PageLayout = ({
           spacing={titleSpacing}
           css={classes.titleContainer(alignment)}
         >
+          {/* actions */}
           <div className="stretchSelf flexRow spaceBetween">
             {onBack && (
               <IconButton onClick={onBack} sx={{ p: 0 }}>
@@ -117,6 +118,7 @@ const PageLayout = ({
               </IconButton>
             )}
           </div>
+          {/* image */}
           {image && (
             <TopIcon
               alignment={alignment}
@@ -124,6 +126,7 @@ const PageLayout = ({
               css={imageContainerClassName}
             />
           )}
+          {/* title & description */}
           <Stack
             className="stretchSelf flexColumn positionRelative"
             spacing={textSpacing}
@@ -154,6 +157,7 @@ const PageLayout = ({
             {withHeaderDivider && <div css={classes.divider} />}
           </Stack>
         </Stack>
+        {/* content */}
         {children && (
           <div className={cx("flex1 stretchSelf flexColumn", className)}>
             {children}

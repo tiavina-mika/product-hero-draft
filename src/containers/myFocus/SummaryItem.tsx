@@ -10,8 +10,7 @@ import SectionCard from "../../components/sections/SectionCard";
 import SectionCardContentItem from "../../components/sections/SectionCardContentItem";
 import AvatarWithIcon from "../../components/user/AvatarWithIcon";
 import { getTrustLevel } from "../../utils/entity.utils";
-import SummaryItem from "./SummaryItem";
-import Card from "../../components/Card";
+import { ReactNode } from "react";
 
 const entity = {
   title: "Retrouver la croissance du volume d’inscrits",
@@ -26,9 +25,6 @@ const entity = {
     { objectId: "r03", name: "Automatiser le parcours à 80%" }
   ],
   endDate: "17 Mai 2024",
-  okrs: [
-    { objectId: "okr01", name: "Améliorer notre acquisition", icon: "⭐️" }
-  ],
   trustLevel: 80,
   leader: {
     objectId: "u01",
@@ -53,10 +49,8 @@ const entity = {
 };
 
 const classes = {
-  buttonContainer: {
-    paddingTop: 24,
-    bottom: 0,
-    left: "100%"
+  label: {
+    maxWidth: 80
   },
   dialogContent: css({
     // paddingBottom: 24
@@ -71,43 +65,19 @@ const classes = {
   }
 };
 
-const ProbllematicSummary = () => {
-  const handleClose = () => {
-    console.log("onBack");
-  };
-
-  const handleFinalValidate = () => {
-    console.log("handleFinalValidate");
-  };
-
-  const trustLevelOption = getTrustLevel(entity.trustLevel);
-
+type Props = {
+  label?: string;
+  children: ReactNode;
+};
+const SummaryItem = ({ label, children }: Props) => {
   return (
-    <Dialog
-      title="Retrouver la croissance du volume d’inscrits"
-      description="Vous pourrez la modifier à tout moment directement dans votre espace Mon Focus."
-      // rootClassName="positionRelative"
-      // contentClassName={classes.root}
-      open
-      // css={classes.content}
-      // textSpacing={1}
-      // titleSpacing={1.5}
-      // fullScreen
-      onClose={handleClose}
-      withCloseButton
-      contentClassName={classes.dialogContent}
-      closeButtonPosition="start"
-      fullWidth
-      maxWidth="xl"
-      css={classes.dialog}
-    >
-      <SummaryItem label="Objectifs">
-        {entity.okrs.map((okr, index) => (
-          <Card key={okr.objectId + index} title={okr.name} left={okr.icon} />
-        ))}
-      </SummaryItem>
-    </Dialog>
+    <div className="flexRow stretchSelf">
+      <div css={classes.label}>
+        <Typography>{label}</Typography>
+      </div>
+      <div className="flex1">{children}</div>
+    </div>
   );
 };
 
-export default ProbllematicSummary;
+export default SummaryItem;

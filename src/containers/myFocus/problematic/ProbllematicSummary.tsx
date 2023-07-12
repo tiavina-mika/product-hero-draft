@@ -3,14 +3,13 @@
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
 import { Button, Stack, Typography } from "@mui/material";
-import { Fragment } from "react";
+import { css } from "@emotion/css";
+
 import PageLayout from "../../../components/layouts/PageLayout";
 import SectionCard from "../../../components/sections/SectionCard";
 import SectionCardContentItem from "../../../components/sections/SectionCardContentItem";
-import UserAvatar from "../../../components/UserAvatar";
 import AvatarWithIcon from "../../../components/user/AvatarWithIcon";
 import { getTrustLevel } from "../../../utils/entity.utils";
-import { css, cx } from "@emotion/css";
 
 const entity = {
   title: "Retrouver la croissance du volume d’inscrits",

@@ -8,6 +8,7 @@ import SectionCard from "../../../components/sections/SectionCard";
 import SectionCardContentItem from "../../../components/sections/SectionCardContentItem";
 
 const entity = {
+  title: "Retrouver la croissance du volume d’inscrits",
   description: "Nous constatons une réduction du nombre d’inscription.",
   drivers: [
     { driver: { objectId: "d01", name: "Acquisition" }, impact: 80 },
@@ -66,6 +67,8 @@ const ProbllematicSummary = () => {
             title={entity.endDate}
           />
         </SectionCard>
+        {/* title */}
+        <SectionCard title="Intitulé du problème" description={entity.title} />
       </Stack>
     </PageLayout>
   );

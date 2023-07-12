@@ -2,12 +2,11 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Stack, Typography, useTheme } from "@mui/material";
-import { get } from "react-hook-form";
+import { Stack, Typography } from "@mui/material";
 import PageLayout from "../../../components/layouts/PageLayout";
 import SectionCard from "../../../components/sections/SectionCard";
 import SectionCardContentItem from "../../../components/sections/SectionCardContentItem";
-import { getSliderColorByPercent } from "../../../utils/app.utils";
+import UserAvatar from "../../../components/UserAvatar";
 import { getTrustLevel } from "../../../utils/entity.utils";
 
 const entity = {
@@ -23,7 +22,27 @@ const entity = {
     { objectId: "r03", name: "Automatiser le parcours à 80%" }
   ],
   endDate: "17 Mai 2024",
-  trustLevel: 80
+  trustLevel: 80,
+  members: [
+    {
+      objectId: "u01",
+      firstName: "Tiks",
+      lastName: "Kun",
+      email: "user01@gmail.com"
+    },
+    {
+      objectId: "u02",
+      firstName: "Tiavina",
+      lastName: "Michael",
+      email: "user02@gmail.com"
+    },
+    {
+      objectId: "u03",
+      firstName: "Ralainirina",
+      lastName: "Michael",
+      email: "user03@gmail.com"
+    }
+  ]
 };
 
 const ProbllematicSummary = () => {
@@ -65,6 +84,18 @@ const ProbllematicSummary = () => {
               key={result.objectId + index}
             />
           ))}
+        </SectionCard>
+        {/* members */}
+        <SectionCard title="Membres concernés">
+          <Stack direction="row" spacing={2}>
+            {entity.members.map((member, index) => (
+              <UserAvatar
+                size={56}
+                key={member.objectId + index}
+                user={member}
+              />
+            ))}
+          </Stack>
         </SectionCard>
         {/* endDate */}
         <SectionCard title="Deadline">

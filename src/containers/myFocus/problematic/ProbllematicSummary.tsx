@@ -10,7 +10,7 @@ import SectionCardContentItem from "../../../components/sections/SectionCardCont
 import UserAvatar from "../../../components/UserAvatar";
 import AvatarWithIcon from "../../../components/user/AvatarWithIcon";
 import { getTrustLevel } from "../../../utils/entity.utils";
-import { css } from "@emotion/css";
+import { css, cx } from "@emotion/css";
 
 const entity = {
   title: "Retrouver la croissance du volume d’inscrits",
@@ -80,7 +80,6 @@ const ProbllematicSummary = () => {
       rootClassName="positionRelative"
       contentClassName={classes.root}
       css={classes.content}
-      // descriptionClassName={pageDescription}
       textSpacing={1}
       titleSpacing={1.5}
       onBack={handleBack}

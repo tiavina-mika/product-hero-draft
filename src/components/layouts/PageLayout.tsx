@@ -26,7 +26,9 @@ const classes = {
     }
   }),
   titleContainer: (alignment: "left" | "center" | "right") => ({
-    alignItems: getAlignment(alignment)
+    alignItems: getAlignment(alignment),
+    zIndex: 1000,
+    backgroundColor: "#ffff"
   }),
   title: ({ alignment }: any) => ({
     fontWeight: 700,
@@ -63,6 +65,7 @@ type Props = {
   titleClassName?: string;
   descriptionClassName?: string;
   rootClassName?: string;
+  topClassName?: string;
   className?: string;
   titleSpacing?: number;
   contentClassName?: string;
@@ -78,6 +81,7 @@ const PageLayout = ({
   title,
   description,
   info,
+  topClassName,
   image,
   descriptionClassName,
   titleClassName,
@@ -102,7 +106,7 @@ const PageLayout = ({
         css={classes.pageLayoutContent}
       >
         <Stack
-          className="stretchSelf"
+          className={cx("stretchSelf", topClassName)}
           spacing={titleSpacing}
           css={classes.titleContainer(alignment)}
         >

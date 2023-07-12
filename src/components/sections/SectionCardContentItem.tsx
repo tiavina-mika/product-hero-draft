@@ -27,18 +27,20 @@ const SectionCardContentItem = ({
   titleClassName
 }: Props) => {
   return (
-    <Stack direction="row" spacing={1.2} alignItems="center">
-      {/* ----- title ----- */}
-      {icon && (
-        <div>
-          <img alt="" src={icon} />
-        </div>
-      )}
-      <Typography className={titleClassName} css={classes.title}>
-        {title}
-      </Typography>
+    <div className="flexRow spaceBetween center">
+      <Stack direction="row" spacing={1.2} alignItems="center">
+        {/* ----- title ----- */}
+        {icon && (
+          <div>
+            <img alt="" src={icon} />
+          </div>
+        )}
+        <Typography className={titleClassName} css={classes.title}>
+          {title}
+        </Typography>
+      </Stack>
       {action && <div>{action}</div>}
-    </Stack>
+    </div>
   );
 };
 

@@ -2,10 +2,13 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Stack } from "@mui/material";
+import { Stack, Typography, useTheme } from "@mui/material";
+import { get } from "react-hook-form";
 import PageLayout from "../../../components/layouts/PageLayout";
 import SectionCard from "../../../components/sections/SectionCard";
 import SectionCardContentItem from "../../../components/sections/SectionCardContentItem";
+import { getSliderColorByPercent } from "../../../utils/app.utils";
+import { getTrustLevel } from "../../../utils/entity.utils";
 
 const entity = {
   title: "Retrouver la croissance du volume d’inscrits",
@@ -19,13 +22,16 @@ const entity = {
     { objectId: "r02", name: "PS +20 sur les nouveaux clients" },
     { objectId: "r03", name: "Automatiser le parcours à 80%" }
   ],
-  endDate: "17 Mai 2024"
+  endDate: "17 Mai 2024",
+  trustLevel: 80
 };
 
 const ProbllematicSummary = () => {
   const handleBack = () => {
     console.log("onBack");
   };
+
+  const trustLevelOption = getTrustLevel(entity.trustLevel);
 
   return (
     <PageLayout
@@ -65,6 +71,19 @@ const ProbllematicSummary = () => {
           <SectionCardContentItem
             icon="/icons/calendar.svg"
             title={entity.endDate}
+          />
+        </SectionCard>
+        {/* trustLevel */}
+        <SectionCard title="Niveau de confiance">
+          <SectionCardContentItem
+            // TODO: change the icon
+            icon="/icons/calendar.svg"
+            title={trustLevelOption?.title || ""}
+            action={
+              <Typography color={`${trustLevelOption?.color}.main`}>
+                {entity.trustLevel}
+              </Typography>
+            }
           />
         </SectionCard>
         {/* title */}

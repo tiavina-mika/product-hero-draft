@@ -161,6 +161,9 @@ const getGlobalStyles = (theme: Theme & MUITheme) => {
     .positionAbsolute {
       position: absolute;
     }
+    .positionSticky {
+      position: sticky;
+    }
     .h4Grey600 {
       color: ${theme.palette.grey[600]};
     }

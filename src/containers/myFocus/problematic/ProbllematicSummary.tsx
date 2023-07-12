@@ -2,7 +2,7 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { Fragment } from "react";
 import PageLayout from "../../../components/layouts/PageLayout";
 import SectionCard from "../../../components/sections/SectionCard";
@@ -10,6 +10,7 @@ import SectionCardContentItem from "../../../components/sections/SectionCardCont
 import UserAvatar from "../../../components/UserAvatar";
 import AvatarWithIcon from "../../../components/user/AvatarWithIcon";
 import { getTrustLevel } from "../../../utils/entity.utils";
+import { css } from "@emotion/css";
 
 const entity = {
   title: "Retrouver la croissance du volume d’inscrits",
@@ -47,9 +48,23 @@ const entity = {
   ]
 };
 
+const classes = {
+  buttonContainer: {
+    paddingTop: 24,
+    bottom: 0,
+    left: "100%"
+  },
+  pageContent: css({
+    paddingBottom: 24
+  })
+};
 const ProbllematicSummary = () => {
   const handleBack = () => {
     console.log("onBack");
+  };
+
+  const handleFinalValidate = () => {
+    console.log("handleFinalValidate");
   };
 
   const trustLevelOption = getTrustLevel(entity.trustLevel);
@@ -58,12 +73,13 @@ const ProbllematicSummary = () => {
     <PageLayout
       title="Votre problématique"
       description="Vous pourrez la modifier à tout moment directement dans votre espace Mon Focus."
-      // rootClassName={classes.layout}
+      rootClassName="positionRelative"
+      contentClassName={classes.pageContent}
       textSpacing={1}
       titleSpacing={1.5}
       onBack={handleBack}
     >
-      <Stack spacing={3}>
+      <Stack spacing={3} className="stretchSelf">
         {/* description */}
         <SectionCard
           title="Problème"
@@ -129,6 +145,11 @@ const ProbllematicSummary = () => {
         {/* title */}
         <SectionCard title="Intitulé du problème" description={entity.title} />
       </Stack>
+      <div className="positionSticky" css={classes.buttonContainer}>
+        <Button variant="contained" onClick={handleFinalValidate}>
+          Valider & créer
+        </Button>
+      </div>
     </PageLayout>
   );
 };

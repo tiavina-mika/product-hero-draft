@@ -84,6 +84,8 @@ type Props = {
   sxPaper?: SxProps<MUITheme>;
   formId?: string;
   description?: string;
+  contentContainerClassName?: string;
+  contentClassName?: string;
   loading?: boolean;
   withCloseButton?: boolean;
   closeButtonPosition?: "end" | "start";
@@ -91,6 +93,8 @@ type Props = {
 
 const Dialog = ({
   className,
+  contentContainerClassName,
+  contentClassName,
   open,
   onClose,
   children,
@@ -143,13 +147,19 @@ const Dialog = ({
         </div>
       )}
 
-      <DialogContent className={cx("flexColumn stretch", className)}>
+      <DialogContent
+        className={cx(
+          "flexColumn stretch",
+          className,
+          contentContainerClassName
+        )}
+      >
         {description && (
           <DialogContentText id="alert-dialog-slide-description">
             {description}
           </DialogContentText>
         )}
-        {children}
+        <div className={contentClassName}>{children}</div>
       </DialogContent>
       {actions && <DialogActions>{actions}</DialogActions>}
       {formId && (

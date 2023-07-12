@@ -5,11 +5,11 @@ import { jsx } from "@emotion/react";
 import { Button, Stack, Typography } from "@mui/material";
 import { css } from "@emotion/css";
 
-import PageLayout from "../../../components/layouts/PageLayout";
-import SectionCard from "../../../components/sections/SectionCard";
-import SectionCardContentItem from "../../../components/sections/SectionCardContentItem";
-import AvatarWithIcon from "../../../components/user/AvatarWithIcon";
-import { getTrustLevel } from "../../../utils/entity.utils";
+import Dialog from "../../components/Dialog";
+import SectionCard from "../../components/sections/SectionCard";
+import SectionCardContentItem from "../../components/sections/SectionCardContentItem";
+import AvatarWithIcon from "../../components/user/AvatarWithIcon";
+import { getTrustLevel } from "../../utils/entity.utils";
 
 const entity = {
   title: "Retrouver la croissance du volume d’inscrits",
@@ -53,16 +53,21 @@ const classes = {
     bottom: 0,
     left: "100%"
   },
-  root: css({
-    paddingBottom: 24
+  dialogContent: css({
+    // paddingBottom: 24
+    marginTop: 61
   }),
-  content: {
-    marginTop: 27
+
+  dialog: {
+    paddingTop: 3
+    // '& .MuiDialog-paper': {
+    //   padding: '28px 16px',
+    // },
   }
 };
 
 const ProbllematicSummary = () => {
-  const handleBack = () => {
+  const handleClose = () => {
     console.log("onBack");
   };
 
@@ -73,15 +78,23 @@ const ProbllematicSummary = () => {
   const trustLevelOption = getTrustLevel(entity.trustLevel);
 
   return (
-    <PageLayout
-      title="Votre problématique"
-      info="Vous pourrez la modifier à tout moment directement dans votre espace Mon Focus."
-      rootClassName="positionRelative"
-      contentClassName={classes.root}
-      css={classes.content}
-      textSpacing={1}
-      titleSpacing={1.5}
-      onBack={handleBack}
+    <Dialog
+      title="Retrouver la croissance du volume d’inscrits"
+      description="Vous pourrez la modifier à tout moment directement dans votre espace Mon Focus."
+      // rootClassName="positionRelative"
+      // contentClassName={classes.root}
+      open
+      // css={classes.content}
+      // textSpacing={1}
+      // titleSpacing={1.5}
+      // fullScreen
+      onClose={handleClose}
+      withCloseButton
+      contentClassName={classes.dialogContent}
+      closeButtonPosition="start"
+      fullWidth
+      maxWidth="xl"
+      css={classes.dialog}
     >
       <Stack spacing={3} className="stretchSelf">
         {/* description */}
@@ -149,12 +162,12 @@ const ProbllematicSummary = () => {
         {/* title */}
         <SectionCard title="Intitulé du problème" description={entity.title} />
       </Stack>
-      <div className="positionSticky" css={classes.buttonContainer}>
+      <div css={classes.buttonContainer}>
         <Button variant="contained" onClick={handleFinalValidate}>
           Valider & créer
         </Button>
       </div>
-    </PageLayout>
+    </Dialog>
   );
 };
 

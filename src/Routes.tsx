@@ -12,7 +12,7 @@ import { IDriver } from "./types/driver.type";
 import { IOkr } from "./types/okr.type";
 
 // import EntityCreationSuccess from "./containers/myFocus/EntityCreationSuccess";
-import ProbllematicSummary from "./containers/myFocus/problematic/ProbllematicSummary";
+import ProbllematicSummary from "./containers/myFocus/ProbllematicSummary";
 
 import { HOME_TABS, PATH_NAMES, SETTING_TABS } from "./utils/constants";
 
@@ -159,7 +159,12 @@ const Route = () => {
       <EditOkr okr={okr} onSave={handleEditOkr} onGoToOkrs={handleGoToOkrs} />
     );
   }
-  return <ProbllematicSummary />;
+  return (
+    <div>
+      <h1>cool</h1>
+      <ProbllematicSummary />
+    </div>
+  );
 
   return (
     <HomeLayout

@@ -3,9 +3,9 @@
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
 import { css } from "@emotion/css";
+import { ReactNode } from "react";
 
 import Card, { CardProps } from "../Card";
-import { ReactNode } from "react";
 
 const classes = {
   card: css({

@@ -101,8 +101,7 @@ const ProbllematicSummary = () => {
         {entity.okrs.map((okr, index) => (
           <RoundedCard
             key={okr.objectId + index}
-            title="Bméliorer notre acquisition"
-            // title={okr.name}
+            title={okr.name}
             icon={<span css={{ lineHeight: 1 }}>{okr.icon}</span>}
           />
         ))}

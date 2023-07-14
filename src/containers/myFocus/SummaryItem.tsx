@@ -18,12 +18,7 @@ type Props = {
 };
 const SummaryItem = ({ label, className, children }: Props) => {
   return (
-    <div
-      // direction="row"
-      // alignItems="center"
-      className="flexRow center stretchSelf"
-      // spacing={8.1}
-    >
+    <div className="flexRow center stretchSelf">
       {/* left */}
       <div css={classes.label}>
         <Typography variant="body2">{label}</Typography>

@@ -2,7 +2,7 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 const classes = {
@@ -21,10 +21,18 @@ const SummaryItem = ({ label, className, children }: Props) => {
     <div className="flexRow center stretchSelf">
       {/* left */}
       <div css={classes.label}>
-        <Typography variant="body2">{label}</Typography>
+        <Typography sx={{ fontWeight: 400 }} variant="body2">
+          {label}
+        </Typography>
       </div>
       {/* right */}
-      <div className={className}>{children}</div>
+      {(children as ReactNode[]).length > 1 ? (
+        <Stack spacing={2.1} direction="row" className={className}>
+          {children}
+        </Stack>
+      ) : (
+        <div className={className}>{children}</div>
+      )}
     </div>
   );
 };

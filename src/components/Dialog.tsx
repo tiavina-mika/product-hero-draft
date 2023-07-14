@@ -21,7 +21,6 @@ import { forwardRef, ReactNode } from "react";
 import { getVerticalAlignment } from "../utils/utils";
 import { useBreakpoint } from "../hooks/useBreakpoint";
 import { cx } from "@emotion/css";
-import { RESPONSIVE_BREAKPOINT } from "../utils/constants";
 
 type IAlignment = "top" | "center" | "bottom";
 const getDialogBorderRadius = (alignment: IAlignment) => {
@@ -37,16 +36,17 @@ const getDialogBorderRadius = (alignment: IAlignment) => {
 };
 
 const classes = {
-  root: (alignment: IAlignment, fullWidth = false) => (theme: Theme) => ({
+  root: (alignment: IAlignment, fullWidth = false, fullScreen = false) => (
+    theme: Theme
+  ) => ({
     "& .MuiDialog-container": {
       alignItems: getVerticalAlignment(alignment)
     },
     "& .MuiDialog-paper": {
       margin: 0,
       borderRadius: getDialogBorderRadius(alignment),
-      [theme.breakpoints.down(RESPONSIVE_BREAKPOINT)]: {
-        ...(fullWidth ? { width: "100%" } : {})
-      }
+      ...(fullScreen ? { height: "100vh", borderRadius: 0 } : {}),
+      ...(fullWidth || fullScreen ? { width: "100%" } : {})
     }
   }),
   titleContainer: {
@@ -88,6 +88,7 @@ type Props = {
   contentClassName?: string;
   loading?: boolean;
   withCloseButton?: boolean;
+  fullScreen?: boolean;
   closeButtonPosition?: "end" | "start";
 } & DialogProps;
 
@@ -105,6 +106,7 @@ const Dialog = ({
   loading,
   description,
   withCloseButton = true,
+  fullScreen = false,
   maxWidth = "sm",
   alignment = "bottom",
   closeButtonPosition = "end",
@@ -120,8 +122,15 @@ const Dialog = ({
       TransitionComponent={Transition}
       keepMounted
       onClose={onClose}
+      // use dialog fullScreen in large screen instead of the style
+      fullScreen={!isSmallScreen && fullScreen}
       aria-describedby="alert-dialog-slide-description"
-      css={classes.root(alignment, dialogProps.fullWidth)}
+      css={classes.root(
+        alignment,
+        dialogProps.fullWidth,
+        // use style for full screen in mobile
+        isSmallScreen && fullScreen
+      )}
     >
       {withCloseButton && (
         <div
@@ -161,7 +170,11 @@ const Dialog = ({
         )}
         <div className={contentClassName}>{children}</div>
       </DialogContent>
+
+      {/* actions, mainly buttons */}
       {actions && <DialogActions>{actions}</DialogActions>}
+
+      {/* actions for form (the formId should the form formId) */}
       {formId && (
         <DialogActions>
           <Button type="submit" variant="contained" fullWidth form={formId}>

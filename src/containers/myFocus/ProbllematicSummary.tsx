@@ -23,7 +23,8 @@ const entity = {
   ],
   endDate: "17 Mai 2024",
   okrs: [
-    { objectId: "okr01", name: "Améliorer notre acquisition", icon: "⭐️" }
+    { objectId: "okr01", name: "Améliorer notre acquisition", icon: "⭐️" },
+    { objectId: "okr02", name: "Améliorer notre", icon: "⭐️" }
   ],
   trustLevel: 80,
   leader: {
@@ -55,7 +56,6 @@ const classes = {
     left: "100%"
   },
   dialogContent: css({
-    // paddingBottom: 24
     marginTop: 61
   }),
 
@@ -93,9 +93,10 @@ const ProbllematicSummary = () => {
       withCloseButton
       contentClassName={classes.dialogContent}
       closeButtonPosition="start"
-      fullWidth
-      maxWidth="xl"
+      // fullWidth
+      // maxWidth="xl"
       css={classes.dialog}
+      fullScreen
     >
       <SummaryItem label="Objectifs">
         {entity.okrs.map((okr, index) => (

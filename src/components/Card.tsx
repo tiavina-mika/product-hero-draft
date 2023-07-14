@@ -29,11 +29,17 @@ const classes = {
   label: (theme: Theme) => ({
     color: theme.palette.grey[800]
   }),
-  left: (theme: Theme) => ({
+  left: {
     paddingLeft: 17,
-    paddingRight: 17,
+    paddingRight: 17
+  },
+  withLeftDivider: (theme: Theme) => ({
     borderRight: "1px solid " + theme.palette.grey[100]
   }),
+  withoutLeftDivider: {
+    paddingRight: 0,
+    paddingLeft: 0
+  },
   active: (theme: Theme) => ({
     borderColor: theme.palette.warning.main,
     backgroundColor: theme.palette.warning.light
@@ -63,13 +69,14 @@ const classes = {
   }
 };
 
-type Props = {
+export type CardProps = {
   className?: string;
   rootClassName?: string;
   children?: ReactNode;
   content?: string;
   descriptionClassName?: string;
   titleClassName?: string;
+  leftClassName?: string;
   left?: ReactNode;
   right?: ReactNode;
   isActive?: boolean;
@@ -79,7 +86,10 @@ type Props = {
   contentClassName?: string;
   rightClassName?: string;
   titleTextClassName?: string;
+  centerClassName?: string;
+  // leftClassName?: string;
   hasShadow?: boolean;
+  withLeftDivider?: boolean;
   description?: string;
   title?: string;
   label?: string;
@@ -94,18 +104,21 @@ const Card = ({
   right,
   onClick,
   contentClassName,
+  centerClassName,
   descriptionClassName,
   rightClassName,
   titleClassName,
   description,
   titleTextClassName,
+  // leftClassName,
   title,
   label,
   withArrow = false,
   isActive = false,
   hasShadow = false,
-  withRightDivider = true
-}: Props) => {
+  withRightDivider = true,
+  withLeftDivider = true
+}: CardProps) => {
   return (
     <MUICard
       css={[
@@ -140,14 +153,20 @@ const Card = ({
         {left && (
           <div
             className="flexCenter stretchSelf"
-            css={[classes.left, isActive && classes.active]}
+            css={[
+              classes.left,
+              isActive && classes.active,
+              withLeftDivider
+                ? classes.withLeftDivider
+                : classes.withoutLeftDivider
+            ]}
           >
             {left}
           </div>
         )}
         {/* ----- center ----- */}
         <div
-          className={cx("flex1 centerSelf", contentClassName)}
+          className={cx("flex1 centerSelf", contentClassName, centerClassName)}
           css={classes.center}
         >
           {/* ------- title & description ------- */}
@@ -160,13 +179,13 @@ const Card = ({
                   </Typography>
                 )}
               </div>
-              <div className={descriptionClassName}>
-                {description && (
+              {description && (
+                <div className={descriptionClassName}>
                   <Typography variant="body1" sx={{ lineHeight: 0.8 }}>
                     {description}
                   </Typography>
-                )}
-              </div>
+                </div>
+              )}
             </Stack>
           )}
           {/* text content */}

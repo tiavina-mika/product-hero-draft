@@ -2,16 +2,12 @@
 /* @jsx jsx */
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
-import { Button, Stack, Typography } from "@mui/material";
 import { css } from "@emotion/css";
 
 import Dialog from "../../components/Dialog";
-import SectionCard from "../../components/sections/SectionCard";
-import SectionCardContentItem from "../../components/sections/SectionCardContentItem";
-import AvatarWithIcon from "../../components/user/AvatarWithIcon";
 import { getTrustLevel } from "../../utils/entity.utils";
 import SummaryItem from "./SummaryItem";
-import Card from "../../components/Card";
+import RoundedCard from "../../components/card/RoundedCard";
 
 const entity = {
   title: "Retrouver la croissance du volume d’inscrits",
@@ -103,7 +99,12 @@ const ProbllematicSummary = () => {
     >
       <SummaryItem label="Objectifs">
         {entity.okrs.map((okr, index) => (
-          <Card key={okr.objectId + index} title={okr.name} left={okr.icon} />
+          <RoundedCard
+            key={okr.objectId + index}
+            title="Bméliorer notre acquisition"
+            // title={okr.name}
+            icon={<span css={{ lineHeight: 1 }}>{okr.icon}</span>}
+          />
         ))}
       </SummaryItem>
     </Dialog>

@@ -178,6 +178,11 @@ const getGlobalStyles = (theme: Theme & MUITheme) => {
     .textUpperCase {
       text-transform: uppercase;
     }
+    .lh1 {
+      line-height: 1;
+    }
+
+    /* ------- colors ------- */
     .grey50 {
       color: ${theme.palette.grey[50]};
     }

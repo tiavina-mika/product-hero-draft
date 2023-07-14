@@ -8,13 +8,20 @@ import Dialog from "../../components/Dialog";
 import { getTrustLevel } from "../../utils/entity.utils";
 import SummaryItem from "./SummaryItem";
 import RoundedCard from "../../components/card/RoundedCard";
+import { Stack } from "@mui/material";
 
 const entity = {
   title: "Retrouver la croissance du volume d’inscrits",
   description: "Nous constatons une réduction du nombre d’inscription.",
   drivers: [
-    { driver: { objectId: "d01", name: "Acquisition" }, impact: 80 },
-    { driver: { objectId: "d02", name: "Expérience Client" }, impact: 80 }
+    {
+      driver: { objectId: "d01", name: "Acquisition", icon: "👑" },
+      impact: 80
+    },
+    {
+      driver: { objectId: "d02", name: "Fidélisation", icon: "💸" },
+      impact: 80
+    }
   ],
   results: [
     { objectId: "r01", name: "FTB Croissance 20%" },
@@ -82,31 +89,36 @@ const ProbllematicSummary = () => {
     <Dialog
       title="Retrouver la croissance du volume d’inscrits"
       description="Vous pourrez la modifier à tout moment directement dans votre espace Mon Focus."
-      // rootClassName="positionRelative"
-      // contentClassName={classes.root}
       open
-      // css={classes.content}
-      // textSpacing={1}
-      // titleSpacing={1.5}
-      // fullScreen
       onClose={handleClose}
       withCloseButton
       contentClassName={classes.dialogContent}
       closeButtonPosition="start"
-      // fullWidth
-      // maxWidth="xl"
       css={classes.dialog}
       fullScreen
     >
-      <SummaryItem label="Objectifs">
-        {entity.okrs.map((okr, index) => (
-          <RoundedCard
-            key={okr.objectId + index}
-            title={okr.name}
-            icon={<span css={{ lineHeight: 1 }}>{okr.icon}</span>}
-          />
-        ))}
-      </SummaryItem>
+      <Stack spacing={2}>
+        {/* okrs */}
+        <SummaryItem label="Objectifs">
+          {entity.okrs.map((okr, index) => (
+            <RoundedCard
+              key={okr.objectId + index}
+              title={okr.name}
+              icon={<span css={{ lineHeight: 1 }}>{okr.icon}</span>}
+            />
+          ))}
+        </SummaryItem>
+        {/* okrs */}
+        <SummaryItem label="Drivers">
+          {entity.drivers.map((driver, index) => (
+            <RoundedCard
+              key={driver.driver.objectId + index}
+              title={driver.driver.name}
+              icon={<span css={{ lineHeight: 1 }}>{driver.driver.icon}</span>}
+            />
+          ))}
+        </SummaryItem>
+      </Stack>
     </Dialog>
   );
 };

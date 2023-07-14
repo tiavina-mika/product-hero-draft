@@ -33,6 +33,7 @@ const entity = {
     { objectId: "okr01", name: "Améliorer notre acquisition", icon: "⭐️" },
     { objectId: "okr02", name: "Améliorer notre", icon: "⭐️" }
   ],
+  product: { objectId: "p01", name: "Produit 1" },
   trustLevel: 80,
   leader: {
     objectId: "u01",
@@ -108,7 +109,13 @@ const ProbllematicSummary = () => {
             />
           ))}
         </SummaryItem>
-        {/* okrs */}
+
+        {/* product */}
+        <SummaryItem label="Produit">
+          <RoundedCard title={entity.product.name} />
+        </SummaryItem>
+
+        {/* drivers */}
         <SummaryItem label="Drivers">
           {entity.drivers.map((driver, index) => (
             <RoundedCard

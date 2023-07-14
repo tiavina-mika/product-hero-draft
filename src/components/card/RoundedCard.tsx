@@ -20,7 +20,7 @@ const classes = {
 };
 
 type Props = {
-  icon: ReactNode;
+  icon?: ReactNode;
 } & CardProps;
 
 const RoundedCard = ({ icon, ...props }: Props) => {
